@@ -102,11 +102,11 @@
 <p>若报错，尝试：</p>
 <p><code>$ sudo npm install --unsafe-perm --verbose -g hexo</code> </p>
 <h2 id="初始化，建立博客项目"><a href="#初始化，建立博客项目" class="headerlink" title="初始化，建立博客项目"></a>初始化，建立博客项目</h2><p>选定博客网站项目程序文件的存放位置，如<code>/Users/tobefans/Documents/Blog/</code>，Bash中cd进入该目录下，执行命令：</p>
-<p><code>hexo init</code></p>
+<p><code>$ hexo init</code></p>
 <p>执行完毕后，该命令将在当前目录下生成一套标准的Hexo博客项目模板</p>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><pre><code>hexo g 生成静态网站文件
-hexo s 启动本地服务器
-hexo d 发布博客到GitHub</code></pre><h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><h3 id="创建github-io仓库"><a href="#创建github-io仓库" class="headerlink" title="创建github.io仓库"></a>创建github.io仓库</h3><p>在自己的GitHub中，创建新仓库，标准命名为<code>GitHub用户名.github.io</code>，例如我的：<code>tobefans.github.io</code></p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><pre><code>$ hexo g 生成静态网站文件
+$ hexo s 启动本地服务器
+$ hexo d 发布博客到GitHub</code></pre><h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><h3 id="创建github-io仓库"><a href="#创建github-io仓库" class="headerlink" title="创建github.io仓库"></a>创建github.io仓库</h3><p>在自己的GitHub中，创建新仓库，标准命名为<code>GitHub用户名.github.io</code>，例如我的：<code>tobefans.github.io</code></p>
 <h3 id="配置SSH密钥"><a href="#配置SSH密钥" class="headerlink" title="配置SSH密钥"></a>配置SSH密钥</h3><p>只有配置好 SSH 密钥后，我们才可以通过 git 操作实现本地代码库与 Github 代码库同步，在你第一次新建的文件夹里输入以下命令：</p>
 <pre><code class="bash">$ ssh-keygen -t rsa -C &quot;your email@example.com&quot;
 //引号里面填写你的邮箱地址，比如我的是weiquan.fan96@gmail.com</code></pre>
@@ -115,13 +115,22 @@ hexo d 发布博客到GitHub</code></pre><h2 id="发布博客"><a href="#发布�
 <pre><code>$ git config --global user.name &quot;此处填你的用户名&quot;
 $ git config --global user.email &quot;此处填你的邮箱&quot;</code></pre><p>可通过<code>ssh -T git@github.com</code>测试是否添加成功。</p>
 <h3 id="将本地的-Hexo-文件更新到-Github-的库中"><a href="#将本地的-Hexo-文件更新到-Github-的库中" class="headerlink" title="将本地的 Hexo 文件更新到 Github 的库中"></a>将本地的 Hexo 文件更新到 Github 的库中</h3><p>打开创建的 Hexo 文件夹下的 _config.yml，修改如下的代码段，repo为github项目的地址。</p>
-<p>如果此时报以下错误，说明你的 deployer 没有安装成功</p>
+<pre><code>deploy: 
+type: git
+repo: git@github.com:tobefans/tobefans.github.io.git
+branch: master</code></pre><p>如果此时报以下错误，说明你的 deployer 没有安装成功</p>
 <p><code>ERROR Deployer not found: git</code></p>
 <p>需要执行以下命令再安装一次：</p>
-<p><code>npm install hexo-deployer-git --save</code></p>
+<p><code>$ npm install hexo-deployer-git --save</code></p>
 <p>再执行 <code>hexo g -d</code>，你的博客就会部署到 Github 上了</p>
-<h3 id="访问博客"><a href="#访问博客" class="headerlink" title="访问博客"></a>访问博客</h3><p>你的博客地址：<code>https://你的用户名.http://github.io</code>，比如我的是：<code>https://tobefans.github.io</code> ，现在每个人都可以通过此链接访问你的博客了。</p>
-
+<h3 id="访问博客"><a href="#访问博客" class="headerlink" title="访问博客"></a>访问博客</h3><p>在github该项目的setting中打开Github pages的设置。</p>
+<p>你的博客地址：<code>https://你的用户名.http://github.io</code>，比如我的是：<code>https://tobefans.github.io</code> ，现在每个人都可以通过此链接访问你的博客了。</p>
+<h2 id="为博客更换自己喜欢的主题"><a href="#为博客更换自己喜欢的主题" class="headerlink" title="为博客更换自己喜欢的主题"></a>为博客更换自己喜欢的主题</h2><p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">点击此处</a>进入 Hexo 官网的主题专栏，我们可以看见有许多的主题供我们选择。我们要做的就是把主题克隆过来，在此我们以主题 Aero-Dual 为例，点进去我们就可以看见该主题作者的博客，鼠标滑到底，我们可以看见 Theme By Levblanc 的字样（其他主题类似），点击作者 Levblanc ，页面就会跳转到该主题所有的相关文件在 Github 上的地址，下载该项目，放至Hexo文件夹中的themes目录。</p>
+<p>然后打开 Hexo 文件夹下的配置文件 _config.yml ，找到关键字 theme，修改参数为：theme：hexo-theme-aero-dual （其他主题修改成相应名称即可），再次注意冒号后面有一个空格。再通过<code>hexo g</code>更新。</p>
+<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>通过<a href="https://www.aliyun.com/" target="_blank" rel="noopener">阿里云</a>之类的获得域名后，在Hexo文件夹的source文件夹中，创建一个CNAME文件，存储预备使用的个人域名，如：<code>wqfan.net</code></p>
+<p>清理Hexo缓存并更新Hexo静态网站</p>
+<pre><code>$ hexo clean
+$ hexo g -d</code></pre><h2 id="喜大普奔，完成啦！！"><a href="#喜大普奔，完成啦！！" class="headerlink" title="喜大普奔，完成啦！！"></a>喜大普奔，完成啦！！</h2>
                         <hr>
                         <div>
                             <p>
