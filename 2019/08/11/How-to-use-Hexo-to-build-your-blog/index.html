@@ -14,7 +14,7 @@
     <meta name="description" content>
     <meta name="author" content="John Doe">
     <meta name="keywords" content>
-    <title>How to use Hexo to build your blog ~ Hexo</title>
+    <title>使用Github Pages和Hexo搭建自己的独立博客 ~ Hexo</title>
     <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css?v=5.7.2">
     <link rel="stylesheet" href="/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
     <link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
@@ -93,7 +93,34 @@
             <div class="container nopadding-md">
                 <div class="py-5 z-depth-3 board">
                     <div class="post-content markdown-body m-auto">
-                        <h2 id="TEST"><a href="#TEST" class="headerlink" title="TEST"></a>TEST</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
+                        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>Github Pages: Github Pages可以被认为是用户编写的、托管在github上的静态网页。</li>
+<li>Hexo: Hexo是一个快速、简洁且高效的博客框架。</li>
+</ul>
+<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">点击此处</a>访问官网，按需下载相应版本，默认安装可以了。</p>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p><code>$ sudo npm install -g hexo-cli</code> </p>
+<p>若报错，尝试：</p>
+<p><code>$ sudo npm install --unsafe-perm --verbose -g hexo</code> </p>
+<h2 id="初始化，建立博客项目"><a href="#初始化，建立博客项目" class="headerlink" title="初始化，建立博客项目"></a>初始化，建立博客项目</h2><p>选定博客网站项目程序文件的存放位置，如<code>/Users/tobefans/Documents/Blog/</code>，Bash中cd进入该目录下，执行命令：</p>
+<p><code>hexo init</code></p>
+<p>执行完毕后，该命令将在当前目录下生成一套标准的Hexo博客项目模板</p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><pre><code>hexo g 生成静态网站文件
+hexo s 启动本地服务器
+hexo d 发布博客到GitHub</code></pre><h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><h3 id="创建github-io仓库"><a href="#创建github-io仓库" class="headerlink" title="创建github.io仓库"></a>创建github.io仓库</h3><p>在自己的GitHub中，创建新仓库，标准命名为<code>GitHub用户名.github.io</code>，例如我的：<code>tobefans.github.io</code></p>
+<h3 id="配置SSH密钥"><a href="#配置SSH密钥" class="headerlink" title="配置SSH密钥"></a>配置SSH密钥</h3><p>只有配置好 SSH 密钥后，我们才可以通过 git 操作实现本地代码库与 Github 代码库同步，在你第一次新建的文件夹里输入以下命令：</p>
+<pre><code class="bash">$ ssh-keygen -t rsa -C &quot;your email@example.com&quot;
+//引号里面填写你的邮箱地址，比如我的是weiquan.fan96@gmail.com</code></pre>
+<p>之后复制<code>~/.ssh/id_rsa.pub</code>的公钥，在Github账号中添加进该公钥。</p>
+<p>Git 会根据用户的名字和邮箱来记录提交，GitHub 也是用这些信息来做权限的处理，输入以下命令进行个人信息的设置，把名称和邮箱替换成你自己的，名字可以不是 GitHub 的昵称，但为了方便记忆，建议与 GitHub 一致。</p>
+<pre><code>$ git config --global user.name &quot;此处填你的用户名&quot;
+$ git config --global user.email &quot;此处填你的邮箱&quot;</code></pre><p>可通过<code>ssh -T git@github.com</code>测试是否添加成功。</p>
+<h3 id="将本地的-Hexo-文件更新到-Github-的库中"><a href="#将本地的-Hexo-文件更新到-Github-的库中" class="headerlink" title="将本地的 Hexo 文件更新到 Github 的库中"></a>将本地的 Hexo 文件更新到 Github 的库中</h3><p>打开创建的 Hexo 文件夹下的 _config.yml，修改如下的代码段，repo为github项目的地址。</p>
+<p>如果此时报以下错误，说明你的 deployer 没有安装成功</p>
+<p><code>ERROR Deployer not found: git</code></p>
+<p>需要执行以下命令再安装一次：</p>
+<p><code>npm install hexo-deployer-git --save</code></p>
+<p>再执行 <code>hexo g -d</code>，你的博客就会部署到 Github 上了</p>
+<h3 id="访问博客"><a href="#访问博客" class="headerlink" title="访问博客"></a>访问博客</h3><p>你的博客地址：<code>https://你的用户名.http://github.io</code>，比如我的是：<code>https://tobefans.github.io</code> ，现在每个人都可以通过此链接访问你的博客了。</p>
 
                         <hr>
                         <div>
@@ -167,7 +194,7 @@
         var typed = new Typed('#subtitle', {
           strings: [
             '  ',
-            "How to use Hexo to build your blog&nbsp;",
+            "使用Github Pages和Hexo搭建自己的独立博客&nbsp;",
         ],
         cursorChar: "_",
         typeSpeed: 70,
