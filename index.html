@@ -364,9 +364,13 @@ tags:
 mathjax: true
 ---
 </code></pre><p><a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/" target="_blank" rel="noopener">这里</a>有常见数学公式。</p>
-<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>通过<a href="https://www.aliyun.com/" target="_blank" rel="noopener">阿里云</a>之类的获得域名后，先解析域名如下。<br><img src="/images/yumingjiexi.png" alt></p>
-<p>在Hexo文件夹的source文件夹中，创建一个CNAME文件，存储预备使用的个人域名，如：<code>wqfan.net</code></p>
-<p>清理Hexo缓存并更新Hexo静态网站</p>
+<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>通过<a href="https://www.aliyun.com/" target="_blank" rel="noopener">阿里云</a>之类的获得域名后，先解析域名如下。</p>
+<pre><code>记录类型     主机记录     记录值
+CNAME      www       你的github用户名.github.io
+A          @         192.30.252.153
+A          @         192.30.252.154
+</code></pre><p>在Hexo文件夹的source文件夹中，创建一个CNAME文件，存储预备使用的个人域名，如：<code>weiquanfan.xyz</code><br>也可通过github项目上setting里b映射个人域名。</p>
+<p>清理Hexo缓存并更新Hexo静态网站   <code>$ hexo clean &amp;&amp; hexo g</code></p>
 <pre><code>$ hexo clean
 $ hexo g -d
 </code></pre><h2 id="喜大普奔，完成啦！！"><a href="#喜大普奔，完成啦！！" class="headerlink" title="喜大普奔，完成啦！！"></a>喜大普奔，完成啦！！</h2>
