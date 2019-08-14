@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="今晚月色真美">
+<meta name="description" content="陌上花开，可缓缓归矣">
 <meta property="og:type" content="website">
-<meta property="og:title" content="tobefans">
+<meta property="og:title" content="vetch的小小世界">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="tobefans">
-<meta property="og:description" content="今晚月色真美">
+<meta property="og:site_name" content="vetch的小小世界">
+<meta property="og:description" content="陌上花开，可缓缓归矣">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tobefans">
-<meta name="twitter:description" content="今晚月色真美">
+<meta name="twitter:title" content="vetch的小小世界">
+<meta name="twitter:description" content="陌上花开，可缓缓归矣">
 
 
 
@@ -124,7 +124,7 @@
 
 
 
-  <title>tobefans</title>
+  <title>vetch的小小世界</title>
   
 
 
@@ -155,7 +155,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">tobefans</span>
+        <span class="site-title">vetch的小小世界</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -241,7 +241,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="tobefans">
+      <meta itemprop="name" content="vetch的小小世界">
     </span>
 
     
@@ -290,6 +290,17 @@
           
 
           
+          
+             <span id="/2019/08/11/How-to-use-Hexo-to-build-your-blog/" class="leancloud_visitors" data-flag-title="使用Github Pages和Hexo搭建自己的独立博客">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -402,7 +413,26 @@ tags:
 mathjax: true
 comments: false
 ---
-</code></pre><h2 id="喜大普奔，完成啦！！"><a href="#喜大普奔，完成啦！！" class="headerlink" title="喜大普奔，完成啦！！"></a>喜大普奔，完成啦！！</h2>
+</code></pre><h2 id="统计阅读量"><a href="#统计阅读量" class="headerlink" title="统计阅读量"></a>统计阅读量</h2><p>阅读量分两种：不蒜子统计站点的总访问量，即统计浏览了多少次；有多少人访问，在footer显示。LeanCloud统计单篇博文的阅读量，即统计单篇博文的阅读量是多少。</p>
+<p>单篇博文的阅读量通过Valine实现，其实和评论系统差不多。在 <strong>存储</strong> 中新建Class，Class名称必须为Counter。并相应更改主题配置文件的leancloud_visitors，打开enable，并填写APP ID 和 APP Key。</p>
+<p>站点的总访问量通过不蒜子实现。找到站点的<code>themes/next/layout/_partials/footer.swig</code>文件。插入代码如下。</p>
+<pre><code>{% if theme.footer.theme.enable %}
+  <div class="theme-info">{#
+  #}{{ __('footer.theme') }} &mdash; {#
+  #}<a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">{#
+    #}NexT.{{ theme.scheme }}{#
+  #}</a>{% if theme.footer.theme.version %} v{{ theme.version }}{% endif %}&lt;/div&gt;
+
+# 此位置插入以下代码
+&lt;div&gt;
+&lt;script async src=&quot;https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
+
+本站总访问量 &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt; 次&amp;nbsp&amp;nbsp&amp;nbsp
+本站访客数&lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;人次
+&lt;/div&gt;
+
+{% endif %}
+</div></code></pre><h2 id="喜大普奔，完成啦！！"><a href="#喜大普奔，完成啦！！" class="headerlink" title="喜大普奔，完成啦！！"></a>喜大普奔，完成啦！！</h2>
           
         
       
@@ -473,7 +503,7 @@ comments: false
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Weiquan Fan</p>
-              <p class="site-description motion-element" itemprop="description">今晚月色真美</p>
+              <p class="site-description motion-element" itemprop="description">陌上花开，可缓缓归矣</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -543,6 +573,14 @@ comments: false
 
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+<div>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</div>
+
 
 
 
@@ -740,6 +778,113 @@ comments: false
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz", "F0aXAudrJr6wsdAvrVvSp1T2");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
