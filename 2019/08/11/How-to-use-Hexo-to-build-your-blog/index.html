@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="tobefans">
 <meta property="og:description" content="前言 Github Pages: Github Pages可以被认为是用户编写的、托管在github上的静态网页。 Hexo: Hexo是一个快速、简洁且高效的博客框架。  安装Node.js点击此处访问官网，按需下载相应版本，默认安装可以了。 安装Hexo$ sudo npm install -g hexo-cli  若报错，尝试： $ sudo npm install --unsafe-per">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T16:48:08.796Z">
+<meta property="og:updated_time" content="2019-08-14T08:31:43.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Github Pages和Hexo搭建自己的独立博客">
 <meta name="twitter:description" content="前言 Github Pages: Github Pages可以被认为是用户编写的、托管在github上的静态网页。 Hexo: Hexo是一个快速、简洁且高效的博客框架。  安装Node.js点击此处访问官网，按需下载相应版本，默认安装可以了。 安装Hexo$ sudo npm install -g hexo-cli  若报错，尝试： $ sudo npm install --unsafe-per">
@@ -351,7 +351,7 @@ branch: master
 <h3 id="访问博客"><a href="#访问博客" class="headerlink" title="访问博客"></a>访问博客</h3><p>在github该项目的setting中打开Github pages的设置。</p>
 <p>你的博客地址：<code>https://你的用户名.http://github.io</code>，比如我的是：<code>https://tobefans.github.io</code> ，现在每个人都可以通过此链接访问你的博客了。</p>
 <h2 id="为博客更换自己喜欢的主题"><a href="#为博客更换自己喜欢的主题" class="headerlink" title="为博客更换自己喜欢的主题"></a>为博客更换自己喜欢的主题</h2><p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">点击此处</a>进入 Hexo 官网的主题专栏，我们可以看见有许多的主题供我们选择。我们要做的就是把主题克隆过来，在此我们以主题 Aero-Dual 为例，点进去我们就可以看见该主题作者的博客，鼠标滑到底，我们可以看见 Theme By Levblanc 的字样（其他主题类似），点击作者 Levblanc ，页面就会跳转到该主题所有的相关文件在 Github 上的地址，下载该项目，放至Hexo文件夹中的themes目录。</p>
-<p>然后打开 Hexo 文件夹下的配置文件 _config.yml ，找到关键字 theme，修改参数为：theme：hexo-theme-aero-dual （其他主题修改成相应名称即可），再次注意冒号后面有一个空格。再通过<code>hexo g</code>更新。</p>
+<p>然后打开 Hexo 文件夹下的配置文件 _config.yml ，找到关键字 theme，修改参数为：theme：hexo-theme-aero-dual （其他主题修改成相应名称即可），再次注意冒号后面有一个空格。再通过<code>$ hexo g</code>更新。</p>
 <p>另推荐一款主题：<a href="http://theme-next.iissnan.com/getting-started.html#theme-settings" target="_blank" rel="noopener">Next</a></p>
 <h2 id="在Hexo中渲染MathJax数学公式"><a href="#在Hexo中渲染MathJax数学公式" class="headerlink" title="在Hexo中渲染MathJax数学公式"></a>在Hexo中渲染MathJax数学公式</h2><p>更换Hexo的markdown渲染引擎，hexo-renderer-kramed引擎是在默认的渲染引擎hexo-renderer-marked的基础上修改了一些bug，两者比较接近，也比较轻量级。在Hexo文件夹位置命令：</p>
 <pre><code>npm uninstall hexo-renderer-marked --save
@@ -384,6 +384,25 @@ A          @         192.30.252.154
 <p>清理Hexo缓存并更新Hexo静态网站   <code>$ hexo clean &amp;&amp; hexo g</code></p>
 <pre><code>$ hexo clean
 $ hexo g -d
+</code></pre><h2 id="Valine——评论系统"><a href="#Valine——评论系统" class="headerlink" title="Valine——评论系统"></a>Valine——评论系统</h2><p>Valine 诞生于 2017 年 8 月 7 日，是一款基于 Leancloud 的快速、简洁且高效的无后端评论系统。</p>
+<ol>
+<li><p>注册帐号创建应用:<br>请先登录或注册 <a href="https://leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a>, 进入控制台后点击左下角创建应用，选用免费的开发版应用即可。</p>
+</li>
+<li><p>应用设置:<br>进入应用。<br>在 <strong>设置</strong> -&gt; <strong>安全中心</strong> ，把<strong>文件上传</strong>、<strong>短信服务</strong>、<strong>推送服务</strong>、<strong>实时通信</strong>这几个服务全部关闭，因为用不到。在 <strong>Web 安全域名</strong> 里填入想要打开评论系统的域名，如<code>weiquanfan.xyz</code><br>在 <strong>设置</strong> -&gt; <strong>应用 Key</strong> 找到APP ID和APP Key。</p>
+</li>
+<li><p>配置 Hexo 参数:<br>打开 Hexo 主题的配置文件_config.yml，搜索一下 Valine，打开enable，并填写APP ID 和 APP Key。</p>
+</li>
+<li><p>更新网站:<br>运行hexo g -d推送到博客。</p>
+</li>
+</ol>
+<p>此外，还需要注意，如果博客还有除正文内容之外的页面存在，例如关于、分类、标签，要把他们的 Markdown 文件的 comments 属性设置为 false，否则这些页面在展示的时候也会有评论的功能出现。</p>
+<pre><code>---
+title: 使用Github Pages和Hexo搭建自己的独立博客
+date: 2019-08-11 19:10:47
+tags:
+mathjax: true
+comments: false
+---
 </code></pre><h2 id="喜大普奔，完成啦！！"><a href="#喜大普奔，完成啦！！" class="headerlink" title="喜大普奔，完成啦！！"></a>喜大普奔，完成啦！！</h2>
       
     </div>
@@ -517,7 +536,7 @@ $ hexo g -d
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Node-js"><span class="nav-number">2.</span> <span class="nav-text">安装Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Hexo"><span class="nav-number">3.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化，建立博客项目"><span class="nav-number">4.</span> <span class="nav-text">初始化，建立博客项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令"><span class="nav-number">5.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布博客"><span class="nav-number">6.</span> <span class="nav-text">发布博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建github-io仓库"><span class="nav-number">6.1.</span> <span class="nav-text">创建github.io仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置SSH密钥"><span class="nav-number">6.2.</span> <span class="nav-text">配置SSH密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将本地的-Hexo-文件更新到-Github-的库中"><span class="nav-number">6.3.</span> <span class="nav-text">将本地的 Hexo 文件更新到 Github 的库中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问博客"><span class="nav-number">6.4.</span> <span class="nav-text">访问博客</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为博客更换自己喜欢的主题"><span class="nav-number">7.</span> <span class="nav-text">为博客更换自己喜欢的主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Hexo中渲染MathJax数学公式"><span class="nav-number">8.</span> <span class="nav-text">在Hexo中渲染MathJax数学公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名"><span class="nav-number">9.</span> <span class="nav-text">绑定域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#喜大普奔，完成啦！！"><span class="nav-number">10.</span> <span class="nav-text">喜大普奔，完成啦！！</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Node-js"><span class="nav-number">2.</span> <span class="nav-text">安装Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Hexo"><span class="nav-number">3.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化，建立博客项目"><span class="nav-number">4.</span> <span class="nav-text">初始化，建立博客项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令"><span class="nav-number">5.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布博客"><span class="nav-number">6.</span> <span class="nav-text">发布博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建github-io仓库"><span class="nav-number">6.1.</span> <span class="nav-text">创建github.io仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置SSH密钥"><span class="nav-number">6.2.</span> <span class="nav-text">配置SSH密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将本地的-Hexo-文件更新到-Github-的库中"><span class="nav-number">6.3.</span> <span class="nav-text">将本地的 Hexo 文件更新到 Github 的库中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问博客"><span class="nav-number">6.4.</span> <span class="nav-text">访问博客</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为博客更换自己喜欢的主题"><span class="nav-number">7.</span> <span class="nav-text">为博客更换自己喜欢的主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Hexo中渲染MathJax数学公式"><span class="nav-number">8.</span> <span class="nav-text">在Hexo中渲染MathJax数学公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名"><span class="nav-number">9.</span> <span class="nav-text">绑定域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Valine——评论系统"><span class="nav-number">10.</span> <span class="nav-text">Valine——评论系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#喜大普奔，完成啦！！"><span class="nav-number">11.</span> <span class="nav-text">喜大普奔，完成啦！！</span></a></li></ol></div>
             
 
           </div>
