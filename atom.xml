@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-02T10:52:54.320Z</updated>
+  <updated>2020-05-02T16:59:48.789Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>opensmile 工具的使用和批处理</title>
+    <link href="http://yoursite.com/2020/05/02/opensmile/"/>
+    <id>http://yoursite.com/2020/05/02/opensmile/</id>
+    <published>2020-05-02T12:32:13.000Z</published>
+    <updated>2020-05-02T16:59:48.789Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;openSMILE是一款以命令行形式运行的工具，通过配置config文件来提取音频特征。主要应用于语音识别、情感计算、音乐信息获取。2.0版
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>语谱图的matlab提取和python提取</title>
