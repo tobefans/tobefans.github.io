@@ -304,6 +304,255 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/specgram/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Weiquan Fan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/photo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vetch的小小世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/02/specgram/" itemprop="url">语谱图的matlab提取和python提取</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-02T16:43:28+08:00">
+                2020-05-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-02T18:31:04+08:00">
+                2020-05-02
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/02/specgram/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/02/specgram/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/05/02/specgram/" class="leancloud_visitors" data-flag-title="语谱图的matlab提取和python提取">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>语谱图（spectrogram或specgram），也叫声谱图，可以简单看做一个二维矩阵，其纵轴表示频率，横轴表示时间，矩阵的值表示能量强弱。由于它拥有着频率和时间两个维度的信息，所以是比较综合地表示原语音信息的一种特征。另外，我将其看做语音和图像的一种连接，因为图像领域的模型发展得较快，所以通过这种方式把语音转换成一种特殊的图像再进一步处理。</p>
+<h2 id="语谱图流程简介"><a href="#语谱图流程简介" class="headerlink" title="语谱图流程简介"></a>语谱图流程简介</h2><pre><code>1. 将语音可交叉地分成多帧（由于语音的短时平稳性）
+2. 各帧加窗
+3. 各帧通过快速傅里叶变化（fft）得到频谱向量
+4. 沿着时间轴并联各频谱向量得到语谱图
+</code></pre><h2 id="语谱图的提取"><a href="#语谱图的提取" class="headerlink" title="语谱图的提取"></a>语谱图的提取</h2><h3 id="语谱图的matlab提取"><a href="#语谱图的matlab提取" class="headerlink" title="语谱图的matlab提取"></a>语谱图的matlab提取</h3><p>先看一段非官方代码，结合上述步骤进行理解。</p>
+<pre><code>[x,Fs,nBits]=wavread(&#39;audio.wav&#39;);
+
+s=length(x);    % 信号长度
+w=256;            % 窗长
+n=w;            % nfft，表示做fft变换需要的点数，一般为刚大于w的2的幂。举例，w=250，则n一般设为256
+ov=w/2;            % 分帧的交叉程度，常见设为窗长的二分之一或四分之一
+h=w-ov;            % 不重叠点数
+win=hamming(n)&#39;;% 选了常见的汉明窗，并设置nfft
+c=1;            % 指向当前帧的指针
+ncols=1+fix((s-n)/h);    % 计算总共有多少帧
+d=zeros((1+n/2),ncols);    % 语谱图初始化
+
+for b=0:h:(s-n)    % 以下处理各帧
+    u=win.*x((b+1):(b+n));    % 各帧加窗
+    t=fft(u,n);                % 各帧进行fft，内容为u，nfft=n。对于fft，输入n个时域点，输出n个频域点
+    d(:,c)=t(1:(1+n/2))&#39;;    % 并联频谱向量，注意只取1+n/2，因为负频率无意义，只留下0和正频率
+    c=c+1;        % 移动指针
+end
+tt=[0:h:(s-n)]/Fs;    % 时间轴
+ff=[0:(n/2)]*Fs/n;    % 频率轴
+
+imagesc(tt/1000,ff/1000,20*log10(abs(d)));    % 绘制
+colormap(hot);
+axis xy
+xlabel(&#39;时间/s&#39;);
+ylabel(&#39;频率/kHz&#39;);
+</code></pre><p>然而，matlab其实有封装好的函数可以直接调用。</p>
+<pre><code>[S,F,T]=specgram(x,nfft,Fs,windows_length,overlap_length)
+% x 为整段语音
+% nfft 为fft变换点数，其实可以直接用默认的刚大于窗长的2的幂。也可自定义为大于窗长的整数，会对帧进行补零操作
+% Fs 语音采样频率
+% windows_length 窗长
+% overlap_length 交叉长度
+% S 语谱图
+% F 频率值，尺度为1+n/2
+% T 时间值，尺度为1+fix((s-n)/h)
+</code></pre><h3 id="语谱图的python提取"><a href="#语谱图的python提取" class="headerlink" title="语谱图的python提取"></a>语谱图的python提取</h3><p>有了刚才的基础，python的代码就容易理解啦。</p>
+<pre><code>from scipy import io
+from scipy.io import wavfile
+import matplotlib.pyplot as plt
+
+Fs, x = wavfile.read(&#39;audio.wav&#39;)    # 读取音频
+specg = plt.specgram(x, Fs = Fs, pad_to = 256, NFFT = 256, noverlap = 128)    # 提取语谱图，一键操作！
+io.savemat(&#39;specgram.mat&#39;, {&#39;specg&#39;:specg[0]})    # 保存语谱图
+## 照例解释下参数
+# x，Fs和上边一样
+# pad_to为上边的nfft
+# NFFT为上边的windows_length（为什么nfft不设置为上边的nfft呢，迷惑）
+# noverlap为上边的overlap_length
+</code></pre><h2 id="语谱图的一些可能有的小疑惑"><a href="#语谱图的一些可能有的小疑惑" class="headerlink" title="语谱图的一些可能有的小疑惑"></a>语谱图的一些可能有的小疑惑</h2><ol>
+<li>关于nfft<br><strong>nfft既表示时域的点数也关联频域的点数</strong>。该数为2的幂数时更高效，但不是也没问题。<br>nfft需要比窗长的值更大，然后加窗后的帧会被补零到nfft长度再进行fft。</li>
+<li>关于频率分辨率<br>频率轴上每一个点对应fs/nfft的频率。另外由于输出nfft/2+1个频率点，所以输出的频率范围为0到nfft/2×fs/nfft=fs/2。</li>
+<li>关于自定义输出语谱图的尺寸问题<br>时间轴尺寸为1+fix((s-n)/h)， 由windows_length和overlap_length决定。实际应用时由于各语音长度不同，时间尺寸一般都要进行截断或补零到一个固定值。截断的话可以截一段（起始信息，中间信息），也可以截多段（交叉不交叉都行）。<br>频率轴尺寸为1+n/2，仅决定于nfft（python中的pad_to参数），所以可以通过设置该值控制频率轴尺寸。但是也不要比窗长大太多，否则补零太多可能就没什么信息了。nfft调大时，窗长可以跟着调大，为了防止导致的时间轴太短可以调高overlap_length。<br>另外，其他参数不变时，仅变换nfft，可视化出来时可能肉眼看起来一样，但实际分辨率仍然是不同的。这也导致了一个问题，送入网络的是要用单通道的直接计算出来的语谱图，还是用可视化函数绘制出来的三通道的语谱图，这就根据实际情况去尝试了。</li>
+</ol>
+<p><a href="https://blog.csdn.net/enjoy_pascal/article/details/81478582" target="_blank" rel="noopener">彩蛋</a></p>
+<h2 id="盆友们你们有在看吗！"><a href="#盆友们你们有在看吗！" class="headerlink" title="盆友们你们有在看吗！"></a>盆友们你们有在看吗！</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+          
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/How-to-use-Hexo-to-build-your-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -636,7 +885,7 @@ comments: false
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -725,7 +974,7 @@ comments: false
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-id-card"></i>
   </span>
