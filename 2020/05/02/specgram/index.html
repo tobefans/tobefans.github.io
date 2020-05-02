@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言语谱图（spectrogram或specgram），也叫声谱图，可以简单看做一个二维矩阵，其纵轴表示频率，横轴表示时间，矩阵的值表示能量强弱。由于它拥有着频率和时间两个维度的信息，所以是比较综合地表示原语音信息的一种特征。另外，我将其看做语音和图像的一种连接，因为图像领域的模型发展得较快，所以通过这种方式把语音转换成一种特殊的图像再进一步处理。 语谱图流程简介1. 将语音可交叉地分成多帧（由于">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-02T10:31:04.121Z">
+<meta property="og:updated_time" content="2020-05-02T10:52:54.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="语谱图的matlab提取和python提取">
 <meta name="twitter:description" content="前言语谱图（spectrogram或specgram），也叫声谱图，可以简单看做一个二维矩阵，其纵轴表示频率，横轴表示时间，矩阵的值表示能量强弱。由于它拥有着频率和时间两个维度的信息，所以是比较综合地表示原语音信息的一种特征。另外，我将其看做语音和图像的一种连接，因为图像领域的模型发展得较快，所以通过这种方式把语音转换成一种特殊的图像再进一步处理。 语谱图流程简介1. 将语音可交叉地分成多帧（由于">
@@ -370,7 +370,8 @@ io.savemat(&#39;specgram.mat&#39;, {&#39;specg&#39;:specg[0]})    # 保存语谱
 <li>关于自定义输出语谱图的尺寸问题<br>时间轴尺寸为1+fix((s-n)/h)， 由windows_length和overlap_length决定。实际应用时由于各语音长度不同，时间尺寸一般都要进行截断或补零到一个固定值。截断的话可以截一段（起始信息，中间信息），也可以截多段（交叉不交叉都行）。<br>频率轴尺寸为1+n/2，仅决定于nfft（python中的pad_to参数），所以可以通过设置该值控制频率轴尺寸。但是也不要比窗长大太多，否则补零太多可能就没什么信息了。nfft调大时，窗长可以跟着调大，为了防止导致的时间轴太短可以调高overlap_length。<br>另外，其他参数不变时，仅变换nfft，可视化出来时可能肉眼看起来一样，但实际分辨率仍然是不同的。这也导致了一个问题，送入网络的是要用单通道的直接计算出来的语谱图，还是用可视化函数绘制出来的三通道的语谱图，这就根据实际情况去尝试了。</li>
 </ol>
 <p><a href="https://blog.csdn.net/enjoy_pascal/article/details/81478582" target="_blank" rel="noopener">彩蛋</a></p>
-<h2 id="盆友们你们有在看吗！"><a href="#盆友们你们有在看吗！" class="headerlink" title="盆友们你们有在看吗！"></a>盆友们你们有在看吗！</h2>
+<h2 id="盆友们你们有在看吗！"><a href="#盆友们你们有在看吗！" class="headerlink" title="盆友们你们有在看吗！"></a>盆友们你们有在看吗！</h2><p>好无聊…</p>
+
       
     </div>
     <div class="article-footer">
