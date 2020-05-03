@@ -26,7 +26,10 @@
 <meta property="og:description" content="前言openSMILE是一款以命令行形式运行的工具，通过配置config文件来提取音频特征。主要应用于语音识别、情感计算、音乐信息获取。2.0版本之后的openSMILE包括了openCV库，可以用于视频处理和视频特征提取。官网下载有linux和windows版本提供下载，windows可以不编译直接用，建议在命令行里指明 openSMILE 绝对路径。 openSMILE的输入输出格式文件输入格">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://pic4.zhimg.com/v2-ab189f62bbe90e58da7c4c693e1c2c97_r.jpg">
-<meta property="og:updated_time" content="2020-05-02T16:59:48.789Z">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-61806080f48fc47e179312b61f54408e_r.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-fd984660db8fd5601446f93bab42ebff_r.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-cc5c81458336b536e2f1ce620d759b03_1440w.jpg">
+<meta property="og:updated_time" content="2020-05-03T03:25:28.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="opensmile 工具的使用和批处理">
 <meta name="twitter:description" content="前言openSMILE是一款以命令行形式运行的工具，通过配置config文件来提取音频特征。主要应用于语音识别、情感计算、音乐信息获取。2.0版本之后的openSMILE包括了openCV库，可以用于视频处理和视频特征提取。官网下载有linux和windows版本提供下载，windows可以不编译直接用，建议在命令行里指明 openSMILE 绝对路径。 openSMILE的输入输出格式文件输入格">
@@ -359,6 +362,73 @@
 <li>先切换到处理文件SMILExtract.exe所在的目录</li>
 <li>通过如下语句提取：<br>windows下：SMILExtract_Release -C “配置文件” -I “要处理的音频” -O “要保存特征向量的路径及文件名”<br>linux下：SMILExtract -C “配置文件” -I “要处理的音频” -O “要保存特征向量的路径及文件名”</li>
 </ol>
+<h2 id="官方配置文件"><a href="#官方配置文件" class="headerlink" title="官方配置文件"></a>官方配置文件</h2><p>官方提供了许多常见特征集的配置文件，如MFCC，PLP，以及各大语音比赛中效果好的特征集。<br><img src="https://pic4.zhimg.com/v2-ab189f62bbe90e58da7c4c693e1c2c97_r.jpg" alt="官方配置文件"></p>
+<h3 id="MFCC特征"><a href="#MFCC特征" class="headerlink" title="MFCC特征"></a>MFCC特征</h3><p>为了提取MFCC特征（兼容HTK），提供了以下四个文件（它们是以它们所代表的相应的HTK参数类型命名的）：<br>MFCC12_0_D_A.conf此配置从25毫秒的音频帧中提取梅尔频率倒谱系数（以10毫秒的速率采样）（汉明窗口）。 它由26个Mel频带计算13个MFCC（0-12）组，并应用了一个权重参数为22的倒谱提升滤波器。13个一阶和13个二阶系数被附加到MFCC后。<br>MFCC12_E_D_A.conf此配置跟MFCC12_0_D_A.conf一样，但对数能量是只加在MFCC1-12上。<br>MFCC12_0_D_A_Z.conf这个配置跟MFCC12_0_D_A.conf配置一样，除了所有特征是参考整个输入序列进行了标准化。<br>MFCC12_E_D_A_Z.conf这个配置跟MFCC12_E_D_A.conf配置一样，除了所有特征是参考整个输入序列进行了标准化。<br>帧长为25ms,帧移为10ms，使用的汉明窗，预增强参数为0.97。由26个通过FFT功率谱计算的mel-滤波器组计算MFCC 0/1-12。MEL频谱的频率范围为0-8kHz，同时这些配置文件提供了-I,-O选项。输出文件格式是HTK参数文件格式。如果需要输出其他文件格式，你必须在配置文件中更改‘cHtkSink’组件类型为你想要的类型。命令行示例如下：</p>
+<pre><code>SMILExtract -C config/MFCC12_E_D_A.conf -I input.wav -O output.mfcc.htk
+</code></pre><h3 id="PLP特征"><a href="#PLP特征" class="headerlink" title="PLP特征"></a>PLP特征</h3><p>用于提取PLP倒谱系数（PLP-CC）（与HTK兼容）以下四个文件（它们是以它们所代表的相应的HTK参数类型命名的）：<br>PLP_0_D_A.conf该配置从25 ms长音频（以10ms的速率采样）帧提取Mel频率倒谱系数（汉明窗口）。它从26个Mel频带，并使用预测阶数为5计算6个PLP（0-5），并应用了一个权重参数为22的倒谱提升滤波器。6个一阶和6个二阶系数被附加到PLP-CC后。<br>PLP_E_D_A.conf该配置与PLP_0_D_A.conf相同，但对数能量是只加在PLP1-12上。<br>PLP_0_D_A_Z.conf此配置与PLP_0_D_A.conf相同，除了所有特征是参考整个输入序列进行了标准化。<br>PLP_E_D_Z.conf此配置与PLP_E_D_A.conf相同，除了所有特征是参考整个输入序列进行了标准化。<br>帧长为25ms,帧移为10ms，使用的汉明窗，预增强参数为0.97。由26个通过FFT功率谱计算的听觉mel-滤波器组(压缩系数为0.33)计算PLP 0/1-5。线性预测器的预测阶数为5。MEL频谱的频率范围为0-8kHz，同时这些配置文件提供了-I,-O选项。输出文件格式是HTK参数文件格式。如果需要输出其他文件格式，你必须在配置文件中更改‘cHtkSink’组件类型为你想要的类型。命令行示例如下：</p>
+<pre><code>SMILExtract -C config/PLP_E_D_A.conf -I input.wav -O output.plp.htk
+</code></pre><h3 id="情感特征集"><a href="#情感特征集" class="headerlink" title="情感特征集"></a>情感特征集</h3><p>自openSMILE在openEAR的项目EWS09情感识别中被使用，openSMILE提供了各种情感识别的标准特征集。<br><strong>The INTERSPEECH 2009 Emotion Challenge feature set</strong>（参见[SSB09]）由配置文件config/emo IS09.conf提供。它包含对LLDs应用统计函数得到的384个特征。该特征被保存在Arff格式（针对WEKA），新的实例会被附加到一个已存在文件（这是用于批处理，其中openSMILE被反复调用从多个文件提取特征到单个特征文件）。 出现在Arff文件中16个低级描述符（LLDs）的名称，见下面的列表：</p>
+<pre><code>pcm_RMSenergy  信号帧均方根能量
+mfcc  梅尔频率倒谱系数1-12
+Pcm_zcr  时间信号的过零率（基于帧）
+voiceProb  从ACF计算的发声概率。
+F0  从倒谱计算的基频
+</code></pre><p>附加到低级描述符名称的后缀_sma表示它们是通过窗口长度为3的移动平均滤波器进行平滑。附加到sma的后缀_de表示当前特征是低级描述符平滑后的一阶delta系数（微分）。</p>
+<pre><code>max  轮廓的最大值
+min  轮廓的最小值
+range  = max- min
+maxPos  最大值的绝对位置（以帧为单位）
+minPos  最小值的绝对位置（以帧为单位）
+amean  轮廓的算术平均值
+linregc1  轮廓线性逼近的斜率（m）
+linregc2  轮廓线性逼近的偏移量（t）
+linregerrQ  计算的二次误差作为线性近似值和实际轮廓的差值
+stddev  轮廓上的值的标准偏差
+skewness  偏度（3阶矩）
+kurtosis  峰度（4阶矩）
+</code></pre><p><strong>The INTERSPEECH 2010 Paralinguistic Challenge feature set</strong>（见2010年INTERSPEECH会议论文集）由配置文件config/IS10_paraling.conf提供。该集包含的1582个特征是由34个低级描述符（LLDs）和34个相应的delta作为68个LLDs轮廓值，在此基础上应用21个函数得到1428个特征，另外，对4个基于音高的LLD及其4个delta系数应用了19个函数得到152个特征，最后附加音高（伪音节）的数量和总数输入的持续时间（2个特征）。<br>该特征被保存在Arff格式（针对WEKA），新的实例会被附加到一个已存在文件（这是用于批处理，其中openSMILE被反复调用从多个文件提取特征到单个特征文件）。 出现在Arff文件中34个低级描述符（LLDs）的名称，见下面的列表：</p>
+<pre><code>pcm_loudness  归一化强度提高到0.3的幂的响度
+mfcc  美尔频率倒谱系数0-14
+logMelFreqBand  梅尔频带的对数功率0-7（分布范围内从0到8 kHz）
+lspFreq  从8个LPC系数计算出的8个线谱对频率。
+F0finEnv  平滑的基频轮廓线。
+voicingFinalUnclipped  最终基频候选的发声概率。Unclipped的意思是，当其低于浊音阈值时，它不被设置为零。
+</code></pre><p>附加到低级描述符名称的后缀_sma表示它们是通过窗口长度为3的移动平均滤波器进行平滑。附加到sma的后缀_de表示当前特征是低级描述符平滑后的一阶delta系数（微分）。出现在Arff文件中的21个函数的名字,均在以下列表中：</p>
+<pre><code>maxPos  最大值的绝对位置（以帧为单位）
+minPos  最小值的绝对位置（以帧为单位）
+amean  轮廓的算术平均值
+linregc1  轮廓线性逼近的斜率（m）
+linregc2  轮廓线性逼近的偏移量（t）
+linregerrA  把线性误差计算作为线性近似值和实际的轮廓的误差
+linregerrQ  把二次误差计算作为线性近似值和实际的轮廓的误差
+stddev  轮廓中的值的标准偏差
+skewness  偏度（3阶矩）。
+kurtosis 峰度（4阶矩）。
+quartile1  第一四分位数（25％百分位数）
+quartile2  第一四分位数（50％百分位数）
+quartile3  第一四分位数（75％百分位数）
+iqr1-2  四分位数间距：quartile2- quartile1
+iqr2-3  四分位数间距：quartile3- quartile2
+iqr1-3  四分位数间距：quartile3- quartile1
+percentile1.0  轮廓的离群值鲁棒最小值，按1％百分位数表示。
+percentile99.0  轮廓的离群值鲁棒最大值，按99％百分位数表示。
+pctlrange0-1  由1％和99％的百分点的范围表示的离群值鲁棒信号范围“max-min”。
+upleveltime75  信号超过（75％*范围+min）的时间百分比。
+upleveltime90  信号超过（90％*范围+min）的时间百分比。
+</code></pre><p>四个音高相关的LLD（及相应的delta系数）如下（清音区域均为0，因此功能仅适用于这些轮廓的浊音区域）：</p>
+<pre><code>F0final  平滑的基频频率
+jitterLocal  本地（帧到帧）抖动（音调周期长度偏差）
+jitterDDP  差分帧间抖动（‘Jitter of the Jitter’）
+shimmerLocal  本地（帧到帧）闪烁（音调周期幅度偏差）
+</code></pre><p>对这4 + 4个LLD应用了19个函数，即上述21个函数的集合没有最小值（1％百分位数）和范围。</p>
+<p><strong>The INTERSPEECH 2011 Speaker State Challenge feature set</strong>（见2011年INTERSPEECH会议论文集）由配置文件config/IS11_speake_state.conf提供。该集包含的4368个特征是由4个能量相关+50个频谱相关的低级描述符（LLDs）和54个相应的delta作为108个LLDs，在此基础上应用33个基本函数+平均值、最小值、最大值、标准差得到3996个特征；5个声音相关和5个对应的delta作为10个LLDs，在此基础上应用33个基本函数+二次平均、上升时长、下降时长得到360个特征；6个F0基本函数和对应的delta，12个特征。<br><img src="https://pic3.zhimg.com/v2-61806080f48fc47e179312b61f54408e_r.jpg" alt="inter2011"><br><img src="https://pic4.zhimg.com/v2-fd984660db8fd5601446f93bab42ebff_r.jpg" alt="inter2011_func"></p>
+<p><strong>The INTERSPEECH 2012 Speaker Trait Challenge feature set</strong>（见2012年INTERSPEECH会议论文集）由配置文件config/IS12_speake_trait.conf提供。该集包含的6125个特征。<br><img src="https://pic4.zhimg.com/80/v2-cc5c81458336b536e2f1ce620d759b03_1440w.jpg" alt="inter2012"></p>
+<p><strong>The INTERSPEECH 2013 ComParE Challenge feature set</strong> （见2013年INTERSPEECH会议论文集）由配置文件config/IS13_ComParE.conf提供。该集包含的6373个特征，LLD包括能量，频谱，倒谱（MFCC）、声音、对数谐波噪声比（HNR），频谱谐度和心理声学频谱清晰度。</p>
+<p><strong>The MediaEval 2012 TUM feature set for violent video scenes detection</strong> 针对好莱坞流行电影的暴力进行检测的特征集在config/mediaeval2012_tum_affect/，里面有不同的设置，参考文章：Florian Eyben, Felix Weninger, Nicolas Lehment, Gerhard Rigoll, Björn Schuller: ”Violent Scenes Detection with Large, Brute-forced Acoustic and Visual Feature Sets”, Proc. MediaEval 2012 Workshop, Pisa, Italy, 04.-05.10.2012.</p>
+<p><strong>MediaEval Audio IS12based subwin2.conf</strong>包含的是从2s的子窗中提取音频特征的配置。MediaEval Audio IS12based subwin2 step0.5.conf提取一样的特征，但是2s子窗的偏移为0.5s。MediaEval VideoFunctionals.conf用于视频特征提取，如文章使用方法，需要一个包含LLDs的CSV文件（由openCV提取）作为输入和输出，ARFF文件作为视频特征。</p>
+<p><strong>The openSMILE/openEAR ‘emobase’ set</strong>早期的基线集（参照”emobase2”集作为新的基线集），拥有情感识别的998个声学特征，包含以下低级描述符（LLDs）：强度，响度，12 MFCC，音高（F0），浊音概率，F0包络线，8 LSF（线频谱频率），过零率， 以及这些LLD的Delta回归系数。以下函数被应用于上述LLDs及其Delta系数。：Max./Min。输入的相对位置和范围，范围，算术平均值，2线性回归系数，线性和二次误差，标准差，偏度，峰度，四分位数1-3和三位四分位数范围。</p>
+<p><strong>The large openSMILE emotion feature set</strong>用于提取更多的LLDs和更多的函数(6552个特征)，配置文件为config/emo_large.conf。</p>
+<p><strong>The openSMILE ‘emobase2010’ reference set</strong> 是基于the INTERSPEECH 2010 Paralinguistic Challenge feature set，配置文件为config/emobase2010.conf。<br>对持续时间和位置特征的规范化进行了一些调整。这个特性集包含了一套大大增强的低级描述符(LLDs)，以及一套“emobase”相比更加精细化选择的函数列表。建议使用此特征集作为比较新的情感识别特征集和方法的参考，因为它代表当前最先进的情感和语言识别功能。<br>该集合包含1582个特征（与INTERSPEECH 2010 Paralinguistic 挑战集相同设置），其由34个低级描述符（LLDs）和34个相应的delta作为68个LLDs轮廓值，在此基础上应用21个函数得到1 428个特征，另外，对4个基于音高的LLD及其4个delta系数应用了19个函数得到152个特征，最后附加音高（伪音节）的数量和总数输入的持续时间（2个特征）。唯一的区别是INTERSPEECH 2010 paralinguistic挑战集标准化的是是“maxPos”和“minPos”特征，本配置被标准化为段长度。</p>
 <h2 id="python批处理提取openSMILE特征"><a href="#python批处理提取openSMILE特征" class="headerlink" title="python批处理提取openSMILE特征"></a>python批处理提取openSMILE特征</h2><p>所有支持标准数据输出格式的配置文件都可以在WINDOWS的批特征提取GUI（使用VS10 C#编写，位于progsrc/openSMILEbatchGUI/）。这个工具允许openSMILE自动的执行文件夹中的若干文件。它可以在图形界面中选择音频文件和指定输出类型。<br>openSMILE本身提供批处理GUI（使用VS10 C#编写，位于progsrc/openSMILEbatchGUI/），但若语音数据的目录结构较复杂，还可以利用python来进行批处理。示例代码如以下：</p>
 <pre><code>import os
 from subprocess import call
@@ -380,11 +450,10 @@ def batch_extract_features(path_Config, path_Input_Root, path_Output):
 
 
 path_Config = &quot;./config/IS13_ComParE.conf&quot;
-path_Input_Root = &#39;root_path_to_audio&#39;
+path_Input_Root = &#39;root_path_to_audio/&#39;
 path_Output = &#39;features.csv&#39;
 batch_extract_features(path_Config, path_Input_Root, path_Output)
-</code></pre><h2 id="官方配置文件"><a href="#官方配置文件" class="headerlink" title="官方配置文件"></a>官方配置文件</h2><p>官方提供了许多常见特征集的配置文件，如MFCC，PLP，以及各大语音比赛中效果好的特征集。<br><img src="https://pic4.zhimg.com/v2-ab189f62bbe90e58da7c4c693e1c2c97_r.jpg" alt="官方配置文件"></p>
-<h2 id="输出数据格式控制"><a href="#输出数据格式控制" class="headerlink" title="输出数据格式控制"></a>输出数据格式控制</h2><p>对于不包含统计函数的配置文件，选项定义在config/shared/standard_data_output_lldonly.conf.inc</p>
+</code></pre><h2 id="输出数据格式控制"><a href="#输出数据格式控制" class="headerlink" title="输出数据格式控制"></a>输出数据格式控制</h2><p>对于不包含统计函数的配置文件，选项定义在config/shared/standard_data_output_lldonly.conf.inc</p>
 <pre><code>==============================LLD only=============================
 ================================CSV================================
 -csvoutput &lt;filename&gt; 默认输出选项. CSV格式，存放帧向LLD
@@ -437,7 +506,9 @@ printHeader = \cm[headercsvlld{1}:set to 0 to suppress header line with feature 
 errorOnNoOutput = 1
 </code></pre><p>那么，当需要同时输出lld和func时，可用如下命令</p>
 <pre><code>SMILExtract -C config/IS13_ComParE.conf -I input.wav -lldcsvoutput lld_output.csv -csvoutput func_output.csv
-</code></pre><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
+</code></pre><h2 id="最后一点话"><a href="#最后一点话" class="headerlink" title="最后一点话"></a>最后一点话</h2><p>其实如果只是用官方配置提特征那么只看批处理那里也够了。官方配置文件可以根据需求时再看需要哪个文件，也可自己按着这个格式自定义编写配置文件。另外输出格式控制感觉最好也是先看一下，我一开始都是直接用 -O 输出统计特征，但想输出lld时跑去源代码里一阵捣鼓，后来才发现它已经封装好了直接一个参数就可以了。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/69170521" target="_blank" rel="noopener">彩蛋</a></p>
+
       
     </div>
     <div class="article-footer">
