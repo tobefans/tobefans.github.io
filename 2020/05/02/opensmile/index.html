@@ -21,7 +21,7 @@
   <meta name="description" content="前言openSMILE是一款以命令行形式运行的工具，通过配置config文件来提取音频特征。主要应用于语音识别、情感计算、音乐信息获取。2.0版本之后的openSMILE包括了openCV库，可以用于视频处理和视频特征提取。官网下载有linux和windows版本提供下载，windows可以不编译直接用，建议在命令行里指明 openSMILE 绝对路径。 openSMILE的输入输出格式文件输入格">
 <meta property="og:type" content="article">
 <meta property="og:title" content="opensmile 工具的使用和批处理">
-<meta property="og:url" content="http://yoursite.com/2020/05/02/opensmile/index.html">
+<meta property="og:url" content="http://weiquanfan.xyz/2020/05/02/opensmile/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言openSMILE是一款以命令行形式运行的工具，通过配置config文件来提取音频特征。主要应用于语音识别、情感计算、音乐信息获取。2.0版本之后的openSMILE包括了openCV库，可以用于视频处理和视频特征提取。官网下载有linux和windows版本提供下载，windows可以不编译直接用，建议在命令行里指明 openSMILE 绝对路径。 openSMILE的输入输出格式文件输入格">
 <meta property="og:locale" content="zh-Hans">
@@ -35,7 +35,7 @@
 <meta name="twitter:description" content="前言openSMILE是一款以命令行形式运行的工具，通过配置config文件来提取音频特征。主要应用于语音识别、情感计算、音乐信息获取。2.0版本之后的openSMILE包括了openCV库，可以用于视频处理和视频特征提取。官网下载有linux和windows版本提供下载，windows可以不编译直接用，建议在命令行里指明 openSMILE 绝对路径。 openSMILE的输入输出格式文件输入格">
 <meta name="twitter:image" content="https://pic4.zhimg.com/v2-ab189f62bbe90e58da7c4c693e1c2c97_r.jpg">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://yoursite.com/2020/05/02/opensmile/index.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2020/05/02/opensmile/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
@@ -147,36 +147,6 @@
             <i class="icon icon-project"></i>
             
             <span class="menu-title">Repository</span>
-          </a>
-        </li>
-        
-        
-        <li class="menu-item menu-item-books">
-          <a href="/books">
-            
-            <i class="icon icon-book-fill"></i>
-            
-            <span class="menu-title">Books</span>
-          </a>
-        </li>
-        
-        
-        <li class="menu-item menu-item-links">
-          <a href="/links">
-            
-            <i class="icon icon-friendship"></i>
-            
-            <span class="menu-title">Links</span>
-          </a>
-        </li>
-        
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about">
-            
-            <i class="icon icon-cup-fill"></i>
-            
-            <span class="menu-title">About</span>
           </a>
         </li>
         
@@ -334,6 +304,11 @@
         
 
         
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2020/05/02/opensmile/" class="leancloud_visitors"  data-flag-title="opensmile 工具的使用和批处理">0</span>
+    </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/02/opensmile/#comments" class="article-comment-link">Comments</a></span>
         
@@ -529,7 +504,7 @@ errorOnNoOutput = 1
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://yoursite.com/2020/05/02/opensmile/" title="opensmile 工具的使用和批处理" target="_blank" rel="external">http://yoursite.com/2020/05/02/opensmile/</a>
+      <a href="http://weiquanfan.xyz/2020/05/02/opensmile/" title="opensmile 工具的使用和批处理" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/02/opensmile/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -701,6 +676,96 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
    
 
 
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+  appKey: 'F0aXAudrJr6wsdAvrVvSp1T2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
 
 
    
@@ -717,8 +782,8 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     el: '#vcomments',
     verify: false,
     notify: false,
-    appId: '',
-    appKey: '',
+    appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+    appKey: 'F0aXAudrJr6wsdAvrVvSp1T2',
     placeholder: '此时一位路人路过...',
     avatar: 'mm',
     meta: meta,

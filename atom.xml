@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://weiquanfan.xyz/"/>
   <updated>2020-05-03T03:48:28.519Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://weiquanfan.xyz/</id>
   
   <author>
     <name>Weiquan Fan</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>opensmile 工具的使用和批处理</title>
-    <link href="http://yoursite.com/2020/05/02/opensmile/"/>
-    <id>http://yoursite.com/2020/05/02/opensmile/</id>
+    <link href="http://weiquanfan.xyz/2020/05/02/opensmile/"/>
+    <id>http://weiquanfan.xyz/2020/05/02/opensmile/</id>
     <published>2020-05-02T12:32:13.000Z</published>
     <updated>2020-05-03T03:48:28.519Z</updated>
     
@@ -32,15 +32,15 @@
     
     </summary>
     
-      <category term="语音特征" scheme="http://yoursite.com/categories/%E8%AF%AD%E9%9F%B3%E7%89%B9%E5%BE%81/"/>
+      <category term="语音特征" scheme="http://weiquanfan.xyz/categories/%E8%AF%AD%E9%9F%B3%E7%89%B9%E5%BE%81/"/>
     
     
   </entry>
   
   <entry>
     <title>语谱图的matlab提取和python提取</title>
-    <link href="http://yoursite.com/2020/05/02/specgram/"/>
-    <id>http://yoursite.com/2020/05/02/specgram/</id>
+    <link href="http://weiquanfan.xyz/2020/05/02/specgram/"/>
+    <id>http://weiquanfan.xyz/2020/05/02/specgram/</id>
     <published>2020-05-02T08:43:28.000Z</published>
     <updated>2020-05-03T03:48:23.090Z</updated>
     
@@ -53,15 +53,15 @@
     
     </summary>
     
-      <category term="语音特征" scheme="http://yoursite.com/categories/%E8%AF%AD%E9%9F%B3%E7%89%B9%E5%BE%81/"/>
+      <category term="语音特征" scheme="http://weiquanfan.xyz/categories/%E8%AF%AD%E9%9F%B3%E7%89%B9%E5%BE%81/"/>
     
     
   </entry>
   
   <entry>
     <title>使用Github Pages和Hexo搭建自己的独立博客</title>
-    <link href="http://yoursite.com/2019/08/11/How-to-use-Hexo-to-build-your-blog/"/>
-    <id>http://yoursite.com/2019/08/11/How-to-use-Hexo-to-build-your-blog/</id>
+    <link href="http://weiquanfan.xyz/2019/08/11/How-to-use-Hexo-to-build-your-blog/"/>
+    <id>http://weiquanfan.xyz/2019/08/11/How-to-use-Hexo-to-build-your-blog/</id>
     <published>2019-08-11T11:10:47.000Z</published>
     <updated>2019-08-14T17:28:12.904Z</updated>
     
