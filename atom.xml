@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-05-03T03:48:28.519Z</updated>
+  <updated>2020-05-04T07:30:30.919Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>常见的梯度下降算法原理</title>
+    <link href="http://weiquanfan.xyz/2020/05/04/gradient-descent/"/>
+    <id>http://weiquanfan.xyz/2020/05/04/gradient-descent/</id>
+    <published>2020-05-04T04:58:54.000Z</published>
+    <updated>2020-05-04T07:30:30.919Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;梯度下降算法（Gradient Descent Optimization）是神经网络模型训练最常用的优化算法。对于深度学习模型，基本都是采用
+      
+    
+    </summary>
+    
+      <category term="机器学习" scheme="http://weiquanfan.xyz/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>opensmile 工具的使用和批处理</title>

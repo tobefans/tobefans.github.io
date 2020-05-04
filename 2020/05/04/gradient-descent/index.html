@@ -17,27 +17,29 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Tags | Hexo</title>
-  <meta name="description" content="陌上花开，可缓缓归矣">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tags">
-<meta property="og:url" content="http://weiquanfan.xyz/tags/index.html">
+  <title>常见的梯度下降算法原理 | Hexo</title>
+  <meta name="description" content="前言梯度下降算法（Gradient Descent Optimization）是神经网络模型训练最常用的优化算法。对于深度学习模型，基本都是采用梯度下降算法来进行优化训练的。梯度下降算法背后的原理：目标函数 $J(\theta)$ 关于参数 $\theta$ 的梯度将是损失函数（loss function）上升最快的方向。而我们要最小化loss，只需要将参数沿着梯度相反的方向前进一个步长，就可以实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见的梯度下降算法原理">
+<meta property="og:url" content="http://weiquanfan.xyz/2020/05/04/gradient-descent/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
-<meta property="og:description" content="陌上花开，可缓缓归矣">
+<meta property="og:description" content="前言梯度下降算法（Gradient Descent Optimization）是神经网络模型训练最常用的优化算法。对于深度学习模型，基本都是采用梯度下降算法来进行优化训练的。梯度下降算法背后的原理：目标函数 $J(\theta)$ 关于参数 $\theta$ 的梯度将是损失函数（loss function）上升最快的方向。而我们要最小化loss，只需要将参数沿着梯度相反的方向前进一个步长，就可以实">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-03T16:35:25.551Z">
+<meta property="og:updated_time" content="2020-05-04T07:30:30.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tags">
-<meta name="twitter:description" content="陌上花开，可缓缓归矣">
+<meta name="twitter:title" content="常见的梯度下降算法原理">
+<meta name="twitter:description" content="前言梯度下降算法（Gradient Descent Optimization）是神经网络模型训练最常用的优化算法。对于深度学习模型，基本都是采用梯度下降算法来进行优化训练的。梯度下降算法背后的原理：目标函数 $J(\theta)$ 关于参数 $\theta$ 的梯度将是损失函数（loss function）上升最快的方向。而我们要最小化loss，只需要将参数沿着梯度相反的方向前进一个步长，就可以实">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://weiquanfan.xyz/tags/index.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2020/05/04/gradient-descent/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
   
   
@@ -313,23 +315,173 @@
 </aside>
 
   
-  <main class="main" role="main">
-  <article class="article article-tags post-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">Tags</h1>
-      <p class="text-muted hidden-xs">Total 0 tags</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/tags">All</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-gradient-descent" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      常见的梯度下降算法原理
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/05/04/gradient-descent/" class="article-date">
+	  <time datetime="2020-05-04T04:58:54.000Z" itemprop="datePublished">2020-05-04</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+  </span>
+
+        
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2020/05/04/gradient-descent/" class="leancloud_visitors"  data-flag-title="常见的梯度下降算法原理">0</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/04/gradient-descent/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>梯度下降算法（Gradient Descent Optimization）是神经网络模型训练最常用的优化算法。对于深度学习模型，基本都是采用梯度下降算法来进行优化训练的。梯度下降算法背后的原理：目标函数 $J(\theta)$ 关于参数 $\theta$ 的梯度将是损失函数（loss function）上升最快的方向。而我们要最小化loss，只需要将参数沿着梯度相反的方向前进一个步长，就可以实现目标函数（loss function）的下降。这个步长 $\eta$ 又称为学习速率。参数更新公式如下：</p>
+
       
     </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://weiquanfan.xyz/2020/05/04/gradient-descent/" title="常见的梯度下降算法原理" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/04/gradient-descent/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tobefans" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/photo.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tobefans" target="_blank"><span class="text-dark">Weiquan Fan</span><small class="ml-1x">AI练习生</small></a></h3>
+        <div>陌上花开，可缓缓归矣</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
   </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/05/02/opensmile/" title="opensmile 工具的使用和批处理"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wachat.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -379,11 +531,132 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/insight.js"></script>
 
 
 
 
+
+   
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+  appKey: 'F0aXAudrJr6wsdAvrVvSp1T2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+    appKey: 'F0aXAudrJr6wsdAvrVvSp1T2',
+    placeholder: '此时一位路人路过...',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+     
 
 
 
