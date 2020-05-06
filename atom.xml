@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-05-04T16:45:54.475Z</updated>
+  <updated>2020-05-06T13:03:33.223Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Transfomer以及self-attention讲解</title>
+    <link href="http://weiquanfan.xyz/2020/05/05/transfomer/"/>
+    <id>http://weiquanfan.xyz/2020/05/05/transfomer/</id>
+    <published>2020-05-05T12:23:39.000Z</published>
+    <updated>2020-05-06T13:03:33.223Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这一篇主要讲解谷歌发表的&lt;a href=&quot;https://arxiv.org/abs/1706.03762&quot; target=&quot;_blank&quot;
+      
+    
+    </summary>
+    
+      <category term="深度学习模型" scheme="http://weiquanfan.xyz/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/"/>
+    
+    
+      <category term="Trasformer" scheme="http://weiquanfan.xyz/tags/Trasformer/"/>
+    
+      <category term="self-attention" scheme="http://weiquanfan.xyz/tags/self-attention/"/>
+    
+  </entry>
   
   <entry>
     <title>常见的梯度下降算法原理</title>
