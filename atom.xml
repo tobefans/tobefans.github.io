@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-05-06T13:03:33.223Z</updated>
+  <updated>2020-05-06T13:15:29.800Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Transfomer以及self-attention讲解</title>
+    <title>Transfomer以及Self-Attention讲解</title>
     <link href="http://weiquanfan.xyz/2020/05/05/transfomer/"/>
     <id>http://weiquanfan.xyz/2020/05/05/transfomer/</id>
     <published>2020-05-05T12:23:39.000Z</published>
-    <updated>2020-05-06T13:03:33.223Z</updated>
+    <updated>2020-05-06T13:15:29.800Z</updated>
     
     <summary type="html">
     

@@ -17,11 +17,11 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Transfomer以及self-attention讲解 | Hexo</title>
+  <title>Transfomer以及Self-Attention讲解 | Hexo</title>
   <meta name="description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下图是一个很好的使用Transformer进行机器">
 <meta name="keywords" content="Trasformer,self-attention">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Transfomer以及self-attention讲解">
+<meta property="og:title" content="Transfomer以及Self-Attention讲解">
 <meta property="og:url" content="http://weiquanfan.xyz/2020/05/05/transfomer/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下图是一个很好的使用Transformer进行机器">
@@ -29,8 +29,8 @@
 <meta property="og:image" content="https://pic4.zhimg.com/v2-b1b7cd5637f7c844510fd460e0e2c807_b.webp?80">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-0c259fb2d439b98de27d877dcd3d1fcb_1440w.jpg?40">
 <meta property="og:image" content="https://miro.medium.com/max/1400/1*P2cHPZmuKncBhNmybAlynQ.png?30">
-<meta property="og:image" content="https://www.zhihu.com?/equation?tex=PE_%7B%28pos%2C+2i%29%7D+%3D+sin%28pos%2F10000%5E%7B2i%2Fd_%7Bmodel%7D%7D%29+%5C%5C40">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=PE_%7B%28pos%2C+2i%2B1%29%7D+%3D+cos%28pos%2F10000%5E%7B?2i%2Fd_%7Bmodel%7D%7D%29+%5C%5C40">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=PE_%7B%28pos%2C+2i%29%7D+%3D+sin%28pos%2F10000%5E%7B2i%2Fd_%7Bmodel%7D%7D%29+%5C%5C">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=PE_%7B%28pos%2C+2i%2B1%29%7D+%3D+cos%28pos%2F10000%5E%7B2i%2Fd_%7Bmodel%7D%7D%29+%5C%5C">
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-03d0a60b60a0a28f52ed903c76bb9a22_1440w.jpg">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-eea2dcbfa49df9fb799ef8e6997260bf_1440w.jpg?60">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-752c1c91e1b4dbca1b64f59a7e026b9b_1440w.jpg?60">
@@ -39,9 +39,9 @@
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-df2ca1b7a60d829245b7b7c37f80a3aa_1440w.jpg">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-01188c490446b01b55fe316723576070_1440w.jpg?30">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-7fb3ac456169471c26ac795b6d208b7c_1440w.png?50">
-<meta property="og:updated_time" content="2020-05-06T13:03:33.223Z">
+<meta property="og:updated_time" content="2020-05-06T13:15:29.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Transfomer以及self-attention讲解">
+<meta name="twitter:title" content="Transfomer以及Self-Attention讲解">
 <meta name="twitter:description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下图是一个很好的使用Transformer进行机器">
 <meta name="twitter:image" content="https://pic4.zhimg.com/v2-b1b7cd5637f7c844510fd460e0e2c807_b.webp?80">
   <!-- Canonical links -->
@@ -281,7 +281,7 @@
                 <a class="category-link" href="/categories/深度学习模型/">深度学习模型</a>
               </p>
               <p class="item-title">
-                <a href="/2020/05/05/transfomer/" class="title">Transfomer以及self-attention讲解</a>
+                <a href="/2020/05/05/transfomer/" class="title">Transfomer以及Self-Attention讲解</a>
               </p>
               <p class="item-date">
                 <time datetime="2020-05-05T12:23:39.000Z" itemprop="datePublished">2020-05-05</time>
@@ -369,7 +369,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Transfomer以及self-attention讲解
+      Transfomer以及Self-Attention讲解
     </h1>
   
 
@@ -398,7 +398,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/05/05/transfomer/" class="leancloud_visitors"  data-flag-title="Transfomer以及self-attention讲解">0</span>
+    	<span id="/2020/05/05/transfomer/" class="leancloud_visitors"  data-flag-title="Transfomer以及Self-Attention讲解">0</span>
     </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/05/transfomer/#comments" class="article-comment-link">Comments</a></span>
@@ -427,22 +427,22 @@
 <li>最后，逐行使用全连接层和softmax。输出的尺寸为（target_length）x（vocab_size）。</li>
 </ol>
 <p><img src="https://miro.medium.com/max/1400/1*P2cHPZmuKncBhNmybAlynQ.png?30" alt></p>
-<p>编码器对于训练阶段和测试阶段是一样的编码过程，而解码器的流程则有所不同，因此先讲解一下解码器的训练和测试。<br>在<strong>测试阶段</strong>，由于没有groundtruth，所以我们需要从零开始不断迭代一个词一个词地生成。具体操作如下。</p>
+<p>编码器对于训练阶段和测试阶段是一样的编码过程，而解码器的流程则有所不同，因此先讲解一下解码器的训练和测试。<br>在<strong>测试阶段</strong>，由于没有groundtruth，所以我们需要从零开始不断迭代一个词一个词地生成。具体操作如下：</p>
 <ol>
 <li>计算输入序列的嵌入表示。</li>
 <li>使用起始token例如’<ss>‘，作为第一个目标序列。该模型将预测输出一个token。</ss></li>
 <li>将最后一个预测token添加到目标序列，并使用它生成新的预测。</li>
 <li>重复执行步骤3，每次的输入token和输出token都增加，直到预测的token是表示序列结束的token，例如<eos>。</eos></li>
 </ol>
-<p>在<strong>训练过程</strong>中，由于我们事先有roundtruth，因此我们将直接为模型提供整个已移位目标序列，并要求其预测未移位目标。<br>举个例子，目标是将句子从英语翻译成西班牙语：<br>X = [‘Hello’，’，’，’how’，’are’，’you’，’？’]（输入序列）<br>Y = [‘Hola’，’，’，’como’，’estas’， ‘？’]（目标序列）<br>在前面的示例之后，我们将给解码器输入：<br>[‘<ss>‘，’Hola’，’，’，’como’，’estas’，’？’]<br>预期的预测将是：<br>[‘Hola’，’，’，’como’，’estas’，’？’，’<eos>‘]</eos></ss></p>
+<p>在<strong>训练阶段</strong>中，由于我们事先有roundtruth，因此我们将直接为模型提供整个已移位目标序列，并要求其预测未移位目标。<br>举个例子，目标是将句子从英语翻译成西班牙语：<br>X = [‘Hello’，’，’，’how’，’are’，’you’，’？’]（输入序列）<br>Y = [‘Hola’，’，’，’como’，’estas’， ‘？’]（目标序列）<br>在前面的示例之后，我们将给解码器输入：<br>[‘<ss>‘，’Hola’，’，’，’como’，’estas’，’？’]<br>预期的预测将是：<br>[‘Hola’，’，’，’como’，’estas’，’？’，’<eos>‘]</eos></ss></p>
 <p>因此可以看到，解码器在训练时直接从target_length-&gt;target_length，而测试时则是从1-&gt;1 2-&gt;2 3-&gt;3 … target_length-&gt;target_length的过程，最后预测的是每次迭代中最后一个预测的token串联起来。</p>
 <h2 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h2><p>Transformer抛弃了RNN，而RNN最大的优点就是在时间序列上对数据的抽象，所以文章中作者提出两种Positional Encoding的方法，将encoding后的数据与embedding数据求和，加入了相对位置信息。</p>
 <ul>
 <li>用不同频率的sine和cosine函数直接计算</li>
 <li>学习出一份positional embedding<br>实验后发现两者结果一样，所以用了第一种方法，优点是不需要训练参数，而且即使在训练集中没有出现过的句子长度上也能用</li>
 </ul>
-<p><img src="https://www.zhihu.com?/equation?tex=PE_%7B%28pos%2C+2i%29%7D+%3D+sin%28pos%2F10000%5E%7B2i%2Fd_%7Bmodel%7D%7D%29+%5C%5C40" alt></p>
-<p><img src="https://www.zhihu.com/equation?tex=PE_%7B%28pos%2C+2i%2B1%29%7D+%3D+cos%28pos%2F10000%5E%7B?2i%2Fd_%7Bmodel%7D%7D%29+%5C%5C40" alt></p>
+<p><img src="https://www.zhihu.com/equation?tex=PE_%7B%28pos%2C+2i%29%7D+%3D+sin%28pos%2F10000%5E%7B2i%2Fd_%7Bmodel%7D%7D%29+%5C%5C" alt></p>
+<p><img src="https://www.zhihu.com/equation?tex=PE_%7B%28pos%2C+2i%2B1%29%7D+%3D+cos%28pos%2F10000%5E%7B2i%2Fd_%7Bmodel%7D%7D%29+%5C%5C" alt></p>
 <p>对于输入序列，经过word embedding后，加上positional embedding后即可得到该序列的 representation，序列中的每个token都转换成包含 word 的特征和 word 在句子中的位置信息的向量。</p>
 <h2 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h2><p>Multi-Head Attention其实就是多个Self-Attention结构的结合。因此，首先我们需要着重学习论文的重点Self-Attention。</p>
 <h3 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h3><p>从一个比较知名的<a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">例子</a>讲起。<br>假如我们要翻译一个词组Thinking Machines，其中Thinking的输入的embedding vector用x1表示，Machines的embedding vector用x2表示。当我们处理Thinking这个词时，我们需要计算句子中所有词与它的Attention Score，这就像将当前词作为搜索的query，去和句子中所有词（包含该词本身）的key去匹配（点乘），看看相关度有多高。相关度进行尺度缩放与softmax归一化可以得到注意力权重，注意力与相应的value加权求和就得到新的表达。</p>
@@ -481,7 +481,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz/2020/05/05/transfomer/" title="Transfomer以及self-attention讲解" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/05/transfomer/</a>
+      <a href="http://weiquanfan.xyz/2020/05/05/transfomer/" title="Transfomer以及Self-Attention讲解" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/05/transfomer/</a>
     </li>
     
     <li class="post-copyright-license">
