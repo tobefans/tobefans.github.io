@@ -19,7 +19,7 @@
   
   <title>Transfomer以及Self-Attention讲解 | Hexo</title>
   <meta name="description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下图是一个很好的使用Transformer进行机器">
-<meta name="keywords" content="Trasformer,self-attention">
+<meta name="keywords" content="Transformer,self-attention">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transfomer以及Self-Attention讲解">
 <meta property="og:url" content="http://weiquanfan.xyz/2020/05/05/transfomer/index.html">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-df2ca1b7a60d829245b7b7c37f80a3aa_1440w.jpg">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-01188c490446b01b55fe316723576070_1440w.jpg?30">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-7fb3ac456169471c26ac795b6d208b7c_1440w.png?50">
-<meta property="og:updated_time" content="2020-05-06T13:15:29.800Z">
+<meta property="og:updated_time" content="2020-05-07T12:24:59.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Transfomer以及Self-Attention讲解">
 <meta name="twitter:description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下图是一个很好的使用Transformer进行机器">
@@ -233,7 +233,7 @@
   <div class="widget">
     <h3 class="widget-title">Categories</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习模型/">深度学习模型</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/语音特征/">语音特征</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习模型/">深度学习模型</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/语音特征/">语音特征</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -243,7 +243,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trasformer/">Trasformer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-attention/">self-attention</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BERT/">BERT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GLUE/">GLUE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Transformer/">Transformer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-attention/">self-attention</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -253,7 +253,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/Trasformer/" style="font-size: 13px;">Trasformer</a> <a href="/tags/self-attention/" style="font-size: 13px;">self-attention</a>
+      <a href="/tags/BERT/" style="font-size: 13px;">BERT</a> <a href="/tags/GLUE/" style="font-size: 13px;">GLUE</a> <a href="/tags/Transformer/" style="font-size: 14px;">Transformer</a> <a href="/tags/self-attention/" style="font-size: 13px;">self-attention</a>
     </div>
   </div>
 
@@ -262,7 +262,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -274,6 +274,21 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled no-thumbnail">
         
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/深度学习模型/">深度学习模型</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/05/07/BERT/" class="title">暴力即正义——讲讲横扫nlp任务的BERT模型</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-05-07T08:08:20.000Z" itemprop="datePublished">2020-05-07</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-inner">
@@ -334,21 +349,6 @@
             </div>
           </li>
           
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/2019/08/11/How-to-use-Hexo-to-build-your-blog/" class="title">使用Github Pages和Hexo搭建自己的独立博客</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2019-08-11T11:10:47.000Z" itemprop="datePublished">2019-08-11</time>
-              </p>
-            </div>
-          </li>
-          
       </ul>
     </div>
   </div>
@@ -390,7 +390,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Trasformer/">Trasformer</a>, <a class="article-tag-link" href="/tags/self-attention/">self-attention</a>
+	<a class="article-tag-link" href="/tags/Transformer/">Transformer</a>, <a class="article-tag-link" href="/tags/self-attention/">self-attention</a>
   </span>
 
 
@@ -526,6 +526,10 @@
   <div class="bar-inner">
   
   <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/05/07/BERT/" title="暴力即正义——讲讲横扫nlp任务的BERT模型"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
     
     
     <li class="next">

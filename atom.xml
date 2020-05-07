@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-05-06T13:15:29.800Z</updated>
+  <updated>2020-05-07T12:25:15.780Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>暴力即正义——讲讲横扫nlp任务的BERT模型</title>
+    <link href="http://weiquanfan.xyz/2020/05/07/BERT/"/>
+    <id>http://weiquanfan.xyz/2020/05/07/BERT/</id>
+    <published>2020-05-07T08:08:20.000Z</published>
+    <updated>2020-05-07T12:25:15.780Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;本文讲解Google在2019年发表的论文&lt;a href=&quot;https://arxiv.org/pdf/1810.04805.pdf&quot; ta
+      
+    
+    </summary>
+    
+      <category term="深度学习模型" scheme="http://weiquanfan.xyz/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/"/>
+    
+    
+      <category term="BERT" scheme="http://weiquanfan.xyz/tags/BERT/"/>
+    
+      <category term="Transformer" scheme="http://weiquanfan.xyz/tags/Transformer/"/>
+    
+      <category term="GLUE" scheme="http://weiquanfan.xyz/tags/GLUE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Transfomer以及Self-Attention讲解</title>
     <link href="http://weiquanfan.xyz/2020/05/05/transfomer/"/>
     <id>http://weiquanfan.xyz/2020/05/05/transfomer/</id>
     <published>2020-05-05T12:23:39.000Z</published>
-    <updated>2020-05-06T13:15:29.800Z</updated>
+    <updated>2020-05-07T12:24:59.930Z</updated>
     
     <summary type="html">
     
@@ -35,7 +62,7 @@
       <category term="深度学习模型" scheme="http://weiquanfan.xyz/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/"/>
     
     
-      <category term="Trasformer" scheme="http://weiquanfan.xyz/tags/Trasformer/"/>
+      <category term="Transformer" scheme="http://weiquanfan.xyz/tags/Transformer/"/>
     
       <category term="self-attention" scheme="http://weiquanfan.xyz/tags/self-attention/"/>
     
