@@ -17,11 +17,11 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>暴力即正义——讲讲横扫nlp任务的BERT模型 | Hexo</title>
+  <title>讲讲横扫nlp任务的BERT模型 | Hexo</title>
   <meta name="description" content="前言本文讲解Google在2019年发表的论文BERT: Pre-training of Deep Bidirectional Transformers forLanguage Understanding 。从标题可以看出，该论文基于Transformer模型，提出了一款用于语言理解的预训练模型，并在GLUE, SQuAD等nlp任务中都取得了很好的效果。该模型的创新点实际上不在于模型结构，而在于">
 <meta name="keywords" content="BERT,Transformer,GLUE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="暴力即正义——讲讲横扫nlp任务的BERT模型">
+<meta property="og:title" content="讲讲横扫nlp任务的BERT模型">
 <meta property="og:url" content="http://weiquanfan.xyz/2020/05/07/BERT/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言本文讲解Google在2019年发表的论文BERT: Pre-training of Deep Bidirectional Transformers forLanguage Understanding 。从标题可以看出，该论文基于Transformer模型，提出了一款用于语言理解的预训练模型，并在GLUE, SQuAD等nlp任务中都取得了很好的效果。该模型的创新点实际上不在于模型结构，而在于">
@@ -29,9 +29,9 @@
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-d942b566bde7c44704b7d03a1b596c0c_1440w.jpg">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-11505b394299037e999d12997e9d1789_1440w.jpg">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-b054e303cdafa0ce41ad761d5d0314e1_1440w.jpg">
-<meta property="og:updated_time" content="2020-05-07T12:25:15.780Z">
+<meta property="og:updated_time" content="2020-05-07T12:58:59.538Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="暴力即正义——讲讲横扫nlp任务的BERT模型">
+<meta name="twitter:title" content="讲讲横扫nlp任务的BERT模型">
 <meta name="twitter:description" content="前言本文讲解Google在2019年发表的论文BERT: Pre-training of Deep Bidirectional Transformers forLanguage Understanding 。从标题可以看出，该论文基于Transformer模型，提出了一款用于语言理解的预训练模型，并在GLUE, SQuAD等nlp任务中都取得了很好的效果。该模型的创新点实际上不在于模型结构，而在于">
 <meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-d942b566bde7c44704b7d03a1b596c0c_1440w.jpg">
   <!-- Canonical links -->
@@ -271,7 +271,7 @@
                 <a class="category-link" href="/categories/深度学习模型/">深度学习模型</a>
               </p>
               <p class="item-title">
-                <a href="/2020/05/07/BERT/" class="title">暴力即正义——讲讲横扫nlp任务的BERT模型</a>
+                <a href="/2020/05/07/BERT/" class="title">讲讲横扫nlp任务的BERT模型</a>
               </p>
               <p class="item-date">
                 <time datetime="2020-05-07T08:08:20.000Z" itemprop="datePublished">2020-05-07</time>
@@ -359,7 +359,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      暴力即正义——讲讲横扫nlp任务的BERT模型
+      讲讲横扫nlp任务的BERT模型
     </h1>
   
 
@@ -388,7 +388,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/05/07/BERT/" class="leancloud_visitors"  data-flag-title="暴力即正义——讲讲横扫nlp任务的BERT模型">0</span>
+    	<span id="/2020/05/07/BERT/" class="leancloud_visitors"  data-flag-title="讲讲横扫nlp任务的BERT模型">0</span>
     </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/07/BERT/#comments" class="article-comment-link">Comments</a></span>
@@ -417,7 +417,7 @@
 <h3 id="Masked-LM"><a href="#Masked-LM" class="headerlink" title="Masked LM"></a>Masked LM</h3><p>为了实现模型的双向，就不能一直给定前面预测后面，于是作者提出了一个trick。在训练过程中，随机mask掉15%的token，即把相应位置的token替换成一个[MASK]标识，而任务的目标就是要去恢复这个句子（包含MASK的词），而损失函数只考虑了MASK位置的预测值，忽视掉非masked的值。这样，MASK的词可前可后，就实现了模型的双向性。</p>
 <p>由此也衍生出了一个问题，就是在实际预测的时候是不会碰到[MASK]的，用了太多[MASK]就容易影响到模型。所以作者又用了个小技巧，选中了要mask的token后，其中10%的token会被替代成其他token，10%的token不替换，剩下的80%才被替换为[MASK]。</p>
 <h3 id="Next-Sentence-Prediction"><a href="#Next-Sentence-Prediction" class="headerlink" title="Next Sentence Prediction"></a>Next Sentence Prediction</h3><p>由于nlp中存在需要输入两个句子的句子关系判断任务，所以需要增设一个让模型理解句子之间关系的任务，于是Next Sentence Prediction应运而生。具体而言，就是输入两个句子，由模型来判断这两个句子是不是连续的上下句。其中，为了保持样本平衡性，选了50%的连续的正样本，再随机选50%的无关的负样本。其实这个任务和seq2seq的任务有点异曲同工之妙，只是从单词级别变到了句子级别。举个例子：<br>正样本：今天[MASK]（天气）真好，正好我们[MASK]（出去）吃饭吧。<br>负样本：今天[MASK]（天气）真好，[MASK]（我）吃饱了。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实正如标题，BERT模型除了提出这两种训练方法外，大量的数据肯定对这个预训练模型有很强的作用，不过一般人没这种计算资源…所以还是很感谢谷歌开源出来的预训练模型，可以很方便的使用并达到非常好的效果。在使用时，如果需要用到自己的数据库上，要么就是完全自己写然后导入BERT模型，要么可以直接使用官方的代码，如run_glue.py，只需要修改数据的预处理，定义好新的类，然后指定类别数等参数，就可以直接使用了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实BERT模型除了提出这两种训练方法外，大量的数据肯定对这个预训练模型有很强的作用，不过一般人没这种计算资源…所以还是很感谢谷歌开源出来的预训练模型，可以很方便的使用并达到非常好的效果。在使用时，如果需要用到自己的数据库上，要么就是完全自己写然后导入BERT模型，要么可以直接使用官方的代码，如run_glue.py，只需要修改数据的预处理，定义好新的类，然后指定类别数等参数，就可以直接使用了。</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://www.cnblogs.com/rucwxb/p/10277217.html" target="_blank" rel="noopener">https://www.cnblogs.com/rucwxb/p/10277217.html</a><br><a href="https://zhuanlan.zhihu.com/p/46652512" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/46652512</a></p>
 
       
@@ -428,7 +428,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz/2020/05/07/BERT/" title="暴力即正义——讲讲横扫nlp任务的BERT模型" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/07/BERT/</a>
+      <a href="http://weiquanfan.xyz/2020/05/07/BERT/" title="讲讲横扫nlp任务的BERT模型" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/07/BERT/</a>
     </li>
     
     <li class="post-copyright-license">
