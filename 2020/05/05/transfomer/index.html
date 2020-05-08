@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-df2ca1b7a60d829245b7b7c37f80a3aa_1440w.jpg">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-01188c490446b01b55fe316723576070_1440w.jpg?30">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-7fb3ac456169471c26ac795b6d208b7c_1440w.png?50">
-<meta property="og:updated_time" content="2020-05-08T10:17:34.880Z">
+<meta property="og:updated_time" content="2020-05-08T12:28:10.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Transfomer以及Self-Attention讲解">
 <meta name="twitter:description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下图是一个很好的使用Transformer进行机器">
@@ -464,7 +464,7 @@
 <h2 id="Feed-Forward"><a href="#Feed-Forward" class="headerlink" title="Feed-Forward"></a>Feed-Forward</h2><p>这个就很简单了，就是简单的映射层。</p>
 <p><img src="https://pic1.zhimg.com/80/v2-7fb3ac456169471c26ac795b6d208b7c_1440w.png?50" alt></p>
 <h2 id="Produce-Output-Probabilities"><a href="#Produce-Output-Probabilities" class="headerlink" title="Produce Output Probabilities"></a>Produce Output Probabilities</h2><p>这个其实也是普通的映射层，它将每一个目标序列的token由emb_dim映射到vocab_size，因此就可得到各个token，串成目标序列了。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不得不说，这确实是一篇很经典的论文，将seq2seq模型推到了一个新高度，避免了RNN的大量计算代价，从此用CNN操作序列信号就有很好的效果了。另外，Self-Attention还跨界在cv行业也有了非常多的研究。可以说cv和nlp是同源的，只需要将图像的长宽拉成一列（空间信息）类比成序列信号的序列，图像的通道类比成序列信号的embedding即可。因此，Self-Attention模块的输入在nlp上是embedding × time，在cv上是channel × spatial。此外，当下横扫nlp的BERT模型也是基于Transfomer的encoder，这也表明这个模型的重要性了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不得不说，这确实是一篇很经典的论文，将seq2seq模型推到了一个新高度，避免了RNN的大量计算代价，从此用CNN操作序列信号就有很好的效果了。另外，Self-Attention还跨界在cv行业也有了非常多的研究。可以说cv和nlp是同源的，只需要将图像的长宽拉成一列（空间信息）类比成序列信号的序列，图像的通道类比成序列信号的embedding即可。因此，Self-Attention模块的输入在nlp上是time × embedding，在cv上是spatial × channel。此外，当下横扫nlp的BERT模型也是基于Transfomer的encoder，这也表明这个模型的重要性了。</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="https://medium.com/dissecting-bert/dissecting-bert-appendix-the-decoder-3b86f66b0e5f" target="_blank" rel="noopener">https://medium.com/dissecting-bert/dissecting-bert-appendix-the-decoder-3b86f66b0e5f</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/80986272" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/80986272</a></li>
