@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-05-07T12:58:59.538Z</updated>
+  <updated>2020-05-08T10:11:47.544Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM</title>
+    <link href="http://weiquanfan.xyz/2020/05/08/SENet/"/>
+    <id>http://weiquanfan.xyz/2020/05/08/SENet/</id>
+    <published>2020-05-08T07:57:04.000Z</published>
+    <updated>2020-05-08T10:11:47.544Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet
+      
+    
+    </summary>
+    
+      <category term="深度学习模型" scheme="http://weiquanfan.xyz/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/"/>
+    
+    
+      <category term="attention" scheme="http://weiquanfan.xyz/tags/attention/"/>
+    
+  </entry>
   
   <entry>
     <title>讲讲横扫nlp任务的BERT模型</title>

@@ -17,24 +17,39 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>404 Not Found：该页无法显示 | Hexo</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="404 Not Found：该页无法显示">
-<meta property="og:url" content="http://weiquanfan.xyz/404.html">
+  <title>cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM | Hexo</title>
+  <meta name="description" content="前言由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。 Self-Attention在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的讲解，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为">
+<meta name="keywords" content="attention">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM">
+<meta property="og:url" content="http://weiquanfan.xyz/2020/05/08/SENet/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
+<meta property="og:description" content="前言由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。 Self-Attention在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的讲解，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-02T02:17:12.000Z">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-752c1c91e1b4dbca1b64f59a7e026b9b_1440w.jpg?60">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-eb33a772a6029e5c8011a5ab77ea2f74_1440w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-9aab66a2330430de1159b69669ffcc37_1440w.jpg">
+<meta property="og:image" content="https://img-blog.csdn.net/20180803192058261?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180803192230741?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180803192301853?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180803192438587?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180803192513391?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2020-05-08T10:11:47.544Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="404 Not Found：该页无法显示">
+<meta name="twitter:title" content="cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM">
+<meta name="twitter:description" content="前言由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。 Self-Attention在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的讲解，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-752c1c91e1b4dbca1b64f59a7e026b9b_1440w.jpg?60">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://weiquanfan.xyz/404.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2020/05/08/SENet/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
   
   
@@ -342,14 +357,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-SENet" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      404 Not Found：该页无法显示
+      cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM
     </h1>
   
 
@@ -357,27 +372,60 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/404.html" class="article-date">
-	  <time datetime="2020-05-03T16:06:52.229Z" itemprop="datePublished">2020-05-04</time>
+	<a href="/2020/05/08/SENet/" class="article-date">
+	  <time datetime="2020-05-08T07:57:04.000Z" itemprop="datePublished">2020-05-08</time>
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/深度学习模型/">深度学习模型</a>
+  </span>
+
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/attention/">attention</a>
+  </span>
+
 
         
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/404.html" class="leancloud_visitors"  data-flag-title="404 Not Found：该页无法显示">0</span>
+    	<span id="/2020/05/08/SENet/" class="leancloud_visitors"  data-flag-title="cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM">0</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/404.html#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/08/SENet/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <script type="text/javascript" src="//www.qq.com/404/search_children.js" charset="utf-8" homepageurl="<%- config.url %>" homepagename="回到我的主页"></script>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。</p>
+<h2 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h2><p>在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的<a href="http://weiquanfan.xyz/2020/05/05/transfomer/">讲解</a>，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为Value，三者都是由输入X经过不同的映射得来的。这个公式可以这么记，先通过相乘得到Query和Key的相似度，而后归一化加softmax成为注意力权重，该权重乘以Value值就是输出的新表达了。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-752c1c91e1b4dbca1b64f59a7e026b9b_1440w.jpg?60" alt></p>
+<p>然而，这个公式在这里的输入X的维度是embedding × time，那么怎么用于三维的图像呢？很自然的可以想到，时序信号中的时间可以类比到图像中的空间，那么只需要把长和宽两个维度拉成一个维度，就形成了一行地的空间信息。那么接下来，剩下的通道（单通道或三通道），就可以类比成时序信号中token的embedding。因此，Self-Attention公式在图像上的输入的维度是channel × spatial。那么，<strong>图像上的Self-Attention本质上是计算一种空间权重</strong>。</p>
+<h2 id="SENet"><a href="#SENet" class="headerlink" title="SENet"></a>SENet</h2><p>2017年<a href="https://arxiv.org/abs/1709.01507" target="_blank" rel="noopener">Squeeze-and-Excitation Networks</a>获得了ILSVRC的冠军，使得SENet名声大噪。其实这篇论文的核心在于提出了一种很方便嵌入其他模型的模块————SE block。它的结构图如下。前边是传统的卷积操作，得到了特征图U(H x W x C)。而后看上边的支路，共有两个操作，一个是Squeeze一个是Excitation，可以得到一串通道上的注意力权重，再把它乘进各个通道，就得到了新的特征图。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-eb33a772a6029e5c8011a5ab77ea2f74_1440w.jpg" alt></p>
+<p>Squeeze操作对U进行Global Average Pooling，得到一串(1 x 1 x C)的权重，这里就是注意力的雏形了，比起一开始Self注意力的QK矩阵真是简单粗暴了很多。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-9aab66a2330430de1159b69669ffcc37_1440w.jpg" alt></p>
+<p>Excitation操作也很直接，就是把刚才得到的权重经过两层全连接层（后边带ReLU）再加一层Sigmoid。至于两层全连接的神经元数？第一层是输入C个而输出C/r个神经元，第二次则是输入C/r而输出C个神经元。可以看成一种压缩再恢复的过程，r表示压缩程度。作者的实验表明r取16时效果比较好。所以，<strong>图像上的SENet本质上是计算一种通道权重</strong>。</p>
+<h2 id="CBAM"><a href="#CBAM" class="headerlink" title="CBAM"></a>CBAM</h2><p>现在我们知道了有空间的注意力，有通道的注意力，那么也可以想到一种两者都有的注意力。<a href="https://arxiv.org/abs/1807.06521" target="_blank" rel="noopener">CBAM: Convolutional Block Attention Module</a>就干了这么一件事。它也是一种可嵌入的模块，结构图如下,包含通道注意力模块和空间注意力模块。</p>
+<p><img src="https://img-blog.csdn.net/20180803192058261?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>这里分别讲解这两种模块。</p>
+<h3 id="通道注意力模块"><a href="#通道注意力模块" class="headerlink" title="通道注意力模块"></a>通道注意力模块</h3><p><img src="https://img-blog.csdn.net/20180803192230741?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>通道注意力模块其实基本就是SE block，不同点在于除了SE用的AvgPool之外还用了MaxPool，相当于有两种Squeeze方式，而后得到的两串注意力雏形各自同样经过两层带ReLU的全连接层（注意这里avg和max使用的全连接是共享的，有点奇怪，个人感觉不共享会好一些），相加起来再经过Sigmoid，就得到了通道上的注意力，然后乘回去得到了通道上更新了的特征图。</p>
+<p><img src="https://img-blog.csdn.net/20180803192301853?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<h3 id="空间注意力模块"><a href="#空间注意力模块" class="headerlink" title="空间注意力模块"></a>空间注意力模块</h3><p><img src="https://img-blog.csdn.net/20180803192438587?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>空间注意力模块可以说是用Self的思想和SENet的操作形成的。可以看到，刚才的通道注意力是在空间上进行Pool，那么，空间注意力是不是也可以在通道上进行Pool呢？这就形成了空间注意力模块。首先，它基于通道上进行global max pooling 和global average pooling，得到的两张空间图拼接一下形成2通道，再进行一下卷积(实验表明7 * 7卷积效果好些)降成单通道，类似的经过一个Sigmoid，就得到了空间注意力权重。乘回去就得到了空间上更新了的特征图。</p>
+<p><img src="https://img-blog.csdn.net/20180803192513391?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>所以，CBAM基于senet的通道注意力，引入空间注意力，<strong>本质上是计算了通道和空间的权重</strong>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>经过这么一个流程可以看到：</p>
+<ul>
+<li>注意力就是计算通道(嵌入)和空间(时间)的注意力权重，Self是空间，SENet是通道，CBAM是空间加通道。甚至于空间上的注意力还可以拆分，只有横轴的注意力或只有纵轴的注意力，这些都视实际输入的图像需求来选择。</li>
+<li>注意力的形式变得简单。一开始的Self需要经过QK矩阵算出一个三维（nlp中是二维，空间拉出长宽就变成了三维）的注意力权重，表示空间上每一个点与空间上所有点的注意力。CBAM中的空间注意力模块，只需经过pooling和一些简单的其它操作即得到了一个二维的注意力权重，表示一种整体上应该关注空间上的哪些位置。</li>
+</ul>
 
       
     </div>
@@ -387,7 +435,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz//404.html" title="404 Not Found：该页无法显示" target="_blank" rel="external">http://weiquanfan.xyz//404.html</a>
+      <a href="http://weiquanfan.xyz/2020/05/08/SENet/" title="cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/08/SENet/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -418,12 +466,28 @@
   </article>
   
     
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
 
   
 </div>
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/05/07/BERT/" title="讲讲横扫nlp任务的BERT模型"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
   
   
   <!-- Button trigger modal -->
@@ -540,12 +604,150 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+   
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+  appKey: 'F0aXAudrJr6wsdAvrVvSp1T2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+    appKey: 'F0aXAudrJr6wsdAvrVvSp1T2',
+    placeholder: '此时一位路人路过...',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
 
 
 
 
 
 
-<script src="/js/hexo_resize_image.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+<script src="/js/hexo_resize_image.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
