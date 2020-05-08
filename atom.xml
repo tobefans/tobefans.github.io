@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-05-08T10:11:47.544Z</updated>
+  <updated>2020-05-08T10:17:06.256Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM</title>
+    <title>cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM</title>
     <link href="http://weiquanfan.xyz/2020/05/08/SENet/"/>
     <id>http://weiquanfan.xyz/2020/05/08/SENet/</id>
     <published>2020-05-08T07:57:04.000Z</published>
-    <updated>2020-05-08T10:11:47.544Z</updated>
+    <updated>2020-05-08T10:17:06.256Z</updated>
     
     <summary type="html">
     
@@ -71,7 +71,7 @@
     <link href="http://weiquanfan.xyz/2020/05/05/transfomer/"/>
     <id>http://weiquanfan.xyz/2020/05/05/transfomer/</id>
     <published>2020-05-05T12:23:39.000Z</published>
-    <updated>2020-05-07T12:24:59.930Z</updated>
+    <updated>2020-05-08T10:17:34.880Z</updated>
     
     <summary type="html">
     
@@ -87,7 +87,7 @@
     
       <category term="Transformer" scheme="http://weiquanfan.xyz/tags/Transformer/"/>
     
-      <category term="self-attention" scheme="http://weiquanfan.xyz/tags/self-attention/"/>
+      <category term="attention" scheme="http://weiquanfan.xyz/tags/attention/"/>
     
   </entry>
   

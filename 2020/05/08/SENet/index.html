@@ -17,11 +17,11 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM | Hexo</title>
+  <title>cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM | Hexo</title>
   <meta name="description" content="前言由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。 Self-Attention在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的讲解，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为">
 <meta name="keywords" content="attention">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM">
+<meta property="og:title" content="cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM">
 <meta property="og:url" content="http://weiquanfan.xyz/2020/05/08/SENet/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。 Self-Attention在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的讲解，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为">
@@ -34,9 +34,9 @@
 <meta property="og:image" content="https://img-blog.csdn.net/20180803192301853?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180803192438587?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180803192513391?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2020-05-08T10:11:47.544Z">
+<meta property="og:updated_time" content="2020-05-08T10:17:06.256Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM">
+<meta name="twitter:title" content="cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM">
 <meta name="twitter:description" content="前言由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。 Self-Attention在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的讲解，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为">
 <meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-752c1c91e1b4dbca1b64f59a7e026b9b_1440w.jpg?60">
   <!-- Canonical links -->
@@ -238,7 +238,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BERT/">BERT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GLUE/">GLUE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Transformer/">Transformer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attention/">attention</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-attention/">self-attention</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BERT/">BERT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GLUE/">GLUE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Transformer/">Transformer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attention/">attention</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -248,7 +248,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/BERT/" style="font-size: 13px;">BERT</a> <a href="/tags/GLUE/" style="font-size: 13px;">GLUE</a> <a href="/tags/Transformer/" style="font-size: 14px;">Transformer</a> <a href="/tags/attention/" style="font-size: 13px;">attention</a> <a href="/tags/self-attention/" style="font-size: 13px;">self-attention</a>
+      <a href="/tags/BERT/" style="font-size: 13px;">BERT</a> <a href="/tags/GLUE/" style="font-size: 13px;">GLUE</a> <a href="/tags/Transformer/" style="font-size: 14px;">Transformer</a> <a href="/tags/attention/" style="font-size: 14px;">attention</a>
     </div>
   </div>
 
@@ -276,7 +276,7 @@
                 <a class="category-link" href="/categories/深度学习模型/">深度学习模型</a>
               </p>
               <p class="item-title">
-                <a href="/2020/05/08/SENet/" class="title">cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM</a>
+                <a href="/2020/05/08/SENet/" class="title">cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM</a>
               </p>
               <p class="item-date">
                 <time datetime="2020-05-08T07:57:04.000Z" itemprop="datePublished">2020-05-08</time>
@@ -364,7 +364,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM
+      cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM
     </h1>
   
 
@@ -393,7 +393,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/05/08/SENet/" class="leancloud_visitors"  data-flag-title="cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM">0</span>
+    	<span id="/2020/05/08/SENet/" class="leancloud_visitors"  data-flag-title="cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM">0</span>
     </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/08/SENet/#comments" class="article-comment-link">Comments</a></span>
@@ -435,7 +435,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz/2020/05/08/SENet/" title="cv中Attention的奇妙旅途————讲讲Self-Attention, SENet和CBAM" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/08/SENet/</a>
+      <a href="http://weiquanfan.xyz/2020/05/08/SENet/" title="cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/08/SENet/</a>
     </li>
     
     <li class="post-copyright-license">
