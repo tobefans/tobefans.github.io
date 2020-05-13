@@ -17,39 +17,50 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM | Hexo</title>
-  <meta name="description" content="前言由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。 Self-Attention在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的讲解，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为">
-<meta name="keywords" content="attention">
+  <title>CNN的进击之路——讲讲ResNet, Inception, ResNeXt和Densenet等常见网络 | Hexo</title>
+  <meta name="description" content="前言本文是一篇大杂烩，按照发布时间总结了CNN的一些常见网络。 AlexNetAlexNet来源于ImageNet Classification with Deep Convolutional Neural Networks。在ImageNet LSVRC-2010上以远超第二的准确率夺得了冠军，拉开了深度学习热潮的大幕。 模型结构： 模型特点：  提出了非线性激活函数ReLU (之前普遍使用Si">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM">
-<meta property="og:url" content="http://weiquanfan.xyz/2020/05/08/SENet/index.html">
+<meta property="og:title" content="CNN的进击之路——讲讲ResNet, Inception, ResNeXt和Densenet等常见网络">
+<meta property="og:url" content="http://weiquanfan.xyz/2020/05/13/resnet/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
-<meta property="og:description" content="前言由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。 Self-Attention在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的讲解，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为">
+<meta property="og:description" content="前言本文是一篇大杂烩，按照发布时间总结了CNN的一些常见网络。 AlexNetAlexNet来源于ImageNet Classification with Deep Convolutional Neural Networks。在ImageNet LSVRC-2010上以远超第二的准确率夺得了冠军，拉开了深度学习热潮的大幕。 模型结构： 模型特点：  提出了非线性激活函数ReLU (之前普遍使用Si">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://pic4.zhimg.com/80/v2-752c1c91e1b4dbca1b64f59a7e026b9b_1440w.jpg?60">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-eb33a772a6029e5c8011a5ab77ea2f74_1440w.jpg">
-<meta property="og:image" content="https://pic4.zhimg.com/80/v2-9aab66a2330430de1159b69669ffcc37_1440w.jpg">
-<meta property="og:image" content="https://img-blog.csdn.net/20180803192058261?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-blog.csdn.net/20180803192230741?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-blog.csdn.net/20180803192301853?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-blog.csdn.net/20180803192438587?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-blog.csdn.net/20180803192513391?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2020-05-08T12:29:06.433Z">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-3f5a7ab9bcb15004d5a08fdf71e6a775_1440w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-dfe4eaaa4450e2b58b38c5fe82f918c0_1200x500.jpg">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/439761/201901/439761-20190130161052586-1235690884.jpg">
+<meta property="og:image" content="https://img-blog.csdn.net/20170612110417837?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWFyc2poYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170612110458444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWFyc2poYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20160228155230994">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-afba8ee2b3ba658d1a1dc970cb345308_1200x500.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-252e6d9979a2a91c2d3033b9b73eb69f_1440w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-7cb9c03871ab1faa7ca23199ac403bd9_1440w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-1dfd4022d4be28392ff44c49d6b4ed94_1440w.jpg">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181029134549743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181029135504384.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-862e1c2dcb24f10d264544190ad38142_1440w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-2cb01c1c9a217e56c72f4c24096fe3fe_1440w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-e9646cb54cf45f563d1223827c15c7fe_1440w.jpg">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/21020084-d9c93ed945a498af.png?imageMogr2/auto-orient/strip|imageView2/2/w/797/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/21020084-318ee3aa5de48e3f.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/21020084-c5b84128bb3fd37a.png?imageMogr2/auto-orient/strip|imageView2/2/w/773/format/webp">
+<meta property="og:image" content="https://imlogm.github.io/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/inception/3.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5971313-120945c22919fbd6.PNG?imageMogr2/auto-orient/strip|imageView2/2/w/1006/format/webp">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181220124621278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE5NzQ2Mzk=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181220124639256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE5NzQ2Mzk=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-05-13T16:15:24.075Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM">
-<meta name="twitter:description" content="前言由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。 Self-Attention在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的讲解，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为">
-<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-752c1c91e1b4dbca1b64f59a7e026b9b_1440w.jpg?60">
+<meta name="twitter:title" content="CNN的进击之路——讲讲ResNet, Inception, ResNeXt和Densenet等常见网络">
+<meta name="twitter:description" content="前言本文是一篇大杂烩，按照发布时间总结了CNN的一些常见网络。 AlexNetAlexNet来源于ImageNet Classification with Deep Convolutional Neural Networks。在ImageNet LSVRC-2010上以远超第二的准确率夺得了冠军，拉开了深度学习热潮的大幕。 模型结构： 模型特点：  提出了非线性激活函数ReLU (之前普遍使用Si">
+<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-3f5a7ab9bcb15004d5a08fdf71e6a775_1440w.jpg">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://weiquanfan.xyz/2020/05/08/SENet/index.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2020/05/13/resnet/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
-  <link rel="stylesheet" href="/css/style.css">
-  
-    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
   
   
@@ -357,14 +368,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-SENet" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-resnet" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM
+      CNN的进击之路——讲讲ResNet, Inception, ResNeXt和Densenet等常见网络
     </h1>
   
 
@@ -372,8 +383,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/05/08/SENet/" class="article-date">
-	  <time datetime="2020-05-08T07:57:04.000Z" itemprop="datePublished">2020-05-08</time>
+	<a href="/2020/05/13/resnet/" class="article-date">
+	  <time datetime="2020-05-13T06:50:15.000Z" itemprop="datePublished">2020-05-13</time>
 	</a>
 </span>
         
@@ -383,48 +394,128 @@
   </span>
 
         
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/attention/">attention</a>
-  </span>
-
 
         
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/05/08/SENet/" class="leancloud_visitors"  data-flag-title="cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM">0</span>
+    	<span id="/2020/05/13/resnet/" class="leancloud_visitors"  data-flag-title="CNN的进击之路——讲讲ResNet, Inception, ResNeXt和Densenet等常见网络">0</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/08/SENet/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/13/resnet/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于注意力机制的高速发展，我尝试着对attention形成一种比较系统化的理解，选了比较有代表性的Self-Attention, SENet和CBAM，整理成本文。</p>
-<h2 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h2><p>在谷歌发表的Attention Is All You Need之后，Self-Attention开始广为人知。正如我此前对这篇论文的<a href="http://weiquanfan.xyz/2020/05/05/transfomer/">讲解</a>，最终的注意力可以表示为下图，其中Q为Query，K为Key，V为Value，三者都是由输入X经过不同的映射得来的。这个公式可以这么记，先通过相乘得到Query和Key的相似度，而后归一化加softmax成为注意力权重，该权重乘以Value值就是输出的新表达了。</p>
-<p><img src="https://pic4.zhimg.com/80/v2-752c1c91e1b4dbca1b64f59a7e026b9b_1440w.jpg?60" alt></p>
-<p>然而，这个公式在这里的输入X的维度是time × embedding，那么怎么用于三维的图像呢？很自然的可以想到，时序信号中的时间可以类比到图像中的空间，那么只需要把长和宽两个维度拉成一个维度，就形成了一行地的空间信息。那么接下来，剩下的通道（单通道或三通道），就可以类比成时序信号中token的embedding。因此，Self-Attention公式在图像上的输入的维度是spatial × channel。那么，<strong>图像上的Self-Attention本质上是计算一种空间权重</strong>。</p>
-<h2 id="SENet"><a href="#SENet" class="headerlink" title="SENet"></a>SENet</h2><p>2017年<a href="https://arxiv.org/abs/1709.01507" target="_blank" rel="noopener">Squeeze-and-Excitation Networks</a>获得了ILSVRC的冠军，使得SENet名声大噪。其实这篇论文的核心在于提出了一种很方便嵌入其他模型的模块————SE block。它的结构图如下。前边是传统的卷积操作，得到了特征图U(H x W x C)。而后看上边的支路，共有两个操作，一个是Squeeze一个是Excitation，可以得到一串通道上的注意力权重，再把它乘进各个通道，就得到了新的特征图。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-eb33a772a6029e5c8011a5ab77ea2f74_1440w.jpg" alt></p>
-<p>Squeeze操作对U进行Global Average Pooling，得到一串(1 x 1 x C)的权重，这里就是注意力的雏形了，比起一开始Self注意力的QK矩阵真是简单粗暴了很多。</p>
-<p><img src="https://pic4.zhimg.com/80/v2-9aab66a2330430de1159b69669ffcc37_1440w.jpg" alt></p>
-<p>Excitation操作也很直接，就是把刚才得到的权重经过两层全连接层（后边带ReLU）再加一层Sigmoid。至于两层全连接的神经元数？第一层是输入C个而输出C/r个神经元，第二次则是输入C/r而输出C个神经元。可以看成一种压缩再恢复的过程，r表示压缩程度。作者的实验表明r取16时效果比较好。所以，<strong>图像上的SENet本质上是计算一种通道权重</strong>。</p>
-<h2 id="CBAM"><a href="#CBAM" class="headerlink" title="CBAM"></a>CBAM</h2><p>现在我们知道了有空间的注意力，有通道的注意力，那么也可以想到一种两者都有的注意力。<a href="https://arxiv.org/abs/1807.06521" target="_blank" rel="noopener">CBAM: Convolutional Block Attention Module</a>就干了这么一件事。它也是一种可嵌入的模块，结构图如下,包含通道注意力模块和空间注意力模块。</p>
-<p><img src="https://img-blog.csdn.net/20180803192058261?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p>这里分别讲解这两种模块。</p>
-<h3 id="通道注意力模块"><a href="#通道注意力模块" class="headerlink" title="通道注意力模块"></a>通道注意力模块</h3><p><img src="https://img-blog.csdn.net/20180803192230741?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p>通道注意力模块其实基本就是SE block，不同点在于除了SE用的AvgPool之外还用了MaxPool，相当于有两种Squeeze方式，而后得到的两串注意力雏形各自同样经过两层带ReLU的全连接层（注意这里avg和max使用的全连接是共享的，有点奇怪，个人感觉不共享会好一些），相加起来再经过Sigmoid，就得到了通道上的注意力，然后乘回去得到了通道上更新了的特征图。</p>
-<p><img src="https://img-blog.csdn.net/20180803192301853?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<h3 id="空间注意力模块"><a href="#空间注意力模块" class="headerlink" title="空间注意力模块"></a>空间注意力模块</h3><p><img src="https://img-blog.csdn.net/20180803192438587?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p>空间注意力模块可以说是用Self的思想和SENet的操作形成的。可以看到，刚才的通道注意力是在空间上进行Pool，那么，空间注意力是不是也可以在通道上进行Pool呢？这就形成了空间注意力模块。首先，它基于通道上进行global max pooling 和global average pooling，得到的两张空间图拼接一下形成2通道，再进行一下卷积(实验表明7 * 7卷积效果好些)降成单通道，类似的经过一个Sigmoid，就得到了空间注意力权重。乘回去就得到了空间上更新了的特征图。</p>
-<p><img src="https://img-blog.csdn.net/20180803192513391?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE0ODQ1MTE5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
-<p>所以，CBAM基于senet的通道注意力，引入空间注意力，<strong>本质上是计算了通道和空间的权重</strong>。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>经过这么一个流程可以看到：</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文是一篇大杂烩，按照发布时间总结了CNN的一些常见网络。</p>
+<h2 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h2><p>AlexNet来源于<a href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf" target="_blank" rel="noopener">ImageNet Classification with Deep Convolutional Neural Networks</a>。在ImageNet LSVRC-2010上以远超第二的准确率夺得了冠军，拉开了深度学习热潮的大幕。</p>
+<p>模型结构：<br><img src="https://pic2.zhimg.com/80/v2-3f5a7ab9bcb15004d5a08fdf71e6a775_1440w.jpg" alt="alexnet"></p>
+<p>模型特点：</p>
 <ul>
-<li>注意力就是计算通道(嵌入)和空间(时间)的注意力权重，Self是空间，SENet是通道，CBAM是空间加通道。甚至于空间上的注意力还可以拆分，只有横轴的注意力或只有纵轴的注意力，这些都视实际输入的图像需求来选择。</li>
-<li>注意力的形式变得简单。一开始的Self需要经过QK矩阵算出一个三维（nlp中是二维，空间拉出长宽就变成了三维）的注意力权重，表示空间上每一个点与空间上所有点的注意力。CBAM中的空间注意力模块，只需经过pooling和一些简单的其它操作即得到了一个二维的注意力权重，表示一种整体上应该关注空间上的哪些位置。</li>
+<li>提出了非线性激活函数ReLU (之前普遍使用Sigmoid或者tanh)</li>
+<li>提出Dropout（每次迭代训练时随机删除一些神经元）</li>
+<li>重叠池化（池化的时候，每次移动的步长小于池化的窗口长度）</li>
+<li>数据扩充（水平翻转图像，从原始图像中随机裁剪、平移变换，颜色、光照变换）</li>
+<li>LRN归一化层（利用临近的数据做归一化）</li>
+<li>多GPU实现（受当时GPU限制，在每个GPU中放置一半神经元，将网络分布在两个GPU上进行并行计）</li>
+</ul>
+<h2 id="VGG"><a href="#VGG" class="headerlink" title="VGG"></a>VGG</h2><p>VGG来源于Oxford的Visual Geometry Group的组提出的<a href="https://arxiv.org/pdf/1409.1556.pdf" target="_blank" rel="noopener">Very Deep Convolutional Networks for Large-Scale Image Recognition</a>，在ILSVRC 2014获得亚军。</p>
+<p>模型结构：</p>
+<p><img src="https://pic2.zhimg.com/v2-dfe4eaaa4450e2b58b38c5fe82f918c0_1200x500.jpg" alt="vgg1"></p>
+<p><img src="https://img2018.cnblogs.com/blog/439761/201901/439761-20190130161052586-1235690884.jpg" alt="vgg"></p>
+<p>其中D、E列就是著名的VGG-16、VGG-19。</p>
+<p>模型特点：<br>使用了3个3x3卷积核来代替7x7卷积核，使用了2个3x3卷积核来代替5x5卷积核。因此模型结构很统一简洁（卷积核尺寸3x3和最大池化尺寸2x2），并不断加深网络。</p>
+<h2 id="GoogLeNet-V1"><a href="#GoogLeNet-V1" class="headerlink" title="GoogLeNet V1"></a>GoogLeNet V1</h2><p>GoogLeNet V1来源于<a href="https://arxiv.org/pdf/1409.4842.pdf" target="_blank" rel="noopener">Going deeper with convolutions</a>，在ILSVRC 2014获得冠军。</p>
+<p>该网络的核心在于提出了Inception Module。该模块有4个分支，初始版本如下图左，包含三个不同尺度的卷积核层和一个最大池化层，并在输出通道维度上合并。由于5×5的计算量大，就进一步先通过1×1卷积降低维度再通过大卷积核。这里的最大池化也是重叠池化的，经padding后不会缩小特征图尺寸。</p>
+<p><img src="https://img-blog.csdn.net/20170612110417837?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWFyc2poYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="inception"></p>
+<p>模型结构：</p>
+<p><img src="https://img-blog.csdn.net/20170612110458444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWFyc2poYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="goov1"></p>
+<p>模型特点：</p>
+<ul>
+<li>多尺度卷积的思想让网络变宽</li>
+<li>提出1×1卷积</li>
+</ul>
+<h2 id="GoogLeNet-V2"><a href="#GoogLeNet-V2" class="headerlink" title="GoogLeNet V2"></a>GoogLeNet V2</h2><p>GoogLeNet V2来源于<a href="https://arxiv.org/abs/1502.03167" target="_blank" rel="noopener">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a>。该网络基于V1版本，吸收了VGG的分解操作，使用了2个3x3卷积核来代替5x5卷积核。</p>
+<p>模型特点：</p>
+<ul>
+<li>提出了著名的BN层。</li>
+<li>另外，为了适配BN层，增大学习速率并加快学习衰减速度以适用BN规范化后的数据；去除Dropout并减轻L2正则（因BN已起到正则化的作用）；去除LRN；更彻底地对训练样本进行shuffle；减少数据增强过程中对数据的光学畸变（因为BN训练更快，每个样本被训练的次数更少，因此更真实的样本对训练更有帮助）。</li>
+</ul>
+<h2 id="GoogLeNet-V3"><a href="#GoogLeNet-V3" class="headerlink" title="GoogLeNet V3"></a>GoogLeNet V3</h2><p>GoogLeNet V3来源于<a href="https://arxiv.org/abs/1512.00567" target="_blank" rel="noopener">Rethinking the Inception Architecture for Computer Vision</a>。该网络基于V2版本，进一步改进了Inception，将3x3分解成1x3和3x1。同理，nxn可以分解成1xn和nx1。</p>
+<p><img src="https://img-blog.csdn.net/20160228155230994" alt="inception v3"></p>
+<h2 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h2><p>ResNet来源于大神何凯明的<a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a>，在ILSVRC和COCO 2015上都夺得了冠军，有着里程碑的意义。</p>
+<p><img src="https://pic1.zhimg.com/v2-afba8ee2b3ba658d1a1dc970cb345308_1200x500.jpg" alt="ILSVRC"></p>
+<p>深度模型当深度到了几十层之后，由于梯度消失或者爆炸的原因，就容易发生退化问题：网络深度增加时，网络准确度出现饱和，甚至出现下降。现在假设我们有一个浅层网络，我们想通过向上堆积新层来建立深层网络，一个极端情况是这些增加的层什么也不学习，仅仅复制浅层网络的特征，即这样新层是恒等映射（Identity mapping）。在这种情况下，深层网络应该至少和浅层网络性能一样，也不应该出现退化现象。这引发了残差学习，即我们的目标是学习到残差F(x)=H(x)-x，则该层学习到的最终特征H(x)=F(x)+x。当残差为0时，此时堆积层仅仅做了恒等映射，至少网络性能不会下降，实际上残差不会为0，这也会使得堆积层在输入特征基础上学习到新的特征，从而拥有更好的性能。残差学习的结构下图所示。这有点类似与电路中的“短路”，所以是一种短路连接（shortcut connection）。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-252e6d9979a2a91c2d3033b9b73eb69f_1440w.jpg" alt="resblock"></p>
+<p>模型结构：<br>ResNet网络参考VGG19网络，引入残差单元。如下图，第三列即是ResNet-34。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-7cb9c03871ab1faa7ca23199ac403bd9_1440w.jpg" alt="resnet1"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-1dfd4022d4be28392ff44c49d6b4ed94_1440w.jpg" alt="resnet2"></p>
+<p>模型特点：</p>
+<ul>
+<li>提出残差模块</li>
+<li>模型开始变得很深，可以达到152层</li>
+<li>卷积层由Conv+BN+ReLU变成BN+ReLU+Conv</li>
+</ul>
+<h2 id="GoogLeNet-V4"><a href="#GoogLeNet-V4" class="headerlink" title="GoogLeNet V4"></a>GoogLeNet V4</h2><p>GoogLeNet V4来源于<a href="https://arxiv.org/abs/1602.07261" target="_blank" rel="noopener">Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning</a>。该论文一方面沿袭v3版本，使用更多的Inception module得到GoogLeNet V4。另一方面吸收了ResNet的残差单元，提出了两种Inception-ResNet。</p>
+<p>模型结构：<br>下图为其中一种，Inception-ResNet-v1，具有如下特点：</p>
+<ul>
+<li>Inception module都是简化版，没有使用那么多的分支，因为identity部分（直接相连的线）本身包含丰富的特征信息；</li>
+<li>Inception module每个分支都没有使用pooling；</li>
+<li>每个Inception module最后都使用了一个1x1的卷积（linear activation），作用是保证identity部分和Inception部分输出特征维度相同，这样才能保证两部分特征能够相加。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20181029134549743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70" alt="inception v41"></p>
+<p><img src="https://img-blog.csdnimg.cn/20181029135504384.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70" alt="inception v412"></p>
+<p>模型特点：</p>
+<ul>
+<li>使得宽模型变得更深</li>
+</ul>
+<h2 id="DenseNet"><a href="#DenseNet" class="headerlink" title="DenseNet"></a>DenseNet</h2><p>DenseNet来源于<a href="https://arxiv.org/pdf/1608.06993.pdf" target="_blank" rel="noopener">Densely Connected Convolutional Networks</a>，斩获了CVPR 2017的最佳论文奖。</p>
+<p>模型结构：<br>DenseNet有点类似于ResNet，但本质上又有很大的不同。结构上，把以前所有层的特征图都沿着通道轴拼接起来（而不是相加）。这可以理解为充分利用产生过的特征。</p>
+<p>如下为ResNet：<br><img src="https://pic3.zhimg.com/80/v2-862e1c2dcb24f10d264544190ad38142_1440w.jpg" alt="res"></p>
+<p>如下为DenseNet：<br><img src="https://pic3.zhimg.com/80/v2-2cb01c1c9a217e56c72f4c24096fe3fe_1440w.jpg" alt="dense"></p>
+<p>模型特点：</p>
+<ul>
+<li>建立了不同层的连接关系，充分利用特征图</li>
+</ul>
+<h2 id="MobileNet"><a href="#MobileNet" class="headerlink" title="MobileNet"></a>MobileNet</h2><p>MobileNet来源于Google提出的<a href="https://arxiv.org/abs/1704.04861" target="_blank" rel="noopener">MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications</a>，是一种小巧而高效的CNN模型。</p>
+<p>模型结构：<br>MobileNet的核心在于提出了深度可分离卷积，它把传统卷积分解成了深度卷积(depthwise convolution)和逐点卷积(pointwise convolution)，从而大量减少参数量。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-e9646cb54cf45f563d1223827c15c7fe_1440w.jpg" alt="mobile"></p>
+<p>对于输入特征图(DF,DF,M)，输出特征图(DG,DG,N)，传统卷积核的尺寸为(K,K,M,N)，如下图(a)。<br>而对于深度可分离卷积，深度卷积的尺寸为(K,K,1,M)，它将这M个卷积核各自应用于输入特征图的各个通道（这与传统卷积不同，这里相乘后不需要沿着通道轴相加），输出特征为(DG,DG,M)，如(b)所示。逐点卷积的尺寸为(1,1,M,N)，这个就是普通的1×1卷积了，输出特征为(DG,DG,N)，如(c)所示。<br>可以看到，参数量从（K×K×M×N）变成（K×K×1×M + 1×1×M×N），减小了 M(KKN - KK -N)。</p>
+<p>模型特点：</p>
+<ul>
+<li>轻型模型，可用于移动端</li>
+</ul>
+<h2 id="ResNeXt"><a href="#ResNeXt" class="headerlink" title="ResNeXt"></a>ResNeXt</h2><p>ResNeXt来源于<a href="https://arxiv.org/abs/1611.05431" target="_blank" rel="noopener">Aggregated Residual Transformations for Deep Neural Networks</a>。它是基于ResNet，吸收了GoogLeNet的Inception，所以和谷歌的Inception-ResNet很像。</p>
+<p>模型结构：<br>如下图，左图是是ResNet，右图是新的ResNeXt。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/21020084-d9c93ed945a498af.png?imageMogr2/auto-orient/strip|imageView2/2/w/797/format/webp" alt="resnext"></p>
+<p>该结构可以做如下等效，第三种就是等效的分组结构。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/21020084-318ee3aa5de48e3f.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp" alt="resnext2"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/21020084-c5b84128bb3fd37a.png?imageMogr2/auto-orient/strip|imageView2/2/w/773/format/webp" alt="resnext param"></p>
+<p>模型特点：</p>
+<ul>
+<li>ResNeXt的分支的拓扑结构是相同的，而Inception V4需要人工设计</li>
+<li>提出了一种介于普通卷积核深度可分离卷积的这种策略：分组卷积</li>
+</ul>
+<h2 id="Xception"><a href="#Xception" class="headerlink" title="Xception"></a>Xception</h2><p>Xception来源于<a href="https://arxiv.org/abs/1610.02357" target="_blank" rel="noopener">Xception: Deep Learning with Depthwise Separable Convolutions</a>。它是Inception-V3的另一种改进，吸收了深度可分离卷积，造就了一种参数量相对少一些的网络结构。</p>
+<p>模型结构：<br>Inception-V3可做如下简化，可以看到，如下图和深度可分离卷积是很像的，只是下图是先进行1×1的卷积，再进行channel-wise的spatial convolution，最后concat，而后者是先进行一个channel-wise的spatial convolution，然后是1×1的卷积。所以作者干脆把它换成深度可分离卷积。</p>
+<p><img src="https://imlogm.github.io/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/inception/3.png" alt></p>
+<p>最终整体结构如下，其中SeparalbeConv即是深度可分离卷积。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5971313-120945c22919fbd6.PNG?imageMogr2/auto-orient/strip|imageView2/2/w/1006/format/webp" alt="xception"></p>
+<p>模型特点：</p>
+<ul>
+<li>虽然使用了深度可分离卷积，但网络也加宽了，总体参数量和Inception-V3差不多，性能提升了。</li>
+<li>提出时间和MobileNet相近，它们从不同的角度揭示了深度可分离卷积的强大作用，MobileNet的思路是通过将 3×3 卷积拆分的形式来减少参数数量，而Xception是通过对Inception的充分解耦来完成的。</li>
+</ul>
+<h2 id="ShuffleNet"><a href="#ShuffleNet" class="headerlink" title="ShuffleNet"></a>ShuffleNet</h2><p>Xception来源于<a href="https://arxiv.org/pdf/1707.01083.pdf" target="_blank" rel="noopener">ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices</a>。这也是一款效率极高的轻型CNN模型，通过逐点群卷积(pointwise group convolution)和通道混洗(channel shuffle)大大降低计算量。</p>
+<p>模型结构：<br>如下图左是普通的分组卷积，但是经过多层分组卷积后某个输出channel仅仅来自输入channel的一小部分，学出来的特征也很局限，因此作者提出了通道混洗channel shuffle，过程如下图中，在进行GConv2之前，对其输入feature map做一个分配，也就是每个group分成几个subgroup，然后将不同group的subgroup作为GConv2的一个group的输入，使得GConv2的每一个group都能卷积输入的所有group的feature map，结果图下图右。</p>
+<p><img src="https://img-blog.csdnimg.cn/20181220124621278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE5NzQ2Mzk=,size_16,color_FFFFFF,t_70" alt="channel shuffle"></p>
+<p>pointwise group convolution，其实就是带group的卷积核为1×1的卷积。下图左是一个深度可分离卷积，而中间的图则是一个使用了pointwise group convolution的ShuffleNet unit，它将1×1卷积变成分组卷积，并在第一组分组卷积后加上通道混洗而成。右边的图则是带有降采样的ShuffleNet unit，它一方面在辅分支加入步长为2的3×3平均池化，一方面将最后的相加变成了通道级联。</p>
+<p><img src="https://img-blog.csdnimg.cn/20181220124639256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE5NzQ2Mzk=,size_16,color_FFFFFF,t_70" alt="pointwise group convolution"></p>
+<p>模型特征：</p>
+<ul>
+<li>应用了1×1的通道卷积</li>
+<li>提出了通道混洗</li>
 </ul>
 
       
@@ -435,7 +526,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz/2020/05/08/SENet/" title="cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/08/SENet/</a>
+      <a href="http://weiquanfan.xyz/2020/05/13/resnet/" title="CNN的进击之路——讲讲ResNet, Inception, ResNeXt和Densenet等常见网络" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/13/resnet/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -481,13 +572,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/05/13/resnet/" title="CNN的进击之路——讲讲ResNet, Inception, ResNeXt和Densenet等常见网络"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/05/07/BERT/" title="讲讲横扫nlp任务的BERT模型"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/05/08/SENet/" title="cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
