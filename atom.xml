@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-05-13T16:51:28.692Z</updated>
+  <updated>2020-05-19T12:30:28.548Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用BeautifulSoup、requests和you_get爬虫下载B站视频</title>
+    <link href="http://weiquanfan.xyz/2020/05/19/BeautifulSoup/"/>
+    <id>http://weiquanfan.xyz/2020/05/19/BeautifulSoup/</id>
+    <published>2020-05-19T12:13:21.000Z</published>
+    <updated>2020-05-19T12:30:28.548Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;BeautifulSoup 是一个可以从HTML或XML文件中提取数据并解析的Python库， Requests 是一常用的可以获取和发送h
+      
+    
+    </summary>
+    
+      <category term="爬虫" scheme="http://weiquanfan.xyz/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>CNN的进击之路——讲讲ResNet, Inception, ResNeXt和Densenet等常见网络</title>
