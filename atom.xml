@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-05-19T12:36:15.497Z</updated>
+  <updated>2020-05-27T15:29:06.309Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>深度学习主流框架的代码实例</title>
+    <link href="http://weiquanfan.xyz/2020/05/27/DL-Framework/"/>
+    <id>http://weiquanfan.xyz/2020/05/27/DL-Framework/</id>
+    <published>2020-05-27T14:57:23.000Z</published>
+    <updated>2020-05-27T15:29:06.309Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;深度学习框架从一开始的 Theano、TensorFlow，到后来封装程度更高的Pytorch、Keras等，层出不穷。此文通过一个简单的分
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>强化学习简介</title>
+    <link href="http://weiquanfan.xyz/2020/05/27/RL/"/>
+    <id>http://weiquanfan.xyz/2020/05/27/RL/</id>
+    <published>2020-05-27T11:34:29.000Z</published>
+    <updated>2020-05-27T14:55:21.850Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;强化学习是机器学习中的一大类，它可以让机器学着如何在环境中拿到高分, 表现出优秀的成绩. 而这些成绩背后却是他所付出的辛苦劳动, 不断的试错
+      
+    
+    </summary>
+    
+      <category term="强化学习" scheme="http://weiquanfan.xyz/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="强化学习" scheme="http://weiquanfan.xyz/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>使用BeautifulSoup、requests和you_get爬虫下载B站视频</title>
@@ -181,7 +223,7 @@
     <link href="http://weiquanfan.xyz/2020/05/02/specgram/"/>
     <id>http://weiquanfan.xyz/2020/05/02/specgram/</id>
     <published>2020-05-02T08:43:28.000Z</published>
-    <updated>2020-05-27T08:31:20.140Z</updated>
+    <updated>2020-05-27T10:45:09.634Z</updated>
     
     <summary type="html">
     
