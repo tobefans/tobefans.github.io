@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言语谱图（spectrogram或specgram），也叫声谱图，可以简单看做一个二维矩阵，其纵轴表示频率，横轴表示时间，矩阵的值表示能量强弱。由于它拥有着频率和时间两个维度的信息，所以是比较综合地表示原语音信息的一种特征。另外，我将其看做语音和图像的一种连接，因为图像领域的模型发展得较快，所以通过这种方式把语音转换成一种特殊的图像再进一步处理。 语谱图流程简介1. 将语音可交叉地分成多帧（由于">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-03T03:48:23.090Z">
+<meta property="og:updated_time" content="2020-05-27T08:31:20.140Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="语谱图的matlab提取和python提取">
 <meta name="twitter:description" content="前言语谱图（spectrogram或specgram），也叫声谱图，可以简单看做一个二维矩阵，其纵轴表示频率，横轴表示时间，矩阵的值表示能量强弱。由于它拥有着频率和时间两个维度的信息，所以是比较综合地表示原语音信息的一种特征。另外，我将其看做语音和图像的一种连接，因为图像领域的模型发展得较快，所以通过这种方式把语音转换成一种特殊的图像再进一步处理。 语谱图流程简介1. 将语音可交叉地分成多帧（由于">
@@ -427,7 +427,40 @@ ylabel(&#39;频率/kHz&#39;);
 % S 语谱图
 % F 频率值，尺度为1+n/2
 % T 时间值，尺度为1+fix((s-n)/h)
-</code></pre><h3 id="语谱图的python提取"><a href="#语谱图的python提取" class="headerlink" title="语谱图的python提取"></a>语谱图的python提取</h3><p>有了刚才的基础，python的代码就容易理解啦。</p>
+</code></pre><h3 id="语谱图的python提取"><a href="#语谱图的python提取" class="headerlink" title="语谱图的python提取"></a>语谱图的python提取</h3><p>有了刚才的基础，python的代码就容易理解啦。首先同样看一下不直接调用函数的写法。</p>
+<pre><code>import numpy as np
+from scipy.io import wavfile
+import matplotlib.pyplot as plt
+
+rate, x =  wavfile.read(&#39;audio.wav&#39;)
+wave = np.array(x[:,0], dtype = &quot;float&quot;)
+
+frame_len = 1000
+frame_off = frame_len // 2
+spect_len = 1024
+
+frame_num = (wave.size - frame_len) // frame_off + 1
+# 生成汉明窗
+hamwindow = np.hamming(frame_len)
+spect = np.zeros((frame_num, spect_len // 2 + 1))
+z = np.zeros(spect_len - frame_len)
+
+for idx in range(frame_num):
+    base = idx * frame_off
+    frame = wave[base: base + frame_len]            # 分帧
+    frame = np.append(frame * hamwindow, z)         # 加窗
+    spect[idx:] = np.log10(np.abs(np.fft.rfft(frame))) # FFT，返回幅度谱
+
+specg = np.transpose(specg_all)[:300, :440]
+io.savemat(&#39;specgram.mat&#39;, {&#39;specg&#39;:specg})
+
+plt.imshow(specg, origin=&quot;lower&quot;, cmap = &quot;jet&quot;, aspect = &quot;auto&quot;, interpolation = &quot;none&quot;)
+plt.show()
+plt.xticks([])
+plt.yticks([])
+plt.savefig(‘specgram.png&#39;,bbox_inches=&#39;tight&#39;,pad_inches=0.0)
+plt.close()
+</code></pre><p>再看看已经封装好的版本。</p>
 <pre><code>from scipy import io
 from scipy.io import wavfile
 import matplotlib.pyplot as plt
@@ -446,8 +479,7 @@ io.savemat(&#39;specgram.mat&#39;, {&#39;specg&#39;:specg[0]})    # 保存语谱
 <li>关于自定义输出语谱图的尺寸问题<br>时间轴尺寸为1+fix((s-n)/h)， 由windows_length和overlap_length决定。实际应用时由于各语音长度不同，时间尺寸一般都要进行截断或补零到一个固定值。截断的话可以截一段（起始信息，中间信息），也可以截多段（交叉不交叉都行）。<br>频率轴尺寸为1+n/2，仅决定于nfft（python中的pad_to参数），所以可以通过设置该值控制频率轴尺寸。但是也不要比窗长大太多，否则补零太多可能就没什么信息了。nfft调大时，窗长可以跟着调大，为了防止导致的时间轴太短可以调高overlap_length。<br>另外，其他参数不变时，仅变换nfft，可视化出来时可能肉眼看起来一样，但实际分辨率仍然是不同的。这也导致了一个问题，送入网络的是要用单通道的直接计算出来的语谱图，还是用可视化函数绘制出来的三通道的语谱图，这就根据实际情况去尝试了。</li>
 </ol>
 <p><a href="https://blog.csdn.net/enjoy_pascal/article/details/81478582" target="_blank" rel="noopener">彩蛋</a></p>
-<h2 id="盆友们你们有在看吗！"><a href="#盆友们你们有在看吗！" class="headerlink" title="盆友们你们有在看吗！"></a>盆友们你们有在看吗！</h2><p>好无聊…</p>
-
+<h2 id="希望疫情早点过去"><a href="#希望疫情早点过去" class="headerlink" title="希望疫情早点过去"></a>希望疫情早点过去</h2>
       
     </div>
     <div class="article-footer">
