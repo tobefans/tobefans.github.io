@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-05-27T15:29:06.309Z</updated>
+  <updated>2020-06-10T06:58:12.514Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用QT designer、python搭建界面程序</title>
+    <link href="http://weiquanfan.xyz/2020/06/10/QT/"/>
+    <id>http://weiquanfan.xyz/2020/06/10/QT/</id>
+    <published>2020-06-10T06:49:28.000Z</published>
+    <updated>2020-06-10T06:58:12.514Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Q
+      
+    
+    </summary>
+    
+      <category term="界面" scheme="http://weiquanfan.xyz/categories/%E7%95%8C%E9%9D%A2/"/>
+    
+    
+      <category term="界面" scheme="http://weiquanfan.xyz/tags/%E7%95%8C%E9%9D%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>深度学习主流框架的代码实例</title>

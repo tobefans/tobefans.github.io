@@ -17,29 +17,33 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>使用BeautifulSoup、requests和you_get爬虫下载B站视频 | Hexo</title>
-  <meta name="description" content="前言BeautifulSoup 是一个可以从HTML或XML文件中提取数据并解析的Python库， Requests 是一常用的可以获取和发送http的请求库， you_get 则是方便的下载各大网站的视频的命令行工具。整体流程上是，先用 Requests 请求获得网站源代码，再用 BeautifulSoup 解析网站并筛选出自己要的信息（如视频的url），最后用 you_get 下载。 例子以下">
+  <title>使用QT designer、python搭建界面程序 | Hexo</title>
+  <meta name="description" content="前言PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyins">
+<meta name="keywords" content="界面">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用BeautifulSoup、requests和you_get爬虫下载B站视频">
-<meta property="og:url" content="http://weiquanfan.xyz/2020/05/19/BeautifulSoup/index.html">
+<meta property="og:title" content="使用QT designer、python搭建界面程序">
+<meta property="og:url" content="http://weiquanfan.xyz/2020/06/10/QT/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
-<meta property="og:description" content="前言BeautifulSoup 是一个可以从HTML或XML文件中提取数据并解析的Python库， Requests 是一常用的可以获取和发送http的请求库， you_get 则是方便的下载各大网站的视频的命令行工具。整体流程上是，先用 Requests 请求获得网站源代码，再用 BeautifulSoup 解析网站并筛选出自己要的信息（如视频的url），最后用 you_get 下载。 例子以下">
+<meta property="og:description" content="前言PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyins">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://weiquanfan.xyz/.xyz//pachong.jpg">
-<meta property="og:updated_time" content="2020-05-19T12:36:15.497Z">
+<meta property="og:image" content="http://henjay724.com/image/cnblogs/QtDesigner-mainWin.PNG">
+<meta property="og:image" content="http://weiquanfan.xyz/.xyz//qt_designer.png">
+<meta property="og:updated_time" content="2020-06-10T06:58:12.514Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用BeautifulSoup、requests和you_get爬虫下载B站视频">
-<meta name="twitter:description" content="前言BeautifulSoup 是一个可以从HTML或XML文件中提取数据并解析的Python库， Requests 是一常用的可以获取和发送http的请求库， you_get 则是方便的下载各大网站的视频的命令行工具。整体流程上是，先用 Requests 请求获得网站源代码，再用 BeautifulSoup 解析网站并筛选出自己要的信息（如视频的url），最后用 you_get 下载。 例子以下">
-<meta name="twitter:image" content="http://weiquanfan.xyz/.xyz//pachong.jpg">
+<meta name="twitter:title" content="使用QT designer、python搭建界面程序">
+<meta name="twitter:description" content="前言PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyins">
+<meta name="twitter:image" content="http://henjay724.com/image/cnblogs/QtDesigner-mainWin.PNG">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://weiquanfan.xyz/2020/05/19/BeautifulSoup/index.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2020/06/10/QT/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
   
   
@@ -347,14 +351,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-BeautifulSoup" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-QT" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      使用BeautifulSoup、requests和you_get爬虫下载B站视频
+      使用QT designer、python搭建界面程序
     </h1>
   
 
@@ -362,81 +366,180 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/05/19/BeautifulSoup/" class="article-date">
-	  <time datetime="2020-05-19T12:13:21.000Z" itemprop="datePublished">2020-05-19</time>
+	<a href="/2020/06/10/QT/" class="article-date">
+	  <time datetime="2020-06-10T06:49:28.000Z" itemprop="datePublished">2020-06-10</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/爬虫/">爬虫</a>
+    <a class="article-category-link" href="/categories/界面/">界面</a>
   </span>
 
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/界面/">界面</a>
+  </span>
+
 
         
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/05/19/BeautifulSoup/" class="leancloud_visitors"  data-flag-title="使用BeautifulSoup、requests和you_get爬虫下载B站视频">0</span>
+    	<span id="/2020/06/10/QT/" class="leancloud_visitors"  data-flag-title="使用QT designer、python搭建界面程序">0</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/19/BeautifulSoup/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/10/QT/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>BeautifulSoup 是一个可以从HTML或XML文件中提取数据并解析的Python库， Requests 是一常用的可以获取和发送http的请求库， you_get 则是方便的下载各大网站的视频的命令行工具。整体流程上是，先用 Requests 请求获得网站源代码，再用 BeautifulSoup 解析网站并筛选出自己要的信息（如视频的url），最后用 you_get 下载。</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>以下代码实现的是下载<a href="https://www.bilibili.com/movie/?spm_id_from=333.851.b_62696c695f7265706f72745f6d6f766965.2" target="_blank" rel="noopener">B站电影</a>。</p>
-<pre><code>#!/usr/bin/env python3
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyinstaller 将.py文件封装成.exe文件，以供没有python解释器的用户使用。 本文以搭建标注工具界面程序为例。</p>
+<h2 id="预安装的软件与库"><a href="#预安装的软件与库" class="headerlink" title="预安装的软件与库"></a>预安装的软件与库</h2><ul>
+<li>Qt Designer: pip install —pre pyqt5-tools~=5.11<br>（位于\Python36\Lib\site-packages\pyqt5_tools\designer.exe，也可通过<a href="https://build-system.fman.io/qt-designer-download" target="_blank" rel="noopener">这里</a>下载）</li>
+<li>PyQt5: pip install PyQt5</li>
+<li>pip install pyinstaller</li>
+</ul>
+<h2 id="Qt-Designer-的界面设计"><a href="#Qt-Designer-的界面设计" class="headerlink" title="Qt Designer 的界面设计"></a>Qt Designer 的界面设计</h2><p> Qt Designer 的界面主要分为四大区：项目区、控件区、编辑区、属性区。 具体而言，就是在【控件区】里点击添加需要的控件，这些控件的效果会在【编辑区】里实时显示，并在【属性区】这些控件的属性，【项目区】用于显示控件间的层级关系。</p>
+<p><img src="http://henjay724.com/image/cnblogs/QtDesigner-mainWin.PNG" alt></p>
+<p>在新建一个窗口后，一般需要通过 Container 确定外部轮廓，可选用常见的 Frame 控件，再在 Frame 里边选用 Layouts 来规范后续控件的排列样式，常用水平或垂直排列，最后再选用具体部件往里边填充。 常用的控件有各种Button（按钮）、Label（静态显示文本框）、Text Edit（输入输出文本框）、listWidget（列表显示框）、Check Box（选中框）、各种Slider（滑动条）等。</p>
+<p>每一个组件都有可设置的属性，最重要的通用属性有 objectName （用于在后续逻辑编写时指明时哪个控件），text （用于在GUI里在控件上显示）， geometry （用于设置控件位置和尺寸，但控件位于Layer中时就不可设置了）。<br><img src="/.xyz//qt_designer.png" alt></p>
+<p>设计好界面之后保存可以生成my_win.ui文件，它可以直接在python代码里被加载使用，但为了在代码里进一步调用修改等，更好的方法是将.ui文件转换成相应的.py文件。这需要借助 \Python36\Scripts\pyuic5.exe工具。</p>
+<pre><code>pyuic5 - o my_win.py my_win.ui
+</code></pre><h2 id="Qt-逻辑编写"><a href="#Qt-逻辑编写" class="headerlink" title="Qt 逻辑编写"></a>Qt 逻辑编写</h2><p>很多控件都可以通过点击（或其他操作）触发事件，事件响应可自由编写，通过 connect 函数绑定。</p>
+<pre><code>#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-&quot;&quot;&quot;
-Created on Sun Mar 15 12:06:21 2020
 
-@author: weiquan fan
-&quot;&quot;&quot;
+import sys, os
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
+from my_win import Ui_MainWindow
+import csv
 
-from bs4 import BeautifulSoup as bs
-import requests,re,os
+path_metadata = &quot;./metadata.csv&quot;    # 保存生成数据的路径
 
+class mainWin(QMainWindow, Ui_MainWindow):
+    def __init__(self, parent=None):
+        super(mainWin, self).__init__(parent)
+        self.setupUi(self)
+        self.radioButton.clicked.connect(self.showPos)  # 绑定事件响应
+        self.radioButton_2.clicked.connect(self.showNeu)
+        self.radioButton_3.clicked.connect(self.showNeg)
+        self.btn_save.clicked.connect(self.save_data)
+        self.btn_del.clicked.connect(self.del_last_data)
 
-def download(url, filename):
-    path_root = &#39;./Videos&#39;
-    os.system(&#39;you-get -o {} -O {} {}&#39;.format(path_root, filename, url))
+    ## 点击 radioButton 时，向 listWidget 添加项以供后续选择
+    def showPos(self):
+        self.label_val = &quot;正向情绪&quot;
+        self.listWidget.clear()
+        self.listWidget.addItem(&quot;高兴&quot;)
+        self.listWidget.addItem(&quot;兴奋&quot;)
+        self.listWidget.addItem(&quot;自豪&quot;)
+        self.listWidget.addItem(&quot;满足&quot;)
+        self.listWidget.addItem(&quot;感激&quot;)
+        self.listWidget.addItem(&quot;自信&quot;)
+        self.listWidget.addItem(&quot;轻松&quot;)
+        self.listWidget.addItem(&quot;羡慕&quot;)
+    def showNeg(self):
+        self.label_val = &quot;负向情绪&quot;
+        self.listWidget.clear()
+        self.listWidget.addItem(&quot;生气&quot;)
+        self.listWidget.addItem(&quot;伤心&quot;)
+        self.listWidget.addItem(&quot;害怕&quot;)
+        self.listWidget.addItem(&quot;烦恼&quot;)
+        self.listWidget.addItem(&quot;孤独&quot;)
+        self.listWidget.addItem(&quot;羞愧&quot;)
+        self.listWidget.addItem(&quot;恶心&quot;)
+        self.listWidget.addItem(&quot;失望&quot;)
+        self.listWidget.addItem(&quot;郁闷&quot;)
+        self.listWidget.addItem(&quot;不安&quot;)
+        self.listWidget.addItem(&quot;紧张&quot;)
+        self.listWidget.addItem(&quot;无奈&quot;)
+        self.listWidget.addItem(&quot;纠结&quot;)
+    def showNeu(self):
+        self.label_val = &quot;中性情绪&quot;
+        self.listWidget.clear()
+        self.listWidget.addItem(&quot;共情&quot;)
+        self.listWidget.addItem(&quot;平静&quot;)      
 
-url_base = &#39;https://www.bilibili.com/movie/?spm_id_from=333.851.b_62696c695f7265706f72745f6d6f766965.2&#39;
-
-response = requests.get(url_base)
-page = response.text
-soup = bs(page, &#39;html.parser&#39;)
-vids = soup.findAll(&#39;li&#39;,attrs={&#39;class&#39;:re.compile(&#39;video-item-biref.*?&#39;)})# bilibili
-
-video_urls = []
-counter=1
-
-if(vids):
-    for v in vids:
-        #v_link = v.find(&#39;a&#39;)[&#39;href&#39;]
-        #v_name = v.find(&#39;img&#39;)[&#39;alt&#39;]
-        print(v)
-        v_link = v.find(&#39;a&#39;)[&#39;href&#39;]
-        v_name = v.find(&#39;img&#39;)[&#39;alt&#39;]
-
-        video_urls.append([v_link, v_name])
-        print(v_link,v_name)
+    ## 点击保存按键时，将界面上的数据保存成一行生成csv文件
+    def save_data(self):
+        if not os.path.exists(path_metadata):
+            with open(path_metadata,&quot;a&quot;,newline=&#39;&#39;,encoding=&#39;utf_8_sig&#39;) as csvfile: 
+                writer = csv.writer(csvfile, delimiter=&#39;,&#39;)
+                writer.writerow([&#39;样本名称&#39;, &#39;起始时间&#39;, &#39;结束时间&#39;, &#39;情绪（粗粒度）&#39;, &#39;情绪（细粒度）&#39;, &#39;是否基于音频&#39;, &#39;是否基于视频&#39;, &#39;是否基于文本&#39;, &#39;是否难以标注&#39;, &#39;对话状态&#39;])
 
         try:
-            download(v_link, v_name)
+            self.label_emotion = self.listWidget.selectedItems()[0].text()
+        except IndexError:
+            QMessageBox.information(self,&#39;提示&#39;,&#39;请选择具体情感后再重新保存&#39;, QMessageBox.Yes)
+            return 0
 
-        except Exception:
-            print(&#39;can\&#39;t download &#39;+v_name+&#39; in &#39;+v_link)
-            counter -= 1
+        self.label_emotion_audio_based = self.checkBox_3.isChecked()
+        self.label_emotion_video_based = self.checkBox_2.isChecked()
+        self.label_emotion_text_based = self.checkBox.isChecked()
+        self.label_emotion_hard = self.checkBox_4.isChecked()
 
-        counter += 1
-        if(counter&gt;15):
-            break
-</code></pre><p><img src="/.xyz//pachong.jpg" alt></p>
+        try:
+            self.label_da = self.listWidget_2.selectedItems()[0].text()
+        except IndexError:
+            QMessageBox.information(self,&#39;提示&#39;,&#39;请选择对话状态后再重新保存&#39;, QMessageBox.Yes)
+            return 0
+
+        if self.lineEdit.text() == &#39;&#39;:
+            QMessageBox.information(self,&#39;提示&#39;,&#39;请输入样本名字&#39;, QMessageBox.Yes)
+            return 0
+        else:
+            self.name_sample = self.lineEdit.text()
+
+        try:
+            self.start_time = &quot;{}:{}:{}&quot;.format(int(self.lineEdit_2.text()), int(self.lineEdit_3.text()), int(self.lineEdit_4.text()))
+            self.end_time = &quot;{}:{}:{}&quot;.format(int(self.lineEdit_5.text()), int(self.lineEdit_6.text()), int(self.lineEdit_7.text()))
+        except:
+            QMessageBox.information(self,&#39;提示&#39;,&#39;时间应输入整数&#39;, QMessageBox.Yes)
+            return 0
+
+
+        onelist = [self.name_sample, self.start_time, self.end_time, self.label_val, self.label_emotion, self.label_emotion_audio_based, self.label_emotion_video_based, self.label_emotion_text_based, self.label_emotion_hard, self.label_da]
+        with open(path_metadata,&quot;a&quot;,newline=&#39;&#39;,encoding=&#39;utf_8_sig&#39;) as csvfile: 
+            writer = csv.writer(csvfile, delimiter=&#39;,&#39;)
+            writer.writerow(onelist)
+            QMessageBox.about(self,&#39;提示&#39;,&#39;保存成功&#39;)
+
+    ## 点击删除按键时，从数据中删除掉最后一行
+    def del_last_data(self):
+        try:
+            with open(path_metadata,&quot;r&quot;,newline=&#39;&#39;,encoding=&#39;utf_8_sig&#39;) as csvfile: 
+                data = csvfile.readlines()
+                del data[-1]
+            with open(path_metadata,&quot;w&quot;,newline=&#39;&#39;,encoding=&#39;utf_8_sig&#39;) as csvfile: 
+                writer = csv.writer(csvfile, delimiter=&#39;,&#39;)
+                for row in data:
+                    writer.writerow(row.strip().split(&#39;,&#39;))
+                # writer.writerows(data)
+            QMessageBox.about(self,&#39;提示&#39;,&#39;删除成功&#39;)
+        except:
+            QMessageBox.information(self,&#39;提示&#39;,&#39;尚未保存任何数据&#39;, QMessageBox.Yes)
+
+
+if __name__ == &#39;__main__&#39;:
+    ## 固定套路
+    app = QApplication(sys.argv)
+    main_win = mainWin()
+    main_win.show()
+    sys.exit(app.exec_())
+</code></pre><h2 id="封装成可执行文件"><a href="#封装成可执行文件" class="headerlink" title="封装成可执行文件"></a>封装成可执行文件</h2><p>对于编写好的.py文件，若是需要更好的给没有python编辑器的人使用，则需要封装成.exe文件，这可以通过 pyinstaller 命令来完成。</p>
+<pre><code>pyinstaller -F biaozhu.py
+</code></pre><p>pyinstaller 有两种常见的模式：<br>-F: 將程式打包成单一的执行文件(适合比较简单的代码)<br>-D: 打包多個文件，exe及依赖的东西会一起放置在dist資料夾里(适合框架形式的程式)</p>
+<p>在打包过程中，包含如下步骤</p>
+<ul>
+<li>在路径下生成了biaozhu.spec: 包含打包时相关的设定</li>
+<li>建立build 文件夹，放置了log记录和相关文件</li>
+<li>建立dist 文件夹，放置了可执行文件，若是 —F 模式，则里边仅有一个.exe文件</li>
+</ul>
+<p>另外，若是打包失败，可以通过改写.spec文件，再通过 pyinstaller -D XXX.spec 重新打包。 如果是库的 import 问题，可以通过 hiddenimport 里放置库名来hidden掉该错误。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以前只知道 Tkinter 可以来实现 python 的界面设计，但感觉并不那么友好。 而这次学习到的 PyQt 以及相应的 Qt designer则很好的解决了这一问题，可以通过拉拽进行布局，就像c++的SDL一样。完成界面设计后的逻辑编写才是更让人头疼的问题，容易产生各种bug，只能慢慢调。 最后完成程序之后还可以转成.exe文件，从而可以直接给别人使用，这个是意料之外的惊喜。</p>
 
       
     </div>
@@ -446,7 +549,7 @@ if(vids):
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz/2020/05/19/BeautifulSoup/" title="使用BeautifulSoup、requests和you_get爬虫下载B站视频" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/19/BeautifulSoup/</a>
+      <a href="http://weiquanfan.xyz/2020/06/10/QT/" title="使用QT designer、python搭建界面程序" target="_blank" rel="external">http://weiquanfan.xyz/2020/06/10/QT/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -492,13 +595,9 @@ if(vids):
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/05/27/RL/" title="强化学习简介"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/05/13/resnet/" title="CNN的进击之路——讲讲ResNet, Inception, ResNeXt和Densenet等常见网络"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/05/27/DL-Framework/" title="深度学习主流框架的代码实例"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
