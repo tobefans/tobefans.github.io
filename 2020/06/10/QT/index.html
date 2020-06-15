@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://henjay724.com/image/cnblogs/QtDesigner-mainWin.PNG">
 <meta property="og:image" content="http://weiquanfan.xyz/.xyz//qt_designer.png">
-<meta property="og:updated_time" content="2020-06-14T14:53:33.495Z">
+<meta property="og:updated_time" content="2020-06-15T16:07:58.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用QT designer、python搭建界面程序">
 <meta name="twitter:description" content="前言PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyins">
@@ -405,7 +405,7 @@
 <p>在新建一个窗口后，一般需要通过 Container 确定外部轮廓，可选用常见的 Frame 控件，再在 Frame 里边选用 Layouts 来规范后续控件的排列样式，常用水平或垂直排列，最后再选用具体部件往里边填充。 常用的控件有各种Button（按钮）、Label（静态显示文本框）、Text Edit（输入输出文本框）、listWidget（列表显示框）、Check Box（选中框）、各种Slider（滑动条）等。</p>
 <p>每一个组件都有可设置的属性，最重要的通用属性有 objectName （用于在后续逻辑编写时指明时哪个控件），text （用于在GUI里在控件上显示）， geometry （用于设置控件位置和尺寸，但控件位于Layer中时就不可设置了）。<br><img src="/.xyz//qt_designer.png" alt></p>
 <p>设计好界面之后保存可以生成my_win.ui文件，它可以直接在python代码里被加载使用，但为了在代码里进一步调用修改等，更好的方法是将.ui文件转换成相应的.py文件。这需要借助 \Python36\Scripts\pyuic5.exe工具。</p>
-<pre><code>pyuic5 - o my_win.py my_win.ui
+<pre><code>pyuic5 -o my_win.py my_win.ui
 </code></pre><h2 id="Qt-逻辑编写"><a href="#Qt-逻辑编写" class="headerlink" title="Qt 逻辑编写"></a>Qt 逻辑编写</h2><p>很多控件都可以通过点击（或其他操作）触发事件，事件响应可自由编写，通过 connect 函数绑定。</p>
 <pre><code>#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
