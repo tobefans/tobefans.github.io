@@ -25,13 +25,14 @@
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言语谱图（spectrogram或specgram），也叫声谱图，可以简单看做一个二维矩阵，其纵轴表示频率，横轴表示时间，矩阵的值表示能量强弱。由于它拥有着频率和时间两个维度的信息，所以是比较综合地表示原语音信息的一种特征。另外，我将其看做语音和图像的一种连接，因为图像领域的模型发展得较快，所以通过这种方式把语音转换成一种特殊的图像再进一步处理。 语谱图流程简介1. 将语音可交叉地分成多帧（由于">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://weiquanfan.xyz/.xyz//spec_librosa.png">
-<meta property="og:image" content="http://weiquanfan.xyz/.xyz//spec_librosa_power.png">
-<meta property="og:updated_time" content="2020-06-20T05:36:26.575Z">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/02/specgram/spec_plt.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/02/specgram/spec_librosa.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/02/specgram/spec_librosa_power.png">
+<meta property="og:updated_time" content="2020-06-20T06:01:56.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="语谱图的matlab提取和python提取">
 <meta name="twitter:description" content="前言语谱图（spectrogram或specgram），也叫声谱图，可以简单看做一个二维矩阵，其纵轴表示频率，横轴表示时间，矩阵的值表示能量强弱。由于它拥有着频率和时间两个维度的信息，所以是比较综合地表示原语音信息的一种特征。另外，我将其看做语音和图像的一种连接，因为图像领域的模型发展得较快，所以通过这种方式把语音转换成一种特殊的图像再进一步处理。 语谱图流程简介1. 将语音可交叉地分成多帧（由于">
-<meta name="twitter:image" content="http://weiquanfan.xyz/.xyz//spec_librosa.png">
+<meta name="twitter:image" content="http://weiquanfan.xyz/2020/05/02/specgram/spec_plt.png">
   <!-- Canonical links -->
   <link rel="canonical" href="http://weiquanfan.xyz/2020/05/02/specgram/index.html">
   
@@ -465,7 +466,8 @@ plt.xticks([])
 plt.yticks([])
 plt.savefig(&#39;specgram.png&#39;,bbox_inches=&#39;tight&#39;,pad_inches=0.0)
 plt.close()
-</code></pre><p>再看看已经封装好的版本。</p>
+</code></pre><p><img src="/2020/05/02/specgram/spec_plt.png" alt></p>
+<p>再看看已经封装好的版本。</p>
 <pre><code>from scipy import io
 from scipy.io import wavfile
 import matplotlib.pyplot as plt
@@ -510,7 +512,7 @@ plt.xticks([])
 plt.yticks([])
 plt.savefig(&#39;specgram.png&#39;,bbox_inches=&#39;tight&#39;,pad_inches=0.0)
 plt.close()
-</code></pre><p><img src="/.xyz//spec_librosa.png" alt><br><img src="/.xyz//spec_librosa_power.png" alt></p>
+</code></pre><p>下图中，第一张是梅尔频谱图，第二张是梅尔功率图，功率图的声音和噪声区分更明显。而两者都比没有梅尔滤波器的频谱图有更独特明显的能量显示。<br><img src="/2020/05/02/specgram/spec_librosa.png" alt><br><img src="/2020/05/02/specgram/spec_librosa_power.png" alt></p>
 <h2 id="语谱图的一些可能有的小疑惑"><a href="#语谱图的一些可能有的小疑惑" class="headerlink" title="语谱图的一些可能有的小疑惑"></a>语谱图的一些可能有的小疑惑</h2><ol>
 <li>关于nfft<br><strong>nfft既表示时域的点数也关联频域的点数</strong>。该数为2的幂数时更高效，但不是也没问题。<br>nfft需要比窗长的值更大，然后加窗后的帧会被补零到nfft长度再进行fft。</li>
 <li>关于频率分辨率<br>频率轴上每一个点对应fs/nfft的频率。另外由于输出nfft/2+1个频率点，所以输出的频率范围为0到nfft/2×fs/nfft=fs/2。</li>
