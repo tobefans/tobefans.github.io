@@ -25,10 +25,12 @@
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言 Github Pages: Github Pages可以被认为是用户编写的、托管在github上的静态网页。 Hexo: Hexo是一个快速、简洁且高效的博客框架。  安装Node.js点击此处访问官网，按需下载相应版本，默认安装可以了。 安装Hexo$ sudo npm install -g hexo-cli  若报错，尝试： $ sudo npm install --unsafe-per">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-14T17:28:12.904Z">
+<meta property="og:image" content="http://weiquanfan.xyz/2019/08/11/How-to-use-Hexo-to-build-your-blog/yumingjiexi.png">
+<meta property="og:updated_time" content="2020-06-20T06:08:18.181Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Github Pages和Hexo搭建自己的独立博客">
 <meta name="twitter:description" content="前言 Github Pages: Github Pages可以被认为是用户编写的、托管在github上的静态网页。 Hexo: Hexo是一个快速、简洁且高效的博客框架。  安装Node.js点击此处访问官网，按需下载相应版本，默认安装可以了。 安装Hexo$ sudo npm install -g hexo-cli  若报错，尝试： $ sudo npm install --unsafe-per">
+<meta name="twitter:image" content="http://weiquanfan.xyz/2019/08/11/How-to-use-Hexo-to-build-your-blog/yumingjiexi.png">
   <!-- Canonical links -->
   <link rel="canonical" href="http://weiquanfan.xyz/2019/08/11/How-to-use-Hexo-to-build-your-blog/index.html">
   
@@ -406,7 +408,7 @@ $ hexo d 发布博客到GitHub
 <pre><code>$ git config --global user.name &quot;此处填你的用户名&quot;
 $ git config --global user.email &quot;此处填你的邮箱&quot;
 </code></pre><p>可通过<code>ssh -T git@github.com</code>测试是否添加成功。</p>
-<h3 id="将本地的-Hexo-文件更新到-Github-的库中"><a href="#将本地的-Hexo-文件更新到-Github-的库中" class="headerlink" title="将本地的 Hexo 文件更新到 Github 的库中"></a>将本地的 Hexo 文件更新到 Github 的库中</h3><p>打开创建的 Hexo 文件夹下的 _config.yml，修改如下的代码段，repo为github项目的地址。</p>
+<h3 id="将本地的-Hexo-文件更新到-Github-的库中"><a href="#将本地的-Hexo-文件更新到-Github-的库中" class="headerlink" title="将本地的 Hexo 文件更新到 Github 的库中"></a>将本地的 Hexo 文件更新到 Github 的库中</h3><p>打开创建的 Hexo 文件夹下的 <code>_config.yml</code>，修改如下的代码段，repo为github项目的地址。</p>
 <pre><code>deploy: 
 type: git
 repo: git@github.com:tobefans/tobefans.github.io.git
@@ -419,7 +421,7 @@ branch: master
 <h3 id="访问博客"><a href="#访问博客" class="headerlink" title="访问博客"></a>访问博客</h3><p>在github该项目的setting中打开Github pages的设置。</p>
 <p>你的博客地址：<code>https://你的用户名.http://github.io</code>，比如我的是：<code>https://tobefans.github.io</code> ，现在每个人都可以通过此链接访问你的博客了。</p>
 <h2 id="为博客更换自己喜欢的主题"><a href="#为博客更换自己喜欢的主题" class="headerlink" title="为博客更换自己喜欢的主题"></a>为博客更换自己喜欢的主题</h2><p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">点击此处</a>进入 Hexo 官网的主题专栏，我们可以看见有许多的主题供我们选择。我们要做的就是把主题克隆过来，在此我们以主题 Aero-Dual 为例，点进去我们就可以看见该主题作者的博客，鼠标滑到底，我们可以看见 Theme By Levblanc 的字样（其他主题类似），点击作者 Levblanc ，页面就会跳转到该主题所有的相关文件在 Github 上的地址，下载该项目，放至Hexo文件夹中的themes目录。</p>
-<p>然后打开 Hexo 文件夹下的配置文件 _config.yml ，找到关键字 theme，修改参数为：theme：hexo-theme-aero-dual （其他主题修改成相应名称即可），再次注意冒号后面有一个空格。再通过<code>$ hexo g</code>更新。</p>
+<p>然后打开 Hexo 文件夹下的配置文件 <code>_config.yml</code> ，找到关键字 theme，修改参数为：theme：hexo-theme-aero-dual （其他主题修改成相应名称即可），再次注意冒号后面有一个空格。再通过<code>$ hexo g</code>更新。</p>
 <p>另推荐一款主题：<a href="http://theme-next.iissnan.com/getting-started.html#theme-settings" target="_blank" rel="noopener">Next</a></p>
 <h2 id="在Hexo中渲染MathJax数学公式"><a href="#在Hexo中渲染MathJax数学公式" class="headerlink" title="在Hexo中渲染MathJax数学公式"></a>在Hexo中渲染MathJax数学公式</h2><p>更换Hexo的markdown渲染引擎，hexo-renderer-kramed引擎是在默认的渲染引擎hexo-renderer-marked的基础上修改了一些bug，两者比较接近，也比较轻量级。在Hexo文件夹位置命令：</p>
 <pre><code>npm uninstall hexo-renderer-marked --save
@@ -448,7 +450,8 @@ mathjax: true
 CNAME      www       你的github用户名.github.io
 A          @         192.30.252.153
 A          @         192.30.252.154
-</code></pre><p>在Hexo文件夹的source文件夹中，创建一个CNAME文件，存储预备使用的个人域名，如：<code>weiquanfan.xyz</code><br>也可通过github项目上setting里映射个人域名。</p>
+</code></pre><p><img src="/2019/08/11/How-to-use-Hexo-to-build-your-blog/yumingjiexi.png" alt></p>
+<p>在Hexo文件夹的source文件夹中，创建一个CNAME文件，存储预备使用的个人域名，如：<code>weiquanfan.xyz</code><br>也可通过github项目上setting里映射个人域名。</p>
 <p>清理Hexo缓存并更新Hexo静态网站   <code>$ hexo clean &amp;&amp; hexo g</code></p>
 <pre><code>$ hexo clean
 $ hexo g -d

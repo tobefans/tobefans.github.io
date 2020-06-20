@@ -27,10 +27,10 @@
 <meta property="og:description" content="前言强化学习是机器学习中的一大类，它可以让机器学着如何在环境中拿到高分, 表现出优秀的成绩. 而这些成绩背后却是他所付出的辛苦劳动, 不断的试错, 不断地尝试, 累积经验, 学习经验. 强化学习的方法可以分为理不理解所处环境。不理解环境，环境给什么就是什么，称为model-free，包含 Q learning, Sarsa, Policy Gradients 等方法。 理解环境，用多一个模型去表示">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://morvanzhou.github.io/static/results/reinforcement-learning/maze%20q.mp4">
-<meta property="og:image" content="https://morvanzhou.github.io/static/results/ML-intro/q4.png">
-<meta property="og:image" content="https://morvanzhou.github.io/static/results/reinforcement-learning/3-1-1.png">
-<meta property="og:image" content="https://morvanzhou.github.io/static/results/reinforcement-learning/4-1-1.jpg">
-<meta property="og:updated_time" content="2020-05-27T14:55:21.850Z">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/27/RL/qlearning.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/27/RL/Sarsa.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/27/RL/DQN.jpg">
+<meta property="og:updated_time" content="2020-06-20T07:06:22.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="强化学习简介">
 <meta name="twitter:description" content="前言强化学习是机器学习中的一大类，它可以让机器学着如何在环境中拿到高分, 表现出优秀的成绩. 而这些成绩背后却是他所付出的辛苦劳动, 不断的试错, 不断地尝试, 累积经验, 学习经验. 强化学习的方法可以分为理不理解所处环境。不理解环境，环境给什么就是什么，称为model-free，包含 Q learning, Sarsa, Policy Gradients 等方法。 理解环境，用多一个模型去表示">
@@ -403,7 +403,7 @@
 <h2 id="Q-learning"><a href="#Q-learning" class="headerlink" title="Q learning"></a>Q learning</h2><p>Q learning 是一种model-free方法，它的核心在于构建一个Q表，这个表表示了处于每一种状态(state)时进行各个行动(action)的奖励值。 举例而言(<a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/" target="_blank" rel="noopener">莫烦python</a>的例子)，下图就是一个强化学习的过程，有16个state(位置)，4个可选的action(上下左右)。让探索者(红框)学会走迷宫. 黄色的是天堂 (reward 1), 黑色的地狱 (reward -1)。</p>
 <p><img src="https://morvanzhou.github.io/static/results/reinforcement-learning/maze%20q.mp4" alt></p>
 <p>那么，Q learning 的流程如下。</p>
-<p><img src="https://morvanzhou.github.io/static/results/ML-intro/q4.png" alt></p>
+<p><img src="/2020/05/27/RL/qlearning.png" alt></p>
 <p>包含了不断重复的三个步骤。</p>
 <ul>
 <li>给定当前状态s和Q表， 使用贪婪算法采取一个行动a</li>
@@ -496,7 +496,7 @@ if __name__ == &quot;__main__&quot;:
     env.after(100, update)
     env.mainloop()
 </code></pre><h2 id="Sarsa"><a href="#Sarsa" class="headerlink" title="Sarsa"></a>Sarsa</h2><p>Sarsa 和 Q learning 很类似，差别在于Sarsa会更‘胆小’一点，不太敢尝试。它的流程如下。</p>
-<p><img src="https://morvanzhou.github.io/static/results/reinforcement-learning/3-1-1.png" alt></p>
+<p><img src="/2020/05/27/RL/Sarsa.png" alt></p>
 <p>可以看出，它和 Q learning 差别仅在于更新环节，具体来讲：</p>
 <ul>
 <li>他在当前 state 已经想好了 state 对应的 action, 而且想好了 下一个 state_ 和下一个 action_ (Qlearning 还没有想好下一个 action_)</li>
@@ -618,7 +618,7 @@ if __name__ == &quot;__main__&quot;:
     env.after(100, update)
     env.mainloop()
 </code></pre><h2 id="Deep-Q-Network-DQN"><a href="#Deep-Q-Network-DQN" class="headerlink" title="Deep Q Network(DQN)"></a>Deep Q Network(DQN)</h2><p>DQN 是一种结合了神经网络的强化学习。普通的强化学习中需要生成一个Q表，而如果状态数太多的话Q表也极为耗内存，所以 DQN 提出了用神经网络来代替Q表的功能。网络输入一个状态，输出各个动作的Q值。网络通过对Q估计和Q现实使用RMSprop来更新参数。Q估计就是网络输出，而Q现实等于奖励+下一状态的<strong>前模型</strong>的Q估计。流程图如下：</p>
-<p><img src="https://morvanzhou.github.io/static/results/reinforcement-learning/4-1-1.jpg" alt></p>
+<p><img src="/2020/05/27/RL/DQN.jpg" alt></p>
 <p>整个算法乍看起来很复杂, 不过我们拆分一下, 就变简单了. 也就是个 Q learning 主框架上加了些装饰，包括:</p>
 <ul>
 <li>记忆库 (用于重复学习)</li>

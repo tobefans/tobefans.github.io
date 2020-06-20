@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyins">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://henjay724.com/image/cnblogs/QtDesigner-mainWin.PNG">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/06/10/QT/qtdesigner.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/06/10/QT/qt_designer.png">
-<meta property="og:updated_time" content="2020-06-15T16:07:58.816Z">
+<meta property="og:updated_time" content="2020-06-20T07:08:22.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用QT designer、python搭建界面程序">
 <meta name="twitter:description" content="前言PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyins">
-<meta name="twitter:image" content="http://henjay724.com/image/cnblogs/QtDesigner-mainWin.PNG">
+<meta name="twitter:image" content="http://weiquanfan.xyz/2020/06/10/QT/qtdesigner.png">
   <!-- Canonical links -->
   <link rel="canonical" href="http://weiquanfan.xyz/2020/06/10/QT/index.html">
   
@@ -401,7 +401,7 @@
 <li>pip install pyinstaller</li>
 </ul>
 <h2 id="Qt-Designer-的界面设计"><a href="#Qt-Designer-的界面设计" class="headerlink" title="Qt Designer 的界面设计"></a>Qt Designer 的界面设计</h2><p> Qt Designer 的界面主要分为四大区：项目区、控件区、编辑区、属性区。 具体而言，就是在【控件区】里点击添加需要的控件，这些控件的效果会在【编辑区】里实时显示，并在【属性区】这些控件的属性，【项目区】用于显示控件间的层级关系。</p>
-<p><img src="http://henjay724.com/image/cnblogs/QtDesigner-mainWin.PNG" alt></p>
+<p><img src="/2020/06/10/QT/qtdesigner.png" alt></p>
 <p>在新建一个窗口后，一般需要通过 Container 确定外部轮廓，可选用常见的 Frame 控件，再在 Frame 里边选用 Layouts 来规范后续控件的排列样式，常用水平或垂直排列，最后再选用具体部件往里边填充。 常用的控件有各种Button（按钮）、Label（静态显示文本框）、Text Edit（输入输出文本框）、listWidget（列表显示框）、Check Box（选中框）、各种Slider（滑动条）等。</p>
 <p>每一个组件都有可设置的属性，最重要的通用属性有 objectName （用于在后续逻辑编写时指明时哪个控件），text （用于在GUI里在控件上显示）， geometry （用于设置控件位置和尺寸，但控件位于Layer中时就不可设置了）。<br><img src="/2020/06/10/QT/qt_designer.png" alt></p>
 <p>设计好界面之后保存可以生成my_win.ui文件，它可以直接在python代码里被加载使用，但为了在代码里进一步调用修改等，更好的方法是将.ui文件转换成相应的.py文件。这需要借助 \Python36\Scripts\pyuic5.exe工具。</p>

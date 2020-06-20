@@ -26,14 +26,14 @@
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言本文讲解Google在2019年发表的论文BERT: Pre-training of Deep Bidirectional Transformers forLanguage Understanding 。从标题可以看出，该论文基于Transformer模型，提出了一款用于语言理解的预训练模型，并在GLUE, SQuAD等nlp任务中都取得了很好的效果。该模型的创新点实际上不在于模型结构，而在于">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-d942b566bde7c44704b7d03a1b596c0c_1440w.jpg">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-11505b394299037e999d12997e9d1789_1440w.jpg">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-b054e303cdafa0ce41ad761d5d0314e1_1440w.jpg">
-<meta property="og:updated_time" content="2020-05-07T12:58:59.538Z">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/07/BERT/BERT模型.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/07/BERT/embedding.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/07/BERT/迁移策略.jpg">
+<meta property="og:updated_time" content="2020-06-20T06:36:37.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="讲讲横扫nlp任务的BERT模型">
 <meta name="twitter:description" content="前言本文讲解Google在2019年发表的论文BERT: Pre-training of Deep Bidirectional Transformers forLanguage Understanding 。从标题可以看出，该论文基于Transformer模型，提出了一款用于语言理解的预训练模型，并在GLUE, SQuAD等nlp任务中都取得了很好的效果。该模型的创新点实际上不在于模型结构，而在于">
-<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-d942b566bde7c44704b7d03a1b596c0c_1440w.jpg">
+<meta name="twitter:image" content="http://weiquanfan.xyz/2020/05/07/BERT/BERT模型.jpg">
   <!-- Canonical links -->
   <link rel="canonical" href="http://weiquanfan.xyz/2020/05/07/BERT/index.html">
   
@@ -399,10 +399,10 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文讲解Google在2019年发表的论文<a href="https://arxiv.org/pdf/1810.04805.pdf" target="_blank" rel="noopener">BERT: Pre-training of Deep Bidirectional Transformers for<br>Language Understanding</a> 。从标题可以看出，该论文基于Transformer模型，提出了一款用于语言理解的预训练模型，并在GLUE, SQuAD等nlp任务中都取得了很好的效果。该模型的创新点实际上不在于模型结构，而在于预训练的方法。以下围绕这两方面都进行一些讲解。</p>
 <h2 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h2><h3 id="总体框图"><a href="#总体框图" class="headerlink" title="总体框图"></a>总体框图</h3><p>首先最好还是先理解一下<a href="http://weiquanfan.xyz/2020/05/05/transfomer/">Transfomer</a>，这是BERT模型的基础所在。简而言之，Transfomer包含N个编码器和解码器。编码器将输入序列编码成带有全局新的特征序列，解码器将编码器的特征序列解码成预测结果。BERT使用的正是其中的编码器，模型如下所示。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-d942b566bde7c44704b7d03a1b596c0c_1440w.jpg" alt="BERT模型"></p>
+<p><img src="/2020/05/07/BERT/BERT模型.jpg" alt="BERT模型"></p>
 <p><strong>注意：并不是一个Tm代表一个Transformer，可以看成一行Tm表示一个Transformer的编码器，而编码器也不是两层可以有多层。那么，输入序列送入BERT后，最后一层Tm将对每一个输入token都生成一个新的特征序列，而T则表示任务，一般都是用全连接层来完成分类任务。</strong>另外用来对比的是，与GPT是单向的Transformer连接，ELMo是双向的LSTM连接。</p>
 <h3 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h3><p>从框图上可以看到，输入序列是各token的embedding。在Transfomer中，这种嵌入由word embedding加上positional embedding而来。而在BERT中，还要额外加上一个segment embedding，用于指示各个token属于输入的第几个句子。这是因为有的nlp任务是输入一对句子的，需要借此加以区分。而且，positional embedding也不是沿用三角函数，三种embedding都是学习出来的。<br>另外，一开始的token，除了要在一开始添加一个起始标志[CLS]之外，还要在不同句子的过渡位置插一个[SEP]标志（如果有多句子的话）。</p>
-<p><img src="https://pic2.zhimg.com/80/v2-11505b394299037e999d12997e9d1789_1440w.jpg" alt="embedding"></p>
+<p><img src="/2020/05/07/BERT/embedding.jpg" alt="embedding"></p>
 <h3 id="迁移策略"><a href="#迁移策略" class="headerlink" title="迁移策略"></a>迁移策略</h3><p>BERT是一个预训练模型，所以我们要怎么拿过来用呢？官方为我们提供了各种任务的应用方法。<br>首先，NLP的下游任务可以分为4类：</p>
 <ul>
 <li>句子关系判断：识别蕴含(entailment)、识别语义相似等</li>
@@ -410,7 +410,7 @@
 <li>序列标注：分词、实体识别、语义标注等</li>
 <li>生成式任务：机器翻译、文本摘要等</li>
 </ul>
-<p><img src="https://pic2.zhimg.com/80/v2-b054e303cdafa0ce41ad761d5d0314e1_1440w.jpg" alt="迁移策略"></p>
+<p><img src="/2020/05/07/BERT/迁移策略.jpg" alt="迁移策略"></p>
 <p>图中 (a) 解决的是句子关系判断问题，MultiNLI(识别蕴含，M推理出N，蕴含/矛盾/中立），QQP（识别语义相似），QNLI（识别是否回答了问题），STS-B（识别语义相似），MRPC（识别语义等价，微软）、RTE（识别蕴含，小数据），SWAG（识别回答问题，大数据)。<br>(b) 解决的是分类任务，SST-2（情感计算，斯坦福），CoLA（句子语言性判断，是否能成句）。<br>(c) 解决的是序列标注任务，SQuAD（判断回答的起始和结束时刻，斯坦福问答数据集，从phrase中选取answer）。<br>(d) 解决的是序列标注任务，NER（命名实体识别）。<br>总的来说 (a) 和 (b) 都是分类任务，差别在于输入的是一个句子还是一对句子。这类任务，只需通过在第一个token（即[CLS]标志）的特征序列送入全连接层即可获取识别结果。(c) 和 (d) 都是序列标注任务，这类则在多个token的特征序列送入全连接层，获取各自的标注结果。可以看到，目前只有生成式任务还没有被ko。</p>
 <p>p.s. 大名鼎鼎的GLUE任务集则包含了MultiNLI、QQP、QNLI、STS-B、MRPC、RTE、WNLI(也是识别蕴含)、SST-2、CoLA。</p>
 <h2 id="预训练方法"><a href="#预训练方法" class="headerlink" title="预训练方法"></a>预训练方法</h2><p>常见的预训练方法一般是给前面的序列去预测下一个token（像是GPT）。而BERT就提出了两个比较有意思的训练任务 —— Masked LM 和 Next Sentence Prediction。</p>

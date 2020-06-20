@@ -25,15 +25,15 @@
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言openSMILE是一款以命令行形式运行的工具，通过配置config文件来提取音频特征。主要应用于语音识别、情感计算、音乐信息获取。2.0版本之后的openSMILE包括了openCV库，可以用于视频处理和视频特征提取。官网下载有linux和windows版本提供下载，windows可以不编译直接用，建议在命令行里指明 openSMILE 绝对路径。 openSMILE的输入输出格式文件输入格">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://pic4.zhimg.com/v2-ab189f62bbe90e58da7c4c693e1c2c97_r.jpg">
-<meta property="og:image" content="https://pic3.zhimg.com/v2-61806080f48fc47e179312b61f54408e_r.jpg">
-<meta property="og:image" content="https://pic4.zhimg.com/v2-fd984660db8fd5601446f93bab42ebff_r.jpg">
-<meta property="og:image" content="https://pic4.zhimg.com/80/v2-cc5c81458336b536e2f1ce620d759b03_1440w.jpg">
-<meta property="og:updated_time" content="2020-05-03T03:48:28.519Z">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/02/opensmile/官方配置文件.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/02/opensmile/inter2011.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/02/opensmile/inter2011_func.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/02/opensmile/inter2012.jpg">
+<meta property="og:updated_time" content="2020-06-20T06:13:11.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="opensmile 工具的使用和批处理">
 <meta name="twitter:description" content="前言openSMILE是一款以命令行形式运行的工具，通过配置config文件来提取音频特征。主要应用于语音识别、情感计算、音乐信息获取。2.0版本之后的openSMILE包括了openCV库，可以用于视频处理和视频特征提取。官网下载有linux和windows版本提供下载，windows可以不编译直接用，建议在命令行里指明 openSMILE 绝对路径。 openSMILE的输入输出格式文件输入格">
-<meta name="twitter:image" content="https://pic4.zhimg.com/v2-ab189f62bbe90e58da7c4c693e1c2c97_r.jpg">
+<meta name="twitter:image" content="http://weiquanfan.xyz/2020/05/02/opensmile/官方配置文件.jpg">
   <!-- Canonical links -->
   <link rel="canonical" href="http://weiquanfan.xyz/2020/05/02/opensmile/index.html">
   
@@ -423,7 +423,7 @@
 <li>先切换到处理文件SMILExtract.exe所在的目录</li>
 <li>通过如下语句提取：<br>windows下：SMILExtract_Release -C “配置文件” -I “要处理的音频” -O “要保存特征向量的路径及文件名”<br>linux下：SMILExtract -C “配置文件” -I “要处理的音频” -O “要保存特征向量的路径及文件名”</li>
 </ol>
-<h2 id="官方配置文件"><a href="#官方配置文件" class="headerlink" title="官方配置文件"></a>官方配置文件</h2><p>官方提供了许多常见特征集的配置文件，如MFCC，PLP，以及各大语音比赛中效果好的特征集。<br><img src="https://pic4.zhimg.com/v2-ab189f62bbe90e58da7c4c693e1c2c97_r.jpg" alt="官方配置文件"></p>
+<h2 id="官方配置文件"><a href="#官方配置文件" class="headerlink" title="官方配置文件"></a>官方配置文件</h2><p>官方提供了许多常见特征集的配置文件，如MFCC，PLP，以及各大语音比赛中效果好的特征集。<br><img src="/2020/05/02/opensmile/官方配置文件.jpg" alt="官方配置文件"></p>
 <h3 id="MFCC特征"><a href="#MFCC特征" class="headerlink" title="MFCC特征"></a>MFCC特征</h3><p>为了提取MFCC特征（兼容HTK），提供了以下四个文件（它们是以它们所代表的相应的HTK参数类型命名的）：<br>MFCC12_0_D_A.conf此配置从25毫秒的音频帧中提取梅尔频率倒谱系数（以10毫秒的速率采样）（汉明窗口）。 它由26个Mel频带计算13个MFCC（0-12）组，并应用了一个权重参数为22的倒谱提升滤波器。13个一阶和13个二阶系数被附加到MFCC后。<br>MFCC12_E_D_A.conf此配置跟MFCC12_0_D_A.conf一样，但对数能量是只加在MFCC1-12上。<br>MFCC12_0_D_A_Z.conf这个配置跟MFCC12_0_D_A.conf配置一样，除了所有特征是参考整个输入序列进行了标准化。<br>MFCC12_E_D_A_Z.conf这个配置跟MFCC12_E_D_A.conf配置一样，除了所有特征是参考整个输入序列进行了标准化。<br>帧长为25ms,帧移为10ms，使用的汉明窗，预增强参数为0.97。由26个通过FFT功率谱计算的mel-滤波器组计算MFCC 0/1-12。MEL频谱的频率范围为0-8kHz，同时这些配置文件提供了-I,-O选项。输出文件格式是HTK参数文件格式。如果需要输出其他文件格式，你必须在配置文件中更改‘cHtkSink’组件类型为你想要的类型。命令行示例如下：</p>
 <pre><code>SMILExtract -C config/MFCC12_E_D_A.conf -I input.wav -O output.mfcc.htk
 </code></pre><h3 id="PLP特征"><a href="#PLP特征" class="headerlink" title="PLP特征"></a>PLP特征</h3><p>用于提取PLP倒谱系数（PLP-CC）（与HTK兼容）以下四个文件（它们是以它们所代表的相应的HTK参数类型命名的）：<br>PLP_0_D_A.conf该配置从25 ms长音频（以10ms的速率采样）帧提取Mel频率倒谱系数（汉明窗口）。它从26个Mel频带，并使用预测阶数为5计算6个PLP（0-5），并应用了一个权重参数为22的倒谱提升滤波器。6个一阶和6个二阶系数被附加到PLP-CC后。<br>PLP_E_D_A.conf该配置与PLP_0_D_A.conf相同，但对数能量是只加在PLP1-12上。<br>PLP_0_D_A_Z.conf此配置与PLP_0_D_A.conf相同，除了所有特征是参考整个输入序列进行了标准化。<br>PLP_E_D_Z.conf此配置与PLP_E_D_A.conf相同，除了所有特征是参考整个输入序列进行了标准化。<br>帧长为25ms,帧移为10ms，使用的汉明窗，预增强参数为0.97。由26个通过FFT功率谱计算的听觉mel-滤波器组(压缩系数为0.33)计算PLP 0/1-5。线性预测器的预测阶数为5。MEL频谱的频率范围为0-8kHz，同时这些配置文件提供了-I,-O选项。输出文件格式是HTK参数文件格式。如果需要输出其他文件格式，你必须在配置文件中更改‘cHtkSink’组件类型为你想要的类型。命令行示例如下：</p>
@@ -482,8 +482,8 @@ jitterLocal  本地（帧到帧）抖动（音调周期长度偏差）
 jitterDDP  差分帧间抖动（‘Jitter of the Jitter’）
 shimmerLocal  本地（帧到帧）闪烁（音调周期幅度偏差）
 </code></pre><p>对这4 + 4个LLD应用了19个函数，即上述21个函数的集合没有最小值（1％百分位数）和范围。</p>
-<p><strong>The INTERSPEECH 2011 Speaker State Challenge feature set</strong>（见2011年INTERSPEECH会议论文集）由配置文件config/IS11_speake_state.conf提供。该集包含的4368个特征是由4个能量相关+50个频谱相关的低级描述符（LLDs）和54个相应的delta作为108个LLDs，在此基础上应用33个基本函数+平均值、最小值、最大值、标准差得到3996个特征；5个声音相关和5个对应的delta作为10个LLDs，在此基础上应用33个基本函数+二次平均、上升时长、下降时长得到360个特征；6个F0基本函数和对应的delta，12个特征。<br><img src="https://pic3.zhimg.com/v2-61806080f48fc47e179312b61f54408e_r.jpg" alt="inter2011"><br><img src="https://pic4.zhimg.com/v2-fd984660db8fd5601446f93bab42ebff_r.jpg" alt="inter2011_func"></p>
-<p><strong>The INTERSPEECH 2012 Speaker Trait Challenge feature set</strong>（见2012年INTERSPEECH会议论文集）由配置文件config/IS12_speake_trait.conf提供。该集包含的6125个特征。<br><img src="https://pic4.zhimg.com/80/v2-cc5c81458336b536e2f1ce620d759b03_1440w.jpg" alt="inter2012"></p>
+<p><strong>The INTERSPEECH 2011 Speaker State Challenge feature set</strong>（见2011年INTERSPEECH会议论文集）由配置文件config/IS11_speake_state.conf提供。该集包含的4368个特征是由4个能量相关+50个频谱相关的低级描述符（LLDs）和54个相应的delta作为108个LLDs，在此基础上应用33个基本函数+平均值、最小值、最大值、标准差得到3996个特征；5个声音相关和5个对应的delta作为10个LLDs，在此基础上应用33个基本函数+二次平均、上升时长、下降时长得到360个特征；6个F0基本函数和对应的delta，12个特征。<br><img src="/2020/05/02/opensmile/inter2011.jpg" alt="inter2011"><br><img src="/2020/05/02/opensmile/inter2011_func.jpg" alt="inter2011_func"></p>
+<p><strong>The INTERSPEECH 2012 Speaker Trait Challenge feature set</strong>（见2012年INTERSPEECH会议论文集）由配置文件config/IS12_speake_trait.conf提供。该集包含的6125个特征。<br><img src="/2020/05/02/opensmile/inter2012.jpg" alt="inter2012"></p>
 <p><strong>The INTERSPEECH 2013 ComParE Challenge feature set</strong> （见2013年INTERSPEECH会议论文集）由配置文件config/IS13_ComParE.conf提供。该集包含的6373个特征，LLD包括能量，频谱，倒谱（MFCC）、声音、对数谐波噪声比（HNR），频谱谐度和心理声学频谱清晰度。</p>
 <p><strong>The MediaEval 2012 TUM feature set for violent video scenes detection</strong> 针对好莱坞流行电影的暴力进行检测的特征集在config/mediaeval2012_tum_affect/，里面有不同的设置，参考文章：Florian Eyben, Felix Weninger, Nicolas Lehment, Gerhard Rigoll, Björn Schuller: ”Violent Scenes Detection with Large, Brute-forced Acoustic and Visual Feature Sets”, Proc. MediaEval 2012 Workshop, Pisa, Italy, 04.-05.10.2012.</p>
 <p><strong>MediaEval Audio IS12based subwin2.conf</strong>包含的是从2s的子窗中提取音频特征的配置。MediaEval Audio IS12based subwin2 step0.5.conf提取一样的特征，但是2s子窗的偏移为0.5s。MediaEval VideoFunctionals.conf用于视频特征提取，如文章使用方法，需要一个包含LLDs的CSV文件（由openCV提取）作为输入和输出，ARFF文件作为视频特征。</p>

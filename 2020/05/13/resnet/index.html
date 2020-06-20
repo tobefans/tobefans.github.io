@@ -25,33 +25,33 @@
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言本文是一篇大杂烩，按照发布时间总结了CNN的一些常见网络。 AlexNetAlexNet来源于ImageNet Classification with Deep Convolutional Neural Networks。在ImageNet LSVRC-2010上以远超第二的准确率夺得了冠军，拉开了深度学习热潮的大幕。 模型结构： 模型特点：  提出了非线性激活函数ReLU (之前普遍使用Si">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-3f5a7ab9bcb15004d5a08fdf71e6a775_1440w.jpg">
-<meta property="og:image" content="https://pic2.zhimg.com/v2-dfe4eaaa4450e2b58b38c5fe82f918c0_1200x500.jpg">
-<meta property="og:image" content="https://img2018.cnblogs.com/blog/439761/201901/439761-20190130161052586-1235690884.jpg">
-<meta property="og:image" content="https://img-blog.csdn.net/20170612110417837?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWFyc2poYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-blog.csdn.net/20170612110458444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWFyc2poYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-blog.csdn.net/20160228155230994">
-<meta property="og:image" content="https://pic1.zhimg.com/v2-afba8ee2b3ba658d1a1dc970cb345308_1200x500.jpg">
-<meta property="og:image" content="https://pic4.zhimg.com/80/v2-252e6d9979a2a91c2d3033b9b73eb69f_1440w.jpg">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-7cb9c03871ab1faa7ca23199ac403bd9_1440w.jpg">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-1dfd4022d4be28392ff44c49d6b4ed94_1440w.jpg">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181029134549743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181029135504384.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70">
-<meta property="og:image" content="https://pic3.zhimg.com/80/v2-862e1c2dcb24f10d264544190ad38142_1440w.jpg">
-<meta property="og:image" content="https://pic3.zhimg.com/80/v2-2cb01c1c9a217e56c72f4c24096fe3fe_1440w.jpg">
-<meta property="og:image" content="https://pic3.zhimg.com/80/v2-e9646cb54cf45f563d1223827c15c7fe_1440w.jpg">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/21020084-d9c93ed945a498af.png?imageMogr2/auto-orient/strip|imageView2/2/w/797/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/21020084-318ee3aa5de48e3f.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/21020084-c5b84128bb3fd37a.png?imageMogr2/auto-orient/strip|imageView2/2/w/773/format/webp">
-<meta property="og:image" content="https://imlogm.github.io/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/inception/3.png">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5971313-120945c22919fbd6.PNG?imageMogr2/auto-orient/strip|imageView2/2/w/1006/format/webp">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181220124621278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE5NzQ2Mzk=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181220124639256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE5NzQ2Mzk=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-05-13T16:51:28.692Z">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/alexnet.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/vgg1.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/vgg.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/inception.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/goov1.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/inception_v3.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/ILSVRC.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/resblock.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/resnet1.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/resnet2.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/inception_v41.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/inception_v412.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/res.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/dense.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/mobile.jpg">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/resnext.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/resnext2.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/resnext_param.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/xception_base.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/xception.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/shuffle1.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/05/13/resnet/shuffle2.png">
+<meta property="og:updated_time" content="2020-06-20T06:33:46.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN的进击之路——讲讲ResNet, Inception, ResNeXt和Densenet等常见网络">
 <meta name="twitter:description" content="前言本文是一篇大杂烩，按照发布时间总结了CNN的一些常见网络。 AlexNetAlexNet来源于ImageNet Classification with Deep Convolutional Neural Networks。在ImageNet LSVRC-2010上以远超第二的准确率夺得了冠军，拉开了深度学习热潮的大幕。 模型结构： 模型特点：  提出了非线性激活函数ReLU (之前普遍使用Si">
-<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-3f5a7ab9bcb15004d5a08fdf71e6a775_1440w.jpg">
+<meta name="twitter:image" content="http://weiquanfan.xyz/2020/05/13/resnet/alexnet.jpg">
   <!-- Canonical links -->
   <link rel="canonical" href="http://weiquanfan.xyz/2020/05/13/resnet/index.html">
   
@@ -410,7 +410,7 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文是一篇大杂烩，按照发布时间总结了CNN的一些常见网络。</p>
 <h2 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h2><p>AlexNet来源于<a href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf" target="_blank" rel="noopener">ImageNet Classification with Deep Convolutional Neural Networks</a>。在ImageNet LSVRC-2010上以远超第二的准确率夺得了冠军，拉开了深度学习热潮的大幕。</p>
-<p>模型结构：<br><img src="https://pic2.zhimg.com/80/v2-3f5a7ab9bcb15004d5a08fdf71e6a775_1440w.jpg" alt="alexnet"></p>
+<p>模型结构：<br><img src="/2020/05/13/resnet/alexnet.jpg" alt="alexnet"></p>
 <p>模型特点：</p>
 <ul>
 <li>提出了非线性激活函数ReLU (之前普遍使用Sigmoid或者tanh)</li>
@@ -422,15 +422,15 @@
 </ul>
 <h2 id="VGG"><a href="#VGG" class="headerlink" title="VGG"></a>VGG</h2><p>VGG来源于Oxford的Visual Geometry Group的组提出的<a href="https://arxiv.org/pdf/1409.1556.pdf" target="_blank" rel="noopener">Very Deep Convolutional Networks for Large-Scale Image Recognition</a>，在ILSVRC 2014获得亚军。</p>
 <p>模型结构：</p>
-<p><img src="https://pic2.zhimg.com/v2-dfe4eaaa4450e2b58b38c5fe82f918c0_1200x500.jpg" alt="vgg1"></p>
-<p><img src="https://img2018.cnblogs.com/blog/439761/201901/439761-20190130161052586-1235690884.jpg" alt="vgg"></p>
+<p><img src="/2020/05/13/resnet/vgg1.jpg" alt="vgg1"></p>
+<p><img src="/2020/05/13/resnet/vgg.jpg" alt="vgg"></p>
 <p>其中D、E列就是著名的VGG-16、VGG-19。</p>
 <p>模型特点：<br>使用了3个3x3卷积核来代替7x7卷积核，使用了2个3x3卷积核来代替5x5卷积核。因此模型结构很统一简洁（卷积核尺寸3x3和最大池化尺寸2x2），并不断加深网络。</p>
 <h2 id="GoogLeNet-V1"><a href="#GoogLeNet-V1" class="headerlink" title="GoogLeNet V1"></a>GoogLeNet V1</h2><p>GoogLeNet V1来源于<a href="https://arxiv.org/pdf/1409.4842.pdf" target="_blank" rel="noopener">Going deeper with convolutions</a>，在ILSVRC 2014获得冠军。</p>
 <p>该网络的核心在于提出了Inception Module。该模块有4个分支，初始版本如下图左，包含三个不同尺度的卷积核层和一个最大池化层，并在输出通道维度上合并。由于5×5的计算量大，就进一步先通过1×1卷积降低维度再通过大卷积核。这里的最大池化也是重叠池化的，经padding后不会缩小特征图尺寸。</p>
-<p><img src="https://img-blog.csdn.net/20170612110417837?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWFyc2poYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="inception"></p>
+<p><img src="/2020/05/13/resnet/inception.png" alt="inception"></p>
 <p>模型结构：</p>
-<p><img src="https://img-blog.csdn.net/20170612110458444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWFyc2poYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="goov1"></p>
+<p><img src="/2020/05/13/resnet/goov1.png" alt="goov1"></p>
 <p>模型特点：</p>
 <ul>
 <li>多尺度卷积的思想让网络变宽</li>
@@ -443,14 +443,14 @@
 <li>另外，为了适配BN层，增大学习速率并加快学习衰减速度以适用BN规范化后的数据；去除Dropout并减轻L2正则（因BN已起到正则化的作用）；去除LRN；更彻底地对训练样本进行shuffle；减少数据增强过程中对数据的光学畸变（因为BN训练更快，每个样本被训练的次数更少，因此更真实的样本对训练更有帮助）。</li>
 </ul>
 <h2 id="GoogLeNet-V3"><a href="#GoogLeNet-V3" class="headerlink" title="GoogLeNet V3"></a>GoogLeNet V3</h2><p>GoogLeNet V3来源于<a href="https://arxiv.org/abs/1512.00567" target="_blank" rel="noopener">Rethinking the Inception Architecture for Computer Vision</a>。该网络基于V2版本，进一步改进了Inception，将3x3分解成1x3和3x1。同理，nxn可以分解成1xn和nx1。</p>
-<p><img src="https://img-blog.csdn.net/20160228155230994" alt="inception v3"></p>
+<p><img src="/2020/05/13/resnet/inception_v3.png" alt="inception v3"></p>
 <h2 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h2><p>ResNet来源于大神何凯明的<a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a>，在ILSVRC和COCO 2015上都夺得了冠军，有着里程碑的意义。</p>
-<p><img src="https://pic1.zhimg.com/v2-afba8ee2b3ba658d1a1dc970cb345308_1200x500.jpg" alt="ILSVRC"></p>
+<p><img src="/2020/05/13/resnet/ILSVRC.jpg" alt="ILSVRC"></p>
 <p>深度模型当深度到了几十层之后，由于梯度消失或者爆炸的原因，就容易发生退化问题：网络深度增加时，网络准确度出现饱和，甚至出现下降。现在假设我们有一个浅层网络，我们想通过向上堆积新层来建立深层网络，一个极端情况是这些增加的层什么也不学习，仅仅复制浅层网络的特征，即这样新层是恒等映射（Identity mapping）。在这种情况下，深层网络应该至少和浅层网络性能一样，也不应该出现退化现象。这引发了残差学习，即我们的目标是学习到残差F(x)=H(x)-x，则该层学习到的最终特征H(x)=F(x)+x。当残差为0时，此时堆积层仅仅做了恒等映射，至少网络性能不会下降，实际上残差不会为0，这也会使得堆积层在输入特征基础上学习到新的特征，从而拥有更好的性能。残差学习的结构下图所示。这有点类似与电路中的“短路”，所以是一种短路连接（shortcut connection）。</p>
-<p><img src="https://pic4.zhimg.com/80/v2-252e6d9979a2a91c2d3033b9b73eb69f_1440w.jpg" alt="resblock"></p>
+<p><img src="/2020/05/13/resnet/resblock.jpg" alt="resblock"></p>
 <p>模型结构：<br>ResNet网络参考VGG19网络，引入残差单元。如下图，第三列即是ResNet-34。</p>
-<p><img src="https://pic2.zhimg.com/80/v2-7cb9c03871ab1faa7ca23199ac403bd9_1440w.jpg" alt="resnet1"></p>
-<p><img src="https://pic1.zhimg.com/80/v2-1dfd4022d4be28392ff44c49d6b4ed94_1440w.jpg" alt="resnet2"></p>
+<p><img src="/2020/05/13/resnet/resnet1.jpg" alt="resnet1"></p>
+<p><img src="/2020/05/13/resnet/resnet2.jpg" alt="resnet2"></p>
 <p>模型特点：</p>
 <ul>
 <li>提出残差模块</li>
@@ -464,23 +464,23 @@
 <li>Inception module每个分支都没有使用pooling；</li>
 <li>每个Inception module最后都使用了一个1x1的卷积（linear activation），作用是保证identity部分和Inception部分输出特征维度相同，这样才能保证两部分特征能够相加。</li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/20181029134549743.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70" alt="inception v41"></p>
-<p><img src="https://img-blog.csdnimg.cn/20181029135504384.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6YzE1ODA2,size_27,color_FFFFFF,t_70" alt="inception v412"></p>
+<p><img src="/2020/05/13/resnet/inception_v41.png" alt="inception v41"></p>
+<p><img src="/2020/05/13/resnet/inception_v412.png" alt="inception v412"></p>
 <p>模型特点：</p>
 <ul>
 <li>使得宽模型变得更深</li>
 </ul>
 <h2 id="DenseNet"><a href="#DenseNet" class="headerlink" title="DenseNet"></a>DenseNet</h2><p>DenseNet来源于<a href="https://arxiv.org/pdf/1608.06993.pdf" target="_blank" rel="noopener">Densely Connected Convolutional Networks</a>，斩获了CVPR 2017的最佳论文奖。</p>
 <p>模型结构：<br>DenseNet有点类似于ResNet，但本质上又有很大的不同。结构上，把以前所有层的特征图都沿着通道轴拼接起来（而不是相加）。这可以理解为充分利用产生过的特征。</p>
-<p>如下为ResNet：<br><img src="https://pic3.zhimg.com/80/v2-862e1c2dcb24f10d264544190ad38142_1440w.jpg" alt="res"></p>
-<p>如下为DenseNet：<br><img src="https://pic3.zhimg.com/80/v2-2cb01c1c9a217e56c72f4c24096fe3fe_1440w.jpg" alt="dense"></p>
+<p>如下为ResNet：<br><img src="/2020/05/13/resnet/res.jpg" alt="res"></p>
+<p>如下为DenseNet：<br><img src="/2020/05/13/resnet/dense.jpg" alt="dense"></p>
 <p>模型特点：</p>
 <ul>
 <li>建立了不同层的连接关系，充分利用特征图</li>
 </ul>
 <h2 id="MobileNet"><a href="#MobileNet" class="headerlink" title="MobileNet"></a>MobileNet</h2><p>MobileNet来源于Google提出的<a href="https://arxiv.org/abs/1704.04861" target="_blank" rel="noopener">MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications</a>，是一种小巧而高效的CNN模型。</p>
 <p>模型结构：<br>MobileNet的核心在于提出了深度可分离卷积，它把传统卷积分解成了深度卷积(depthwise convolution)和逐点卷积(pointwise convolution)，从而大量减少参数量。</p>
-<p><img src="https://pic3.zhimg.com/80/v2-e9646cb54cf45f563d1223827c15c7fe_1440w.jpg" alt="mobile"></p>
+<p><img src="/2020/05/13/resnet/mobile.jpg" alt="mobile"></p>
 <p>对于输入特征图(DF,DF,M)，输出特征图(DG,DG,N)，传统卷积核的尺寸为(K,K,M,N)，如下图(a)。<br>而对于深度可分离卷积，深度卷积的尺寸为(K,K,1,M)，它将这M个卷积核各自应用于输入特征图的各个通道（这与传统卷积不同，这里相乘后不需要沿着通道轴相加），输出特征为(DG,DG,M)，如(b)所示。逐点卷积的尺寸为(1,1,M,N)，这个就是普通的1×1卷积了，输出特征为(DG,DG,N)，如(c)所示。<br>可以看到，参数量从（K×K×M×N）变成（K×K×1×M + 1×1×M×N），减小了 M(KKN - KK -N)。</p>
 <p>模型特点：</p>
 <ul>
@@ -488,10 +488,10 @@
 </ul>
 <h2 id="ResNeXt"><a href="#ResNeXt" class="headerlink" title="ResNeXt"></a>ResNeXt</h2><p>ResNeXt来源于<a href="https://arxiv.org/abs/1611.05431" target="_blank" rel="noopener">Aggregated Residual Transformations for Deep Neural Networks</a>。它是基于ResNet，吸收了GoogLeNet的Inception，所以和谷歌的Inception-ResNet很像。</p>
 <p>模型结构：<br>如下图，左图是是ResNet，右图是新的ResNeXt。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/21020084-d9c93ed945a498af.png?imageMogr2/auto-orient/strip|imageView2/2/w/797/format/webp" alt="resnext"></p>
+<p><img src="/2020/05/13/resnet/resnext.png" alt="resnext"></p>
 <p>该结构可以做如下等效，第三种就是等效的分组结构。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/21020084-318ee3aa5de48e3f.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp" alt="resnext2"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/21020084-c5b84128bb3fd37a.png?imageMogr2/auto-orient/strip|imageView2/2/w/773/format/webp" alt="resnext param"></p>
+<p><img src="/2020/05/13/resnet/resnext2.png" alt="resnext2"></p>
+<p><img src="/2020/05/13/resnet/resnext_param.png" alt="resnext param"></p>
 <p>模型特点：</p>
 <ul>
 <li>ResNeXt的分支的拓扑结构是相同的，而Inception V4需要人工设计</li>
@@ -499,9 +499,9 @@
 </ul>
 <h2 id="Xception"><a href="#Xception" class="headerlink" title="Xception"></a>Xception</h2><p>Xception来源于<a href="https://arxiv.org/abs/1610.02357" target="_blank" rel="noopener">Xception: Deep Learning with Depthwise Separable Convolutions</a>。它是Inception-V3的另一种改进，吸收了深度可分离卷积，造就了一种参数量相对少一些的网络结构。</p>
 <p>模型结构：<br>Inception-V3可做如下简化，可以看到，如下图和深度可分离卷积是很像的，只是下图是先进行1×1的卷积，再进行channel-wise的spatial convolution，最后concat，而后者是先进行一个channel-wise的spatial convolution，然后是1×1的卷积。所以作者干脆把它换成深度可分离卷积。</p>
-<p><img src="https://imlogm.github.io/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/inception/3.png" alt></p>
+<p><img src="/2020/05/13/resnet/xception_base.png" alt></p>
 <p>最终整体结构如下，其中SeparalbeConv即是深度可分离卷积。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5971313-120945c22919fbd6.PNG?imageMogr2/auto-orient/strip|imageView2/2/w/1006/format/webp" alt="xception"></p>
+<p><img src="/2020/05/13/resnet/xception.png" alt="xception"></p>
 <p>模型特点：</p>
 <ul>
 <li>虽然使用了深度可分离卷积，但网络也加宽了，总体参数量和Inception-V3差不多，性能提升了。</li>
@@ -509,10 +509,9 @@
 </ul>
 <h2 id="ShuffleNet"><a href="#ShuffleNet" class="headerlink" title="ShuffleNet"></a>ShuffleNet</h2><p>Xception来源于<a href="https://arxiv.org/pdf/1707.01083.pdf" target="_blank" rel="noopener">ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices</a>。这也是一款效率极高的轻型CNN模型，通过逐点群卷积(pointwise group convolution)和通道混洗(channel shuffle)大大降低计算量。</p>
 <p>模型结构：<br>如下图左是普通的分组卷积，但是经过多层分组卷积后某个输出channel仅仅来自输入channel的一小部分，学出来的特征也很局限，因此作者提出了通道混洗channel shuffle，过程如下图中，在进行GConv2之前，对其输入feature map做一个分配，也就是每个group分成几个subgroup，然后将不同group的subgroup作为GConv2的一个group的输入，使得GConv2的每一个group都能卷积输入的所有group的feature map，结果图下图右。</p>
-<p><img src="https://img-blog.csdnimg.cn/20181220124621278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE5NzQ2Mzk=,size_16,color_FFFFFF,t_70" alt="channel shuffle"></p>
+<p><img src="/2020/05/13/resnet/shuffle1.png" alt="channel shuffle"></p>
 <p>pointwise group convolution，其实就是带group的卷积核为1×1的卷积。下图左是一个深度可分离卷积，而中间的图则是一个使用了pointwise group convolution的ShuffleNet unit，它将1×1卷积变成分组卷积，并在第一组分组卷积后加上通道混洗而成。右边的图则是带有降采样的ShuffleNet unit，它一方面在辅分支加入步长为2的3×3平均池化，一方面将最后的相加变成了通道级联。</p>
-<p><img src="https://img-blog.csdnimg.cn/20181220124639256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE5NzQ2Mzk=,size_16,color_FFFFFF,t_70" alt="pointwise group convolution"></p>
-<p>模型特征：</p>
+<p><img src="/2020/05/13/resnet/shuffle2.png" alt="pointwise group convolution"><br>模型特征：</p>
 <ul>
 <li>应用了1×1的通道卷积</li>
 <li>提出了通道混洗</li>
