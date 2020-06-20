@@ -25,10 +25,13 @@
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="前言语谱图（spectrogram或specgram），也叫声谱图，可以简单看做一个二维矩阵，其纵轴表示频率，横轴表示时间，矩阵的值表示能量强弱。由于它拥有着频率和时间两个维度的信息，所以是比较综合地表示原语音信息的一种特征。另外，我将其看做语音和图像的一种连接，因为图像领域的模型发展得较快，所以通过这种方式把语音转换成一种特殊的图像再进一步处理。 语谱图流程简介1. 将语音可交叉地分成多帧（由于">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-27T10:45:09.634Z">
+<meta property="og:image" content="http://weiquanfan.xyz/.xyz//spec_librosa.png">
+<meta property="og:image" content="http://weiquanfan.xyz/.xyz//spec_librosa_power.png">
+<meta property="og:updated_time" content="2020-06-20T05:36:26.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="语谱图的matlab提取和python提取">
 <meta name="twitter:description" content="前言语谱图（spectrogram或specgram），也叫声谱图，可以简单看做一个二维矩阵，其纵轴表示频率，横轴表示时间，矩阵的值表示能量强弱。由于它拥有着频率和时间两个维度的信息，所以是比较综合地表示原语音信息的一种特征。另外，我将其看做语音和图像的一种连接，因为图像领域的模型发展得较快，所以通过这种方式把语音转换成一种特殊的图像再进一步处理。 语谱图流程简介1. 将语音可交叉地分成多帧（由于">
+<meta name="twitter:image" content="http://weiquanfan.xyz/.xyz//spec_librosa.png">
   <!-- Canonical links -->
   <link rel="canonical" href="http://weiquanfan.xyz/2020/05/02/specgram/index.html">
   
@@ -460,7 +463,7 @@ plt.imshow(specg, origin=&quot;lower&quot;, cmap = &quot;jet&quot;, aspect = &qu
 plt.show()
 plt.xticks([])
 plt.yticks([])
-plt.savefig(‘specgram.png&#39;,bbox_inches=&#39;tight&#39;,pad_inches=0.0)
+plt.savefig(&#39;specgram.png&#39;,bbox_inches=&#39;tight&#39;,pad_inches=0.0)
 plt.close()
 </code></pre><p>再看看已经封装好的版本。</p>
 <pre><code>from scipy import io
@@ -475,7 +478,40 @@ io.savemat(&#39;specgram.mat&#39;, {&#39;specg&#39;:specg[0]})    # 保存语谱
 # pad_to为上边的nfft
 # NFFT为上边的windows_length（为什么nfft不设置为上边的nfft呢，迷惑）
 # noverlap为上边的overlap_length
-</code></pre><h2 id="语谱图的一些可能有的小疑惑"><a href="#语谱图的一些可能有的小疑惑" class="headerlink" title="语谱图的一些可能有的小疑惑"></a>语谱图的一些可能有的小疑惑</h2><ol>
+</code></pre><h3 id="补充一个librosa版本"><a href="#补充一个librosa版本" class="headerlink" title="补充一个librosa版本"></a>补充一个librosa版本</h3><p>librosa提取的是梅尔频谱图，即在频谱图基础上再进一步将各帧通过梅尔滤波器(还可加对数操作)。另外若是在此基础上再进行倒谱即获得MFCC。<br>还要注意到，梅尔频谱图的输出尺寸，频率等于梅尔滤波器的个数n_mels, 时间则只取决于窗移(非重叠数)hop_length(还没想明白，推测可能是进行了填充，所以尺寸上忽视了窗长的影响)。<br>此外，还可通过设置power参数来确定要计算梅尔频谱图(设置为1)还是梅尔功率图(设置为2)。</p>
+<pre><code>from matplotlib import pyplot as plt
+import librosa
+import librosa.display
+
+
+# Load a wav file
+y, sr = librosa.load(&#39;./test.wav&#39;, sr=None)
+# plot a wavform
+plt.figure()
+librosa.display.waveplot(y, sr)
+# plt.plot(y)
+plt.title(&#39;wavform&#39;)
+plt.show()
+
+# extract mel spectrogram feature
+melspec = librosa.feature.melspectrogram(y, sr, n_fft=1024, win_length=1024, hop_length=512, n_mels=128, power=2.0)
+# convert to log scale
+logmelspec = librosa.power_to_db(melspec)
+# plot mel spectrogram
+plt.figure()
+librosa.display.specshow(logmelspec, sr=sr, x_axis=&#39;time&#39;, y_axis=&#39;mel&#39;)
+plt.title(&#39;spectrogram&#39;)
+plt.show()
+
+# aspect设为auto即可自动拉宽图
+plt.imshow(logmelspec, origin=&quot;lower&quot;, cmap = &quot;jet&quot;, aspect = &quot;auto&quot;, interpolation = &quot;none&quot;)
+plt.show()
+plt.xticks([])
+plt.yticks([])
+plt.savefig(&#39;specgram.png&#39;,bbox_inches=&#39;tight&#39;,pad_inches=0.0)
+plt.close()
+</code></pre><p><img src="/.xyz//spec_librosa.png" alt><br><img src="/.xyz//spec_librosa_power.png" alt></p>
+<h2 id="语谱图的一些可能有的小疑惑"><a href="#语谱图的一些可能有的小疑惑" class="headerlink" title="语谱图的一些可能有的小疑惑"></a>语谱图的一些可能有的小疑惑</h2><ol>
 <li>关于nfft<br><strong>nfft既表示时域的点数也关联频域的点数</strong>。该数为2的幂数时更高效，但不是也没问题。<br>nfft需要比窗长的值更大，然后加窗后的帧会被补零到nfft长度再进行fft。</li>
 <li>关于频率分辨率<br>频率轴上每一个点对应fs/nfft的频率。另外由于输出nfft/2+1个频率点，所以输出的频率范围为0到nfft/2×fs/nfft=fs/2。</li>
 <li>关于自定义输出语谱图的尺寸问题<br>时间轴尺寸为1+fix((s-n)/h)， 由windows_length和overlap_length决定。实际应用时由于各语音长度不同，时间尺寸一般都要进行截断或补零到一个固定值。截断的话可以截一段（起始信息，中间信息），也可以截多段（交叉不交叉都行）。<br>频率轴尺寸为1+n/2，仅决定于nfft（python中的pad_to参数），所以可以通过设置该值控制频率轴尺寸。但是也不要比窗长大太多，否则补零太多可能就没什么信息了。nfft调大时，窗长可以跟着调大，为了防止导致的时间轴太短可以调高overlap_length。<br>另外，其他参数不变时，仅变换nfft，可视化出来时可能肉眼看起来一样，但实际分辨率仍然是不同的。这也导致了一个问题，送入网络的是要用单通道的直接计算出来的语谱图，还是用可视化函数绘制出来的三通道的语谱图，这就根据实际情况去尝试了。</li>
