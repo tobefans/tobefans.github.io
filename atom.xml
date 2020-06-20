@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-06-20T07:08:22.853Z</updated>
+  <updated>2020-06-20T07:50:16.900Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于keras的简易语音识别</title>
+    <link href="http://weiquanfan.xyz/2020/06/20/ASR-with-keras/"/>
+    <id>http://weiquanfan.xyz/2020/06/20/ASR-with-keras/</id>
+    <published>2020-06-20T07:13:59.000Z</published>
+    <updated>2020-06-20T07:50:16.900Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;最近忽然看到不是基于kaldi的ASR代码，尝试了一下发现效果还不错，搬上来记录一下。&lt;/p&gt;
+&lt;p&gt;源码地址：&lt;/p&gt;
+&lt;p&gt;&lt;a hre
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>使用QT designer、python搭建界面程序</title>

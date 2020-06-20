@@ -17,34 +17,30 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>讲讲横扫nlp任务的BERT模型 | Hexo</title>
-  <meta name="description" content="前言本文讲解Google在2019年发表的论文BERT: Pre-training of Deep Bidirectional Transformers forLanguage Understanding 。从标题可以看出，该论文基于Transformer模型，提出了一款用于语言理解的预训练模型，并在GLUE, SQuAD等nlp任务中都取得了很好的效果。该模型的创新点实际上不在于模型结构，而在于">
-<meta name="keywords" content="BERT,Transformer,GLUE">
+  <title>基于keras的简易语音识别 | Hexo</title>
+  <meta name="description" content="简介最近忽然看到不是基于kaldi的ASR代码，尝试了一下发现效果还不错，搬上来记录一下。 源码地址： https://pan.baidu.com/s/1tFlZkMJmrMTD05cd_zxmAg 提取码：ndrr 数据集需要自行下载。 数据集数据集使用的是清华大学的thchs30中文数据，data文件夹中包含（.wav文件和.trn文件；trn文件里存放的是.wav文件的文字描述:第一行为词，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="讲讲横扫nlp任务的BERT模型">
-<meta property="og:url" content="http://weiquanfan.xyz/2020/05/07/BERT/index.html">
+<meta property="og:title" content="基于keras的简易语音识别">
+<meta property="og:url" content="http://weiquanfan.xyz/2020/06/20/ASR-with-keras/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
-<meta property="og:description" content="前言本文讲解Google在2019年发表的论文BERT: Pre-training of Deep Bidirectional Transformers forLanguage Understanding 。从标题可以看出，该论文基于Transformer模型，提出了一款用于语言理解的预训练模型，并在GLUE, SQuAD等nlp任务中都取得了很好的效果。该模型的创新点实际上不在于模型结构，而在于">
+<meta property="og:description" content="简介最近忽然看到不是基于kaldi的ASR代码，尝试了一下发现效果还不错，搬上来记录一下。 源码地址： https://pan.baidu.com/s/1tFlZkMJmrMTD05cd_zxmAg 提取码：ndrr 数据集需要自行下载。 数据集数据集使用的是清华大学的thchs30中文数据，data文件夹中包含（.wav文件和.trn文件；trn文件里存放的是.wav文件的文字描述:第一行为词，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/07/BERT/BERT模型.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/07/BERT/embedding.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/07/BERT/迁移策略.jpg">
-<meta property="og:updated_time" content="2020-06-20T06:36:37.133Z">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/06/20/ASR-with-keras/thchs30.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/06/20/ASR-with-keras/asr_network.png">
+<meta property="og:updated_time" content="2020-06-20T07:50:16.900Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="讲讲横扫nlp任务的BERT模型">
-<meta name="twitter:description" content="前言本文讲解Google在2019年发表的论文BERT: Pre-training of Deep Bidirectional Transformers forLanguage Understanding 。从标题可以看出，该论文基于Transformer模型，提出了一款用于语言理解的预训练模型，并在GLUE, SQuAD等nlp任务中都取得了很好的效果。该模型的创新点实际上不在于模型结构，而在于">
-<meta name="twitter:image" content="http://weiquanfan.xyz/2020/05/07/BERT/BERT模型.jpg">
+<meta name="twitter:title" content="基于keras的简易语音识别">
+<meta name="twitter:description" content="简介最近忽然看到不是基于kaldi的ASR代码，尝试了一下发现效果还不错，搬上来记录一下。 源码地址： https://pan.baidu.com/s/1tFlZkMJmrMTD05cd_zxmAg 提取码：ndrr 数据集需要自行下载。 数据集数据集使用的是清华大学的thchs30中文数据，data文件夹中包含（.wav文件和.trn文件；trn文件里存放的是.wav文件的文字描述:第一行为词，">
+<meta name="twitter:image" content="http://weiquanfan.xyz/2020/06/20/ASR-with-keras/thchs30.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://weiquanfan.xyz/2020/05/07/BERT/index.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2020/06/20/ASR-with-keras/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
-  <link rel="stylesheet" href="/css/style.css">
-  
-    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
   
   
@@ -352,14 +348,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-BERT" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-ASR-with-keras" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      讲讲横扫nlp任务的BERT模型
+      基于keras的简易语音识别
     </h1>
   
 
@@ -367,58 +363,386 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/05/07/BERT/" class="article-date">
-	  <time datetime="2020-05-07T08:08:20.000Z" itemprop="datePublished">2020-05-07</time>
+	<a href="/2020/06/20/ASR-with-keras/" class="article-date">
+	  <time datetime="2020-06-20T07:13:59.000Z" itemprop="datePublished">2020-06-20</time>
 	</a>
 </span>
         
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/深度学习模型/">深度学习模型</a>
-  </span>
-
         
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/BERT/">BERT</a>, <a class="article-tag-link" href="/tags/GLUE/">GLUE</a>, <a class="article-tag-link" href="/tags/Transformer/">Transformer</a>
-  </span>
-
 
         
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/05/07/BERT/" class="leancloud_visitors"  data-flag-title="讲讲横扫nlp任务的BERT模型">0</span>
+    	<span id="/2020/06/20/ASR-with-keras/" class="leancloud_visitors"  data-flag-title="基于keras的简易语音识别">0</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/07/BERT/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/20/ASR-with-keras/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文讲解Google在2019年发表的论文<a href="https://arxiv.org/pdf/1810.04805.pdf" target="_blank" rel="noopener">BERT: Pre-training of Deep Bidirectional Transformers for<br>Language Understanding</a> 。从标题可以看出，该论文基于Transformer模型，提出了一款用于语言理解的预训练模型，并在GLUE, SQuAD等nlp任务中都取得了很好的效果。该模型的创新点实际上不在于模型结构，而在于预训练的方法。以下围绕这两方面都进行一些讲解。</p>
-<h2 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h2><h3 id="总体框图"><a href="#总体框图" class="headerlink" title="总体框图"></a>总体框图</h3><p>首先最好还是先理解一下<a href="http://weiquanfan.xyz/2020/05/05/transfomer/">Transfomer</a>，这是BERT模型的基础所在。简而言之，Transfomer包含N个编码器和解码器。编码器将输入序列编码成带有全局新的特征序列，解码器将编码器的特征序列解码成预测结果。BERT使用的正是其中的编码器，模型如下所示。</p>
-<p><img src="/2020/05/07/BERT/BERT模型.jpg" alt="BERT模型"></p>
-<p><strong>注意：并不是一个Tm代表一个Transformer，可以看成一行Tm表示一个Transformer的编码器，而编码器也不是两层可以有多层。那么，输入序列送入BERT后，最后一层Tm将对每一个输入token都生成一个新的特征序列，而T则表示任务，一般都是用全连接层来完成分类任务。</strong>另外用来对比的是，与GPT是单向的Transformer连接，ELMo是双向的LSTM连接。</p>
-<h3 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h3><p>从框图上可以看到，输入序列是各token的embedding。在Transfomer中，这种嵌入由word embedding加上positional embedding而来。而在BERT中，还要额外加上一个segment embedding，用于指示各个token属于输入的第几个句子。这是因为有的nlp任务是输入一对句子的，需要借此加以区分。而且，positional embedding也不是沿用三角函数，三种embedding都是学习出来的。<br>另外，一开始的token，除了要在一开始添加一个起始标志[CLS]之外，还要在不同句子的过渡位置插一个[SEP]标志（如果有多句子的话）。</p>
-<p><img src="/2020/05/07/BERT/embedding.jpg" alt="embedding"></p>
-<h3 id="迁移策略"><a href="#迁移策略" class="headerlink" title="迁移策略"></a>迁移策略</h3><p>BERT是一个预训练模型，所以我们要怎么拿过来用呢？官方为我们提供了各种任务的应用方法。<br>首先，NLP的下游任务可以分为4类：</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>最近忽然看到不是基于kaldi的ASR代码，尝试了一下发现效果还不错，搬上来记录一下。</p>
+<p>源码地址：</p>
+<p><a href="https://pan.baidu.com/s/1tFlZkMJmrMTD05cd_zxmAg" target="_blank" rel="noopener">https://pan.baidu.com/s/1tFlZkMJmrMTD05cd_zxmAg</a></p>
+<p>提取码：ndrr</p>
+<p>数据集需要自行下载。</p>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>数据集使用的是清华大学的<a href="https://www.openslr.org/18/" target="_blank" rel="noopener">thchs30</a>中文数据，data文件夹中包含（.wav文件和.trn文件；trn文件里存放的是.wav文件的文字描述:第一行为词，第二行为拼音，第三行为音素）.</p>
+<p><img src="/2020/06/20/ASR-with-keras/thchs30.png" alt></p>
+<h2 id="模型预测"><a href="#模型预测" class="headerlink" title="模型预测"></a>模型预测</h2><p>先直接解释有了训好的模型后如何使用，代码如下：</p>
+<pre><code># -*- coding: utf-8 -*-
+from keras.models import load_model
+from keras import backend as K
+import numpy as np
+import librosa
+from python_speech_features import mfcc
+import pickle
+import glob
+
+wavs = glob.glob(&#39;A2_8.wav&#39;)
+print(wavs)
+with open(&#39;dictionary.pkl&#39;, &#39;rb&#39;) as fr:
+    [char2id, id2char, mfcc_mean, mfcc_std] = pickle.load(fr)
+
+mfcc_dim = 13
+model = load_model(&#39;asr.h5&#39;)
+
+index = np.random.randint(len(wavs))
+print(wavs[index])
+
+## 读取数据，并去除掉没说话的起始结束时间
+audio, sr = librosa.load(wavs[index])
+energy = librosa.feature.rmse(audio)
+frames = np.nonzero(energy &gt;= np.max(energy) / 5)
+indices = librosa.core.frames_to_samples(frames)[1]
+audio = audio[indices[0]:indices[-1]] if indices.size else audio[0:0]
+X_data = mfcc(audio, sr, numcep=mfcc_dim, nfft=551)
+X_data = (X_data - mfcc_mean) / (mfcc_std + 1e-14)
+print(X_data.shape)
+
+pred = model.predict(np.expand_dims(X_data, axis=0))
+pred_ids = K.eval(K.ctc_decode(pred, [X_data.shape[0]], greedy=False, beam_width=10, top_paths=1)[0][0])
+pred_ids = pred_ids.flatten().tolist()
+print(&#39;&#39;.join([id2char[i] for i in pred_ids]))
+</code></pre><h2 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h2><p>模型采用了 TDNN 网络结构，并直接通过字符级别来预测，直接根据常见度将字符对应成数字标签。整个流程而言，</p>
 <ul>
-<li>句子关系判断：识别蕴含(entailment)、识别语义相似等</li>
-<li>分类任务：文本分类、情感计算等</li>
-<li>序列标注：分词、实体识别、语义标注等</li>
-<li>生成式任务：机器翻译、文本摘要等</li>
+<li>先将一个个语音样本变成MFCC特征，即一个样本的维度为<code>time*num_MFCC</code>，time维度将被补齐到batch里最长的time。</li>
+<li>将批量样本送入网络，采用1d卷积，仅在时间轴上卷积，一个样本的输出维度为<code>time*(num_words+1)</code>，加的1代表预测了空状态。</li>
+<li>通过CTC Loss计算损失</li>
 </ul>
-<p><img src="/2020/05/07/BERT/迁移策略.jpg" alt="迁移策略"></p>
-<p>图中 (a) 解决的是句子关系判断问题，MultiNLI(识别蕴含，M推理出N，蕴含/矛盾/中立），QQP（识别语义相似），QNLI（识别是否回答了问题），STS-B（识别语义相似），MRPC（识别语义等价，微软）、RTE（识别蕴含，小数据），SWAG（识别回答问题，大数据)。<br>(b) 解决的是分类任务，SST-2（情感计算，斯坦福），CoLA（句子语言性判断，是否能成句）。<br>(c) 解决的是序列标注任务，SQuAD（判断回答的起始和结束时刻，斯坦福问答数据集，从phrase中选取answer）。<br>(d) 解决的是序列标注任务，NER（命名实体识别）。<br>总的来说 (a) 和 (b) 都是分类任务，差别在于输入的是一个句子还是一对句子。这类任务，只需通过在第一个token（即[CLS]标志）的特征序列送入全连接层即可获取识别结果。(c) 和 (d) 都是序列标注任务，这类则在多个token的特征序列送入全连接层，获取各自的标注结果。可以看到，目前只有生成式任务还没有被ko。</p>
-<p>p.s. 大名鼎鼎的GLUE任务集则包含了MultiNLI、QQP、QNLI、STS-B、MRPC、RTE、WNLI(也是识别蕴含)、SST-2、CoLA。</p>
-<h2 id="预训练方法"><a href="#预训练方法" class="headerlink" title="预训练方法"></a>预训练方法</h2><p>常见的预训练方法一般是给前面的序列去预测下一个token（像是GPT）。而BERT就提出了两个比较有意思的训练任务 —— Masked LM 和 Next Sentence Prediction。</p>
-<h3 id="Masked-LM"><a href="#Masked-LM" class="headerlink" title="Masked LM"></a>Masked LM</h3><p>为了实现模型的双向，就不能一直给定前面预测后面，于是作者提出了一个trick。在训练过程中，随机mask掉15%的token，即把相应位置的token替换成一个[MASK]标识，而任务的目标就是要去恢复这个句子（包含MASK的词），而损失函数只考虑了MASK位置的预测值，忽视掉非masked的值。这样，MASK的词可前可后，就实现了模型的双向性。</p>
-<p>由此也衍生出了一个问题，就是在实际预测的时候是不会碰到[MASK]的，用了太多[MASK]就容易影响到模型。所以作者又用了个小技巧，选中了要mask的token后，其中10%的token会被替代成其他token，10%的token不替换，剩下的80%才被替换为[MASK]。</p>
-<h3 id="Next-Sentence-Prediction"><a href="#Next-Sentence-Prediction" class="headerlink" title="Next Sentence Prediction"></a>Next Sentence Prediction</h3><p>由于nlp中存在需要输入两个句子的句子关系判断任务，所以需要增设一个让模型理解句子之间关系的任务，于是Next Sentence Prediction应运而生。具体而言，就是输入两个句子，由模型来判断这两个句子是不是连续的上下句。其中，为了保持样本平衡性，选了50%的连续的正样本，再随机选50%的无关的负样本。其实这个任务和seq2seq的任务有点异曲同工之妙，只是从单词级别变到了句子级别。举个例子：<br>正样本：今天[MASK]（天气）真好，正好我们[MASK]（出去）吃饭吧。<br>负样本：今天[MASK]（天气）真好，[MASK]（我）吃饱了。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实BERT模型除了提出这两种训练方法外，大量的数据肯定对这个预训练模型有很强的作用，不过一般人没这种计算资源…所以还是很感谢谷歌开源出来的预训练模型，可以很方便的使用并达到非常好的效果。在使用时，如果需要用到自己的数据库上，要么就是完全自己写然后导入BERT模型，要么可以直接使用官方的代码，如run_glue.py，只需要修改数据的预处理，定义好新的类，然后指定类别数等参数，就可以直接使用了。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://www.cnblogs.com/rucwxb/p/10277217.html" target="_blank" rel="noopener">https://www.cnblogs.com/rucwxb/p/10277217.html</a><br><a href="https://zhuanlan.zhihu.com/p/46652512" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/46652512</a></p>
+<p><img src="/2020/06/20/ASR-with-keras/asr_network.png" alt></p>
+<pre><code># -*- coding: utf-8 -*-
+#导入相关的库
+from keras.models import Model
+from keras.layers import Input, Activation, Conv1D, Lambda, Add, Multiply, BatchNormalization
+from keras.optimizers import Adam, SGD
+from keras import backend as K
+from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
+
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+
+import random
+import pickle
+import glob
+from tqdm import tqdm
+import os
+
+from python_speech_features import mfcc
+import scipy.io.wavfile as wav
+import librosa
+from IPython.display import Audio
+
+
+
+#读取数据集文件
+text_paths = glob.glob(&#39;data/*.trn&#39;)
+total = len(text_paths)
+print(total)
+
+with open(text_paths[0], &#39;r&#39;, encoding=&#39;utf8&#39;) as fr:
+    lines = fr.readlines()
+    print(lines)
+
+
+
+#数据集文件trn内容读取保存到数组中
+texts = []
+paths = []
+for path in text_paths:
+    with open(path, &#39;r&#39;, encoding=&#39;utf8&#39;) as fr:
+        lines = fr.readlines()
+        line = lines[0].strip(&#39;\n&#39;).replace(&#39; &#39;, &#39;&#39;)
+        texts.append(line)
+        paths.append(path.rstrip(&#39;.trn&#39;))
+
+print(paths[0], texts[0])
+
+
+
+#定义mfcc数
+mfcc_dim = 13
+
+#根据数据集标定的音素读入
+def load_and_trim(path):
+    audio, sr = librosa.load(path)
+    energy = librosa.feature.rmse(audio)
+    frames = np.nonzero(energy &gt;= np.max(energy) / 5)
+    indices = librosa.core.frames_to_samples(frames)[1]
+    audio = audio[indices[0]:indices[-1]] if indices.size else audio[0:0]
+
+    return audio, sr
+
+#可视化，显示语音文件的MFCC图
+def visualize(index):
+    path = paths[index]
+    text = texts[index]
+    print(&#39;Audio Text:&#39;, text)
+
+    audio, sr = load_and_trim(path)
+    plt.figure(figsize=(12, 3))
+    plt.plot(np.arange(len(audio)), audio)
+    plt.title(&#39;Raw Audio Signal&#39;)
+    plt.xlabel(&#39;Time&#39;)
+    plt.ylabel(&#39;Audio Amplitude&#39;)
+    plt.show()
+
+    feature = mfcc(audio, sr, numcep=mfcc_dim, nfft=551)
+    print(&#39;Shape of MFCC:&#39;, feature.shape)
+
+    fig = plt.figure(figsize=(12, 5))
+    ax = fig.add_subplot(111)
+    im = ax.imshow(feature, cmap=plt.cm.jet, aspect=&#39;auto&#39;)
+    plt.title(&#39;Normalized MFCC&#39;)
+    plt.ylabel(&#39;Time&#39;)
+    plt.xlabel(&#39;MFCC Coefficient&#39;)
+    plt.colorbar(im, cax=make_axes_locatable(ax).append_axes(&#39;right&#39;, size=&#39;5%&#39;, pad=0.05))
+    ax.set_xticks(np.arange(0, 13, 2), minor=False);
+    plt.show()
+
+    return path
+
+
+Audio(visualize(0))
+
+
+
+#提取音频特征并存储
+features = []
+for i in tqdm(range(total)):
+    path = paths[i]
+    audio, sr = load_and_trim(path)
+    features.append(mfcc(audio, sr, numcep=mfcc_dim, nfft=551))
+
+print(len(features), features[0].shape)
+
+
+
+#随机选择100个数据集
+samples = random.sample(features, 100)
+samples = np.vstack(samples)
+#平均MFCC的值为了归一化处理
+mfcc_mean = np.mean(samples, axis=0)
+#计算标准差为了归一化
+mfcc_std = np.std(samples, axis=0)
+print(mfcc_mean)
+print(mfcc_std)
+#归一化特征
+features = [(feature - mfcc_mean) / (mfcc_std + 1e-14) for feature in features]
+
+
+
+#将数据集读入的标签和对应id存储列表
+chars = {}
+for text in texts:
+    for c in text:
+        chars[c] = chars.get(c, 0) + 1
+
+chars = sorted(chars.items(), key=lambda x: x[1], reverse=True)
+chars = [char[0] for char in chars]
+print(len(chars), chars[:100])
+
+char2id = {c: i for i, c in enumerate(chars)}
+id2char = {i: c for i, c in enumerate(chars)}
+
+
+
+
+data_index = np.arange(total)
+np.random.shuffle(data_index)
+train_size = int(0.9 * total)
+test_size = total - train_size
+train_index = data_index[:train_size]
+test_index = data_index[train_size:]
+#神经网络输入和输出X,Y的读入数据集特征
+X_train = [features[i] for i in train_index]
+Y_train = [texts[i] for i in train_index]
+X_test = [features[i] for i in test_index]
+Y_test = [texts[i] for i in test_index]
+
+batch_size = 16
+
+#定义训练批次的产生，一次训练16个
+def batch_generator(x, y, batch_size=batch_size):
+    offset = 0
+    while True:
+        offset += batch_size
+
+        if offset == batch_size or offset &gt;= len(x):
+            data_index = np.arange(len(x))
+            np.random.shuffle(data_index)
+            x = [x[i] for i in data_index]
+            y = [y[i] for i in data_index]
+            offset = batch_size
+
+        X_data = x[offset - batch_size: offset]
+        Y_data = y[offset - batch_size: offset]
+
+        X_maxlen = max([X_data[i].shape[0] for i in range(batch_size)])
+        Y_maxlen = max([len(Y_data[i]) for i in range(batch_size)])
+
+        X_batch = np.zeros([batch_size, X_maxlen, mfcc_dim])
+        Y_batch = np.ones([batch_size, Y_maxlen]) * len(char2id)
+        X_length = np.zeros([batch_size, 1], dtype=&#39;int32&#39;)
+        Y_length = np.zeros([batch_size, 1], dtype=&#39;int32&#39;)
+
+        for i in range(batch_size):
+            X_length[i, 0] = X_data[i].shape[0]
+            X_batch[i, :X_length[i, 0], :] = X_data[i]
+
+            Y_length[i, 0] = len(Y_data[i])
+            Y_batch[i, :Y_length[i, 0]] = [char2id[c] for c in Y_data[i]]
+
+        inputs = {&#39;X&#39;: X_batch, &#39;Y&#39;: Y_batch, &#39;X_length&#39;: X_length, &#39;Y_length&#39;: Y_length}
+        outputs = {&#39;ctc&#39;: np.zeros([batch_size])}
+
+        yield (inputs, outputs)
+
+
+
+
+
+epochs = 50
+num_blocks = 3
+filters = 128
+
+X = Input(shape=(None, mfcc_dim,), dtype=&#39;float32&#39;, name=&#39;X&#39;)
+Y = Input(shape=(None,), dtype=&#39;float32&#39;, name=&#39;Y&#39;)
+X_length = Input(shape=(1,), dtype=&#39;int32&#39;, name=&#39;X_length&#39;)
+Y_length = Input(shape=(1,), dtype=&#39;int32&#39;, name=&#39;Y_length&#39;)
+
+#卷积1层      # 一维卷积，默认channels_last，即通道维(MFCC特征维)放最后，对时间维进行卷积
+def conv1d(inputs, filters, kernel_size, dilation_rate):
+    return Conv1D(filters=filters, kernel_size=kernel_size, strides=1, padding=&#39;causal&#39;, activation=None,
+                  dilation_rate=dilation_rate)(inputs)
+
+#标准化函数
+def batchnorm(inputs):
+    return BatchNormalization()(inputs)
+
+#激活层函数
+def activation(inputs, activation):
+    return Activation(activation)(inputs)
+
+#全连接层函数
+def res_block(inputs, filters, kernel_size, dilation_rate):
+    hf = activation(batchnorm(conv1d(inputs, filters, kernel_size, dilation_rate)), &#39;tanh&#39;)
+    hg = activation(batchnorm(conv1d(inputs, filters, kernel_size, dilation_rate)), &#39;sigmoid&#39;)
+    h0 = Multiply()([hf, hg])
+
+    ha = activation(batchnorm(conv1d(h0, filters, 1, 1)), &#39;tanh&#39;)
+    hs = activation(batchnorm(conv1d(h0, filters, 1, 1)), &#39;tanh&#39;)
+
+    return Add()([ha, inputs]), hs
+
+
+h0 = activation(batchnorm(conv1d(X, filters, 1, 1)), &#39;tanh&#39;)
+shortcut = []
+for i in range(num_blocks):
+    for r in [1, 2, 4, 8, 16]:
+        h0, s = res_block(h0, filters, 7, r)
+        shortcut.append(s)
+
+h1 = activation(Add()(shortcut), &#39;relu&#39;)
+h1 = activation(batchnorm(conv1d(h1, filters, 1, 1)), &#39;relu&#39;)
+#softmax损失函数输出结果
+Y_pred = activation(batchnorm(conv1d(h1, len(char2id) + 1, 1, 1)), &#39;softmax&#39;)
+sub_model = Model(inputs=X, outputs=Y_pred)
+
+#计算损失函数
+def calc_ctc_loss(args):
+    y, yp, ypl, yl = args
+    return K.ctc_batch_cost(y, yp, ypl, yl)
+
+
+ctc_loss = Lambda(calc_ctc_loss, output_shape=(1,), name=&#39;ctc&#39;)([Y, Y_pred, X_length, Y_length])
+#加载模型训练
+model = Model(inputs=[X, Y, X_length, Y_length], outputs=ctc_loss)
+#建立优化器
+optimizer = SGD(lr=0.02, momentum=0.9, nesterov=True, clipnorm=5)
+#激活模型开始计算
+model.compile(loss={&#39;ctc&#39;: lambda ctc_true, ctc_pred: ctc_pred}, optimizer=optimizer)
+
+
+checkpointer = ModelCheckpoint(filepath=&#39;asr.h5&#39;, verbose=0)
+lr_decay = ReduceLROnPlateau(monitor=&#39;loss&#39;, factor=0.2, patience=1, min_lr=0.000)
+#开始训练
+history = model.fit_generator(
+    generator=batch_generator(X_train, Y_train),
+    steps_per_epoch=len(X_train) // batch_size,
+    epochs=epochs,
+    validation_data=batch_generator(X_test, Y_test),
+    validation_steps=len(X_test) // batch_size,
+    callbacks=[checkpointer, lr_decay])
+
+
+
+#保存模型
+sub_model.save(&#39;asr.h5&#39;)
+#将字保存在pl=pkl中
+with open(&#39;dictionary.pkl&#39;, &#39;wb&#39;) as fw:
+    pickle.dump([char2id, id2char, mfcc_mean, mfcc_std], fw)
+
+
+
+
+train_loss = history.history[&#39;loss&#39;]
+plt.plot(np.linspace(1, epochs, epochs), train_loss, label=&#39;train&#39;)
+plt.legend(loc=&#39;upper right&#39;)
+plt.xlabel(&#39;Epoch&#39;)
+plt.ylabel(&#39;Loss&#39;)
+plt.show()
+
+
+
+#下面是模型的预测效果，可见main.py
+from keras.models import load_model
+import pickle
+
+with open(&#39;dictionary.pkl&#39;, &#39;rb&#39;) as fr:
+    [char2id, id2char, mfcc_mean, mfcc_std] = pickle.load(fr)
+
+sub_model = load_model(&#39;asr.h5&#39;)
+
+
+def random_predict(x, y):
+    index = np.random.randint(len(x))
+    feature = x[index]
+    text = y[index]
+
+    pred = sub_model.predict(np.expand_dims(feature, axis=0))
+    pred_ids = K.eval(K.ctc_decode(pred, [feature.shape[0]], greedy=False, beam_width=10, top_paths=1)[0][0])
+    pred_ids = pred_ids.flatten().tolist()
+
+    print(&#39;True transcription:\n-- &#39;, text, &#39;\n&#39;)
+    print(&#39;Predicted transcription:\n-- &#39; + &#39;&#39;.join([id2char[i] for i in pred_ids]), &#39;\n&#39;)
+
+
+random_predict(X_train, Y_train)
+random_predict(X_test, Y_test)
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对比其他的分类任务，语音识别多了个解码过程，这也导致了目前在常见的深度学习框架中还没有很好的ASR框架，目前而言，CTC的应用也导致出现了一些完全端到端的ASR系统，相信以后这也会是个大趋势。</p>
 
       
     </div>
@@ -428,7 +752,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz/2020/05/07/BERT/" title="讲讲横扫nlp任务的BERT模型" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/07/BERT/</a>
+      <a href="http://weiquanfan.xyz/2020/06/20/ASR-with-keras/" title="基于keras的简易语音识别" target="_blank" rel="external">http://weiquanfan.xyz/2020/06/20/ASR-with-keras/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -474,13 +798,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/05/08/SENet/" title="cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/05/05/transfomer/" title="Transfomer以及Self-Attention讲解"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/06/10/QT/" title="使用QT designer、python搭建界面程序"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
