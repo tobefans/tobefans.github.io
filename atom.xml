@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-06-20T07:50:16.900Z</updated>
+  <updated>2020-06-26T02:49:03.903Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -17,11 +17,57 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>卷积当中的补零操作</title>
+    <link href="http://weiquanfan.xyz/2020/06/26/padding/"/>
+    <id>http://weiquanfan.xyz/2020/06/26/padding/</id>
+    <published>2020-06-26T02:47:48.000Z</published>
+    <updated>2020-06-26T02:49:03.903Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;卷积输入输出尺寸公式&quot;&gt;&lt;a href=&quot;#卷积输入输出尺寸公式&quot; class=&quot;headerlink&quot; title=&quot;卷积输入输出尺寸公式&quot;&gt;&lt;/a&gt;卷积输入输出尺寸公式&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/2020/06/26/padding/padding_
+      
+    
+    </summary>
+    
+    
+      <category term="卷积" scheme="http://weiquanfan.xyz/tags/%E5%8D%B7%E7%A7%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用端点检测和百度语音识别技术实现视频的字幕生成</title>
+    <link href="http://weiquanfan.xyz/2020/06/26/gen-srt/"/>
+    <id>http://weiquanfan.xyz/2020/06/26/gen-srt/</id>
+    <published>2020-06-26T02:47:38.000Z</published>
+    <updated>2020-06-26T02:49:49.855Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;字幕文件中包含很多段信息，每一段表示了一句话的起始结束时间和内容，因此便涉及到了端点检测技术和语音识别技术。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;端点
+      
+    
+    </summary>
+    
+    
+      <category term="端点检测" scheme="http://weiquanfan.xyz/tags/%E7%AB%AF%E7%82%B9%E6%A3%80%E6%B5%8B/"/>
+    
+      <category term="语音识别" scheme="http://weiquanfan.xyz/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>基于keras的简易语音识别</title>
     <link href="http://weiquanfan.xyz/2020/06/20/ASR-with-keras/"/>
     <id>http://weiquanfan.xyz/2020/06/20/ASR-with-keras/</id>
     <published>2020-06-20T07:13:59.000Z</published>
-    <updated>2020-06-20T07:50:16.900Z</updated>
+    <updated>2020-06-26T02:46:52.004Z</updated>
     
     <summary type="html">
     
@@ -34,6 +80,10 @@
     
     </summary>
     
+      <category term="语音识别" scheme="http://weiquanfan.xyz/categories/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/"/>
+    
+    
+      <category term="语音识别" scheme="http://weiquanfan.xyz/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/"/>
     
   </entry>
   

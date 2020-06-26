@@ -17,17 +17,23 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>404 Not Found：该页无法显示 | Hexo</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="404 Not Found：该页无法显示">
-<meta property="og:url" content="http://weiquanfan.xyz/404.html">
+  <title>使用端点检测和百度语音识别技术实现视频的字幕生成 | Hexo</title>
+  <meta name="description" content="前言字幕文件中包含很多段信息，每一段表示了一句话的起始结束时间和内容，因此便涉及到了端点检测技术和语音识别技术。  端点检测：pydub.silence.detect_nonsilent 语音识别：aip.AipSpeech（百度接口）pip install pydub pip install baidu-aip   流程 视频提取音频 对音频进行端点检测，生成一句一句的音频 对各句音频进行语音识">
+<meta name="keywords" content="端点检测,语音识别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用端点检测和百度语音识别技术实现视频的字幕生成">
+<meta property="og:url" content="http://weiquanfan.xyz/2020/06/26/gen-srt/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
+<meta property="og:description" content="前言字幕文件中包含很多段信息，每一段表示了一句话的起始结束时间和内容，因此便涉及到了端点检测技术和语音识别技术。  端点检测：pydub.silence.detect_nonsilent 语音识别：aip.AipSpeech（百度接口）pip install pydub pip install baidu-aip   流程 视频提取音频 对音频进行端点检测，生成一句一句的音频 对各句音频进行语音识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-02T02:17:12.000Z">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/06/26/gen-srt/vad.jpg">
+<meta property="og:updated_time" content="2020-06-26T02:49:49.855Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="404 Not Found：该页无法显示">
+<meta name="twitter:title" content="使用端点检测和百度语音识别技术实现视频的字幕生成">
+<meta name="twitter:description" content="前言字幕文件中包含很多段信息，每一段表示了一句话的起始结束时间和内容，因此便涉及到了端点检测技术和语音识别技术。  端点检测：pydub.silence.detect_nonsilent 语音识别：aip.AipSpeech（百度接口）pip install pydub pip install baidu-aip   流程 视频提取音频 对音频进行端点检测，生成一句一句的音频 对各句音频进行语音识">
+<meta name="twitter:image" content="http://weiquanfan.xyz/2020/06/26/gen-srt/vad.jpg">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://weiquanfan.xyz/404.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2020/06/26/gen-srt/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
@@ -342,14 +348,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-gen-srt" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      404 Not Found：该页无法显示
+      使用端点检测和百度语音识别技术实现视频的字幕生成
     </h1>
   
 
@@ -357,27 +363,121 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/404.html" class="article-date">
-	  <time datetime="2020-05-03T16:06:52.229Z" itemprop="datePublished">2020-05-04</time>
+	<a href="/2020/06/26/gen-srt/" class="article-date">
+	  <time datetime="2020-06-26T02:47:38.000Z" itemprop="datePublished">2020-06-26</time>
 	</a>
 </span>
         
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/端点检测/">端点检测</a>, <a class="article-tag-link" href="/tags/语音识别/">语音识别</a>
+  </span>
+
 
         
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/404.html" class="leancloud_visitors"  data-flag-title="404 Not Found：该页无法显示">0</span>
+    	<span id="/2020/06/26/gen-srt/" class="leancloud_visitors"  data-flag-title="使用端点检测和百度语音识别技术实现视频的字幕生成">0</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/404.html#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/26/gen-srt/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <script type="text/javascript" src="//www.qq.com/404/search_children.js" charset="utf-8" homepageurl="<%- config.url %>" homepagename="回到我的主页"></script>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>字幕文件中包含很多段信息，每一段表示了一句话的起始结束时间和内容，因此便涉及到了端点检测技术和语音识别技术。</p>
+<ul>
+<li>端点检测：pydub.silence.detect_nonsilent</li>
+<li>语音识别：aip.AipSpeech（<a href="https://ai.baidu.com/tech/speech" target="_blank" rel="noopener">百度接口</a>）<pre><code>pip install pydub
+pip install baidu-aip
+</code></pre></li>
+</ul>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ul>
+<li>视频提取音频</li>
+<li>对音频进行端点检测，生成一句一句的音频</li>
+<li>对各句音频进行语音识别</li>
+<li>整合成字幕srt格式</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from moviepy.editor import *
+from pydub import *
+from aip import AipSpeech
+
+video_file = r&#39;C:\Users\Lenovo\Desktop\video_sep\test.mp4&#39;
+audio_file = r&#39;C:\Users\Lenovo\Desktop\test.wav&#39;
+srt_file = r&#39;C:\Users\Lenovo\Desktop\srt\test.srt&#39;
+
+## transform to audio
+video = VideoFileClip(video_file)
+video.audio.write_audiofile(audio_file, ffmpeg_params=[&#39;-ar&#39;,&#39;16000&#39;,&#39;-ac&#39;,&#39;1&#39;])
+
+## segment
+sound = AudioSegment.from_wav(audio_file)
+timestamp_list = silence.detect_nonsilent(sound, 700, sound.dBFS*1.3, 1)    # look here
+for i in range(len(timestamp_list)):
+    d = timestamp_list[i][1] - timestamp_list[i][0]
+    print(&quot;Section is :&quot;, timestamp_list[i], &quot;duration is:&quot;, d)
+print(&#39;dBFS: {0}, max_dBFS: {1}, duration: {2}, split: {3}&#39;.format(round(sound.dBFS,2),round(sound.max_dBFS,2),sound.duration_seconds,len(timestamp_list)))
+
+def format_time(ms):
+    hours = ms // 3600000
+    ms = ms % 3600000
+    minutes = ms // 60000
+    ms = ms % 60000
+    seconds = ms // 1000
+    mseconds = ms % 1000
+    return &#39;{:0&gt;2d}:{:0&gt;2d}:{:0&gt;2d},{:0&gt;3d}&#39;.format(hours, minutes, seconds, mseconds)
+
+## 以下在百度AI开放平台申请获得
+## https://ai.baidu.com/tech/speech
+APP_ID = &#39;&#39;
+API_KEY = &#39;&#39;
+SECRET_KEY = &#39;&#39;
+client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
+
+idx = 0
+text = []
+for i in range(len(timestamp_list)):
+    d = timestamp_list[i][1] - timestamp_list[i][0]
+    data = sound[timestamp_list[i][0]:timestamp_list[i][1]].raw_data
+    ## asr
+    result = client.asr(data, &#39;pcm&#39;, 16000, {&#39;lan&#39;: &#39;zh&#39;,})     ## and look here
+    if result[&#39;err_no&#39;] == 0:
+        text.append(&#39;{0}\n{1} --&gt; {2}\n&#39;.format(idx, format_time(timestamp_list[i][0]), format_time(timestamp_list[i][1])))
+        text.append( result[&#39;result&#39;][0]) #.replace(&quot;，&quot;, &quot;&quot;)
+        text.append(&#39;\n&#39;)
+        idx = idx + 1
+        # print(format_time(timestamp_list[i][0]/ 1000), &quot;txt is &quot;, result[&#39;result&#39;][0])
+with open(srt_file,&quot;w&quot;) as f:
+    f.writelines(text)
+</code></pre><h2 id="字幕生成的其他方式"><a href="#字幕生成的其他方式" class="headerlink" title="字幕生成的其他方式"></a>字幕生成的其他方式</h2><h3 id="通过双门限法进行端点检测"><a href="#通过双门限法进行端点检测" class="headerlink" title="通过双门限法进行端点检测"></a>通过双门限法进行端点检测</h3><p>双门限法的原理是浊音的能量高于清音，清音的过零率高于无声部分。因此，其核心在于：先利用能量，将浊音部分区分出来，再利用过零率，将清音也提取出来，就完成了端点检测。<br><img src="/2020/06/26/gen-srt/vad.jpg" alt></p>
+<h3 id="通过-SpeechRcognition-进行语音识别"><a href="#通过-SpeechRcognition-进行语音识别" class="headerlink" title="通过 SpeechRcognition 进行语音识别"></a>通过 SpeechRcognition 进行语音识别</h3><p>SpeechRcognition 可以说是一款语音识别集合器，共包含了谷歌、必应、IBM等七个识别器：</p>
+<ul>
+<li>recognize_bing()：Microsoft Bing Speech</li>
+<li>recognize_google()： Google Web Speech API</li>
+<li>recognize_google_cloud()：Google Cloud Speech - requires installation of the google-cloud-speech package</li>
+<li>recognize_houndify()： Houndify by SoundHound</li>
+<li>recognize_ibm()：IBM Speech to Text</li>
+<li>recognize_sphinx()：CMU Sphinx - requires installing PocketSphinx</li>
+<li>recognize_wit()：Wit.ai</li>
+</ul>
+<p>基本使用方法如下：</p>
+<pre><code>import speech_recognition as sr
+r = sr.Recognizer()
+test = sr.AudioFile(r&#39;C:\Users\Lenovo\Desktop\test.wav&#39;)
+with test as source:
+    audio = r.record(source)
+r.recognize_google(audio, language=&#39;zh-CN&#39;, show_all= True)
+</code></pre><p>但好像需要翻墙才能用…</p>
+<h3 id="通过autosub包直接生成字幕文件"><a href="#通过autosub包直接生成字幕文件" class="headerlink" title="通过autosub包直接生成字幕文件"></a>通过autosub包直接生成字幕文件</h3><p>autosub是一个直接可以生成字幕文件的python库，详细可看<a href="https://binglinggroup.github.io/archives/autosub%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97(windows%E5%8F%8Aubuntu" target="_blank" rel="noopener">中文教程</a>.html)<br>基本用法如下：</p>
+<pre><code>autosub -S zh-CN -D zh-CN [你的视频/音频文件名]
+</code></pre><p>不过这种方法也需要翻墙，我尝试了更改proxy也没什么效果…</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总体而言，字幕生成需要的两个技术块，各有多种实现方法，而我最终选取的pydub加baidu-aip是相对简单并且有效的一种。不过实测效果并没有达到我的期望，因为一开始端点检测就不是十分准确，导致在错误的句子里上下文关系也不太对，语音识别也会有偏差了。更进一步的端点检测方法还得综合考虑能量和过零率，最好还要自定义地加上各个句子长度不能相差太大的限制等等。</p>
 
       
     </div>
@@ -387,7 +487,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz//404.html" title="404 Not Found：该页无法显示" target="_blank" rel="external">http://weiquanfan.xyz//404.html</a>
+      <a href="http://weiquanfan.xyz/2020/06/26/gen-srt/" title="使用端点检测和百度语音识别技术实现视频的字幕生成" target="_blank" rel="external">http://weiquanfan.xyz/2020/06/26/gen-srt/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -418,12 +518,32 @@
   </article>
   
     
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
 
   
 </div>
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/06/26/padding/" title="卷积当中的补零操作"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/06/20/ASR-with-keras/" title="基于keras的简易语音识别"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
   
   
   <!-- Button trigger modal -->
@@ -540,12 +660,150 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+   
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+  appKey: 'F0aXAudrJr6wsdAvrVvSp1T2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+    appKey: 'F0aXAudrJr6wsdAvrVvSp1T2',
+    placeholder: '此时一位路人路过...',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
 
 
 
 
 
 
-<script src="/js/hexo_resize_image.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+<script src="/js/hexo_resize_image.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

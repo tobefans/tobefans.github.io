@@ -17,26 +17,32 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Tag: attention | Hexo</title>
-  <meta name="description" content="陌上花开，可缓缓归矣">
-<meta property="og:type" content="website">
-<meta property="og:title" content="vetch的小小世界">
-<meta property="og:url" content="http://weiquanfan.xyz/tags/attention/index.html">
+  <title>卷积当中的补零操作 | Hexo</title>
+  <meta name="description" content="卷积输入输出尺寸公式 这是一条比较完整的输出尺寸公式，考虑到了stride, padding, dilation, 这里的括号表示的是向下取整，这实际上是卷积图的边边剩下的部分比卷积核小，所以抛弃了这次卷积的结果。其实，若用另一种视角看，可以把空洞卷积当成更改了卷积核尺寸K的值，K -&amp;gt; d × (K-1) +1，因此该公式可以更简洁的被表示为Out = floor((In + 2P − K">
+<meta name="keywords" content="卷积">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卷积当中的补零操作">
+<meta property="og:url" content="http://weiquanfan.xyz/2020/06/26/padding/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
-<meta property="og:description" content="陌上花开，可缓缓归矣">
+<meta property="og:description" content="卷积输入输出尺寸公式 这是一条比较完整的输出尺寸公式，考虑到了stride, padding, dilation, 这里的括号表示的是向下取整，这实际上是卷积图的边边剩下的部分比卷积核小，所以抛弃了这次卷积的结果。其实，若用另一种视角看，可以把空洞卷积当成更改了卷积核尺寸K的值，K -&amp;gt; d × (K-1) +1，因此该公式可以更简洁的被表示为Out = floor((In + 2P − K">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://weiquanfan.xyz/2020/06/26/padding/padding_formula.jpg">
+<meta property="og:updated_time" content="2020-06-26T02:49:03.903Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vetch的小小世界">
-<meta name="twitter:description" content="陌上花开，可缓缓归矣">
+<meta name="twitter:title" content="卷积当中的补零操作">
+<meta name="twitter:description" content="卷积输入输出尺寸公式 这是一条比较完整的输出尺寸公式，考虑到了stride, padding, dilation, 这里的括号表示的是向下取整，这实际上是卷积图的边边剩下的部分比卷积核小，所以抛弃了这次卷积的结果。其实，若用另一种视角看，可以把空洞卷积当成更改了卷积核尺寸K的值，K -&amp;gt; d × (K-1) +1，因此该公式可以更简洁的被表示为Out = floor((In + 2P − K">
+<meta name="twitter:image" content="http://weiquanfan.xyz/2020/06/26/padding/padding_formula.jpg">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://weiquanfan.xyz/tags/attention/index.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2020/06/26/padding/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
   
   
@@ -341,94 +347,217 @@
 </aside>
 
   
-  <main class="main" role="main">
-  <article class="content article article-tags post-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">Tag: attention</h1>
-      <p class="text-muted hidden-xs">Total 2 articles</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/tags">All</a></li>
-          
-          <li><a href="/tags/BERT/">BERT</a></li>
-          
-          <li><a href="/tags/Transformer/">Transformer</a></li>
-          
-          <li><a href="/tags/GLUE/">GLUE</a></li>
-          
-          <li><a href="/tags/attention/">attention</a></li>
-          
-          <li><a href="/tags/端点检测/">端点检测</a></li>
-          
-          <li><a href="/tags/语音识别/">语音识别</a></li>
-          
-          <li><a href="/tags/卷积/">卷积</a></li>
-          
-          <li><a href="/tags/界面/">界面</a></li>
-          
-          <li><a href="/tags/强化学习/">强化学习</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="row">
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-padding" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
         
-<div class="col-md-6">
-    
-<article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="panel-body">
-     <div class="article-meta">
-       <time datetime="2020-05-08T07:57:04.000Z" itemprop="datePublished">2020-05-08</time>
-     </div>
-     <h3 class="article-title" itemprop="name">
-       <a class="article-link" href="/2020/05/08/SENet/">cv中Attention的奇妙旅途——讲讲Self-Attention, SENet和CBAM</a>
-     </h3>
-   </div>
-   
-   <div class="panel-footer">
-     
-      <a href="/tags/attention/" class="label label-default mb">attention</a>
-     
-     
-   </div>
-   
-</article>
+  
+    <h1 class="article-title" itemprop="name">
+      卷积当中的补零操作
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/06/26/padding/" class="article-date">
+	  <time datetime="2020-06-26T02:47:48.000Z" itemprop="datePublished">2020-06-26</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/卷积/">卷积</a>
+  </span>
 
 
-</div>
+        
 
-<div class="col-md-6">
-    
-<article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="panel-body">
-     <div class="article-meta">
-       <time datetime="2020-05-05T12:23:39.000Z" itemprop="datePublished">2020-05-05</time>
-     </div>
-     <h3 class="article-title" itemprop="name">
-       <a class="article-link" href="/2020/05/05/transfomer/">Transfomer以及Self-Attention讲解</a>
-     </h3>
-   </div>
-   
-   <div class="panel-footer">
-     
-      <a href="/tags/Transformer/" class="label label-default mb">Transformer</a>
-     
-      <a href="/tags/attention/" class="label label-default mb">attention</a>
-     
-     
-   </div>
-   
-</article>
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2020/06/26/padding/" class="leancloud_visitors"  data-flag-title="卷积当中的补零操作">0</span>
+    </span>
 
-
-</div>
-
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/26/padding/#comments" class="article-comment-link">Comments</a></span>
+        
       </div>
     </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="卷积输入输出尺寸公式"><a href="#卷积输入输出尺寸公式" class="headerlink" title="卷积输入输出尺寸公式"></a>卷积输入输出尺寸公式</h2><p><img src="/2020/06/26/padding/padding_formula.jpg" alt></p>
+<p>这是一条比较完整的输出尺寸公式，考虑到了stride, padding, dilation, 这里的括号表示的是向下取整，这实际上是卷积图的边边剩下的部分比卷积核小，所以抛弃了这次卷积的结果。<br>其实，若用另一种视角看，可以把空洞卷积当成更改了卷积核尺寸K的值，<code>K -&gt; d × (K-1) +1</code>，因此该公式可以更简洁的被表示为<br><code>Out = floor((In + 2P − K)/S+1)</code></p>
+<h2 id="tensorflow-版本"><a href="#tensorflow-版本" class="headerlink" title="tensorflow 版本"></a>tensorflow 版本</h2><p>tensorflow 版本的padding是通过直接选模式参数进行的，可选’SAME’,’VALID’.前者是通过padding在前后左右补零，使得输出尺寸保持不变（或以步长倍数缩小），非常常用，后者则是不进行padding，实际上应该是等价于上边总公式P=0的情况。<br>SAME:  <code>Out = ceil(In/S)</code><br>VALID: <code>Out = ceil((In − K + 1)/S)</code></p>
+<h2 id="pytorch-版本"><a href="#pytorch-版本" class="headerlink" title="pytorch 版本"></a>pytorch 版本</h2><p>pytorch中padding是需要自己设置值的，因此输出尺寸就按照一开始的公式来即可。以下再看一些例子。</p>
+<pre><code>&gt;&gt;&gt; m = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3)
+&gt;&gt;&gt; input = torch.randn(20,3,24,24)
+&gt;&gt;&gt; m(input).shape
+torch.Size([20, 64, 12, 12])
+&gt;&gt;&gt; input = torch.randn(20,3,25,25)
+&gt;&gt;&gt; m(input).shape
+torch.Size([20, 64, 13, 13])
+</code></pre><pre><code>&gt;&gt;&gt; input = torch.randn(20,3,24,24)
+&gt;&gt;&gt; m = nn.Conv2d(3, 64, kernel_size=6, stride=2, padding=3)
+&gt;&gt;&gt; m(input).shape
+torch.Size([20, 64, 13, 13])
+&gt;&gt;&gt; m = nn.Conv2d(3, 64, kernel_size=6, stride=2, padding=2)
+&gt;&gt;&gt; m(input).shape
+torch.Size([20, 64, 12, 12])
+
+&gt;&gt;&gt; input = torch.randn(20,3,25,25)
+&gt;&gt;&gt; m = nn.Conv2d(3, 64, kernel_size=6, stride=2, padding=3)
+&gt;&gt;&gt; m(input).shape
+torch.Size([20, 64, 13, 13])
+&gt;&gt;&gt; m = nn.Conv2d(3, 64, kernel_size=6, stride=2, padding=2)
+&gt;&gt;&gt; m(input).shape
+torch.Size([20, 64, 12, 12])
+</code></pre><p>这里可以观察到：</p>
+<ul>
+<li>若是需要保持</li>
+<li>对于奇数卷积核，通过让<code>padding=(k-1)/2</code>，即可实现SAME的效果。即输出尺寸保持不变或以步长倍数缩小（对于奇数输入尺寸则向上取整）</li>
+<li>对于偶数卷积核，若是偶数输入尺寸，则<code>padding=floor((k-1)/2)</code>可实现SAME的效果</li>
+<li>对于偶数卷积核，若是奇数输入尺寸，则<code>padding=ceil((k-1)/2)</code>可实现SAME的效果</li>
+</ul>
+<p>因此，建议不要用偶数卷积核。。。然后记住<code>padding=(k-1)/2</code>，即可实现tf中SAME的效果了。把padding带入一开始的总公式，可以得到<code>Out = floor((In − 1)/S+1)</code>，这实际上与SAME公式等效，可以看下边代码的暴力验证。</p>
+<pre><code>&gt;&gt;&gt; a = lambda x:np.ceil(x/5)
+&gt;&gt;&gt; b = lambda x:np.floor((x-1)/5+1)
+&gt;&gt;&gt; c = [np.random.randint(6,100) for i in range(10)]
+&gt;&gt;&gt; [a(rand)==b(rand) for rand in c]
+[True, True, True, True, True, True, True, True, True, True]
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虽然想了半天这个公式，但实际使用时好像也就SAME功能用得比较多，因此记住核心：</p>
+<ul>
+<li>用奇数卷积核</li>
+<li><code>padding=(k-1)/2</code></li>
+<li>若是空洞卷积，则代入<code>K -&gt; d × (K-1) +1</code></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://weiquanfan.xyz/2020/06/26/padding/" title="卷积当中的补零操作" target="_blank" rel="external">http://weiquanfan.xyz/2020/06/26/padding/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tobefans" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/photo.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tobefans" target="_blank"><span class="text-dark">Weiquan Fan</span><small class="ml-1x">AI练习生</small></a></h3>
+        <div>陌上花开，可缓缓归矣</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
   </article>
-   
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/06/26/gen-srt/" title="使用端点检测和百度语音识别技术实现视频的字幕生成"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wachat.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -484,12 +613,150 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+   
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+  appKey: 'F0aXAudrJr6wsdAvrVvSp1T2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+    appKey: 'F0aXAudrJr6wsdAvrVvSp1T2',
+    placeholder: '此时一位路人路过...',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
 
 
 
 
 
 
-<script src="/js/hexo_resize_image.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+<script src="/js/hexo_resize_image.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
