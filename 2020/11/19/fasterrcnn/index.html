@@ -18,22 +18,22 @@
   
   
   <title>了解一下Faster RCNN | Hexo</title>
-  <meta name="description" content="前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。 框架与流程Faster RCNN的模型框架如图。 可以分为4个主要内容：  Conv layers。作为一种CNN网络目标检测方法，Fas">
+  <meta name="description" content="1. 前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。 2. 框架与流程Faster RCNN的模型框架如图。 可以分为4个主要内容：  Conv layers。作为一种CNN网络目标检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="了解一下Faster RCNN">
 <meta property="og:url" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
-<meta property="og:description" content="前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。 框架与流程Faster RCNN的模型框架如图。 可以分为4个主要内容：  Conv layers。作为一种CNN网络目标检测方法，Fas">
+<meta property="og:description" content="1. 前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。 2. 框架与流程Faster RCNN的模型框架如图。 可以分为4个主要内容：  Conv layers。作为一种CNN网络目标检测">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/structure.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/model.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/anchor.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/formula.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/formula2.png">
-<meta property="og:updated_time" content="2020-11-19T17:22:40.991Z">
+<meta property="og:updated_time" content="2020-11-19T17:27:13.510Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解一下Faster RCNN">
-<meta name="twitter:description" content="前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。 框架与流程Faster RCNN的模型框架如图。 可以分为4个主要内容：  Conv layers。作为一种CNN网络目标检测方法，Fas">
+<meta name="twitter:description" content="1. 前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。 2. 框架与流程Faster RCNN的模型框架如图。 可以分为4个主要内容：  Conv layers。作为一种CNN网络目标检测">
 <meta name="twitter:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/structure.png">
   <!-- Canonical links -->
   <link rel="canonical" href="http://weiquanfan.xyz/2020/11/19/fasterrcnn/index.html">
@@ -386,8 +386,8 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Faster RCNN 由 <a href="https://arxiv.org/pdf/1506.01497.pdf" target="_blank" rel="noopener">论文</a>提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。</p>
-<h2 id="框架与流程"><a href="#框架与流程" class="headerlink" title="框架与流程"></a>框架与流程</h2><p>Faster RCNN的模型框架如图。<br><img src="/2020/11/19/fasterrcnn/structure.png" alt></p>
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>Faster RCNN 由 <a href="https://arxiv.org/pdf/1506.01497.pdf" target="_blank" rel="noopener">论文</a>提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。</p>
+<h2 id="2-框架与流程"><a href="#2-框架与流程" class="headerlink" title="2. 框架与流程"></a>2. 框架与流程</h2><p>Faster RCNN的模型框架如图。<br><img src="/2020/11/19/fasterrcnn/structure.png" alt></p>
 <p>可以分为4个主要内容：</p>
 <ul>
 <li>Conv layers。作为一种CNN网络目标检测方法，Faster RCNN首先使用一组基础的conv+relu+pooling层提取image的feature maps。该feature maps被共享用于后续RPN层和全连接层。</li>
@@ -402,8 +402,8 @@
 <li>RPN网络首先经过3x3卷积，再分别生成positive anchors和对应bounding box regression偏移量，然后计算出proposals；</li>
 <li>Roi Pooling层则利用proposals从feature maps中提取proposal feature送入后续全连接和softmax网络作classification。</li>
 </ol>
-<h2 id="Region-Proposal-Networks-RPN"><a href="#Region-Proposal-Networks-RPN" class="headerlink" title="Region Proposal Networks(RPN)"></a>Region Proposal Networks(RPN)</h2><p>从网络总图上可以看出，RPN 层可以分为上下两条支路，上面一条通过softmax分类anchors获得positive和negative分类，下面一条用于计算对于anchors的bounding box regression偏移量，以获得精确的proposal。而最后的Proposal层则负责综合positive anchors和对应bounding box regression偏移量获取proposals，同时剔除太小和超出边界的proposals。</p>
-<h3 id="anchors"><a href="#anchors" class="headerlink" title="anchors"></a>anchors</h3><p>anchors 是一组预设好的矩形。对于缩放至800×600的图，作者预设了9个anchors，坐标如下。</p>
+<h2 id="3-模型细节"><a href="#3-模型细节" class="headerlink" title="3. 模型细节"></a>3. 模型细节</h2><h3 id="3-1-Region-Proposal-Networks-RPN"><a href="#3-1-Region-Proposal-Networks-RPN" class="headerlink" title="3.1 Region Proposal Networks(RPN)"></a>3.1 Region Proposal Networks(RPN)</h3><p>从网络总图上可以看出，RPN 层可以分为上下两条支路，上面一条通过softmax分类anchors获得positive和negative分类，下面一条用于计算对于anchors的bounding box regression偏移量，以获得精确的proposal。而最后的Proposal层则负责综合positive anchors和对应bounding box regression偏移量获取proposals，同时剔除太小和超出边界的proposals。</p>
+<h4 id="3-1-1-anchors"><a href="#3-1-1-anchors" class="headerlink" title="3.1.1 anchors"></a>3.1.1 anchors</h4><p>anchors 是一组预设好的矩形。对于缩放至800×600的图，作者预设了9个anchors，坐标如下。</p>
 <pre><code>[[ -84.  -40.   99.   55.]
  [-176.  -88.  191.  103.]
  [-360. -184.  375.  199.]
@@ -415,13 +415,13 @@
  [-168. -344.  183.  359.]]
 </code></pre><p>其中每行的4个值表示矩形的左上和右下角点坐标。这9个矩形的长宽比为0.5、1或2，anchors中长宽1:2中最大为352x704，长宽2:1中最大736x384，这样就可以基本覆盖到整张图。<br><img src="/2020/11/19/fasterrcnn/anchor.png" alt></p>
 <p>有了这些anchors，我们遍历Conv layers计算获得的feature maps，为每一个点都配备这9种anchors作为初始的检测框。这里如果有超出图像边缘的框，我们就对框进行裁剪，丢弃掉框外的部分。那么总共就有 (800//16) <em> (600//16) </em> 9 = 17100个anchor。</p>
-<h3 id="softmax分类"><a href="#softmax分类" class="headerlink" title="softmax分类"></a>softmax分类</h3><p>一副MxN大小的矩阵送入Faster RCNN网络后，到RPN网络变为(M/16)x(N/16)，设为W×H。 在进入reshape与softmax之前，先做了1x1卷积，输出18（即2×9）层feature maps. 9表示九种anchor，2表示该anchor是否含有目标。</p>
+<h4 id="3-1-2-softmax分类"><a href="#3-1-2-softmax分类" class="headerlink" title="3.1.2 softmax分类"></a>3.1.2 softmax分类</h4><p>一副MxN大小的矩阵送入Faster RCNN网络后，到RPN网络变为(M/16)x(N/16)，设为W×H。 在进入reshape与softmax之前，先做了1x1卷积，输出18（即2×9）层feature maps. 9表示九种anchor，2表示该anchor是否含有目标。</p>
 <p>这里，为了进行softmax输出二分类结果，需要单独把‘2’这个维度孤立出来，因此在softmax前后各有一个reshape。数据的尺寸变化为：[1, 2x9, H, W] -&gt; [1, 2, Hx9, W], softmax -&gt; [1, 2x9, H, W].</p>
-<h3 id="bounding-box-regression"><a href="#bounding-box-regression" class="headerlink" title="bounding box regression"></a>bounding box regression</h3><p>对于窗口一般使用四维向量(x,y,w,h)表示，分别表示窗口的中心点坐标和宽高。<br>对于positive Anchors(设为A)，和groundtruth(设为G’)，我们的目标是寻找一种关系，使得输入原始的anchor A经过映射得到一个跟真实窗口G更接近的回归窗口G’。比较简单的思路就是:<br><img src="/2020/11/19/fasterrcnn/formula.png" alt></p>
+<h4 id="3-1-3-bounding-box-regression"><a href="#3-1-3-bounding-box-regression" class="headerlink" title="3.1.3 bounding box regression"></a>3.1.3 bounding box regression</h4><p>对于窗口一般使用四维向量(x,y,w,h)表示，分别表示窗口的中心点坐标和宽高。<br>对于positive Anchors(设为A)，和groundtruth(设为G’)，我们的目标是寻找一种关系，使得输入原始的anchor A经过映射得到一个跟真实窗口G更接近的回归窗口G’。比较简单的思路就是:<br><img src="/2020/11/19/fasterrcnn/formula.png" alt></p>
 <p>注意，这里的平移dx和dy可以理解为相对于原宽长的平移因子，即相对于原宽长平移了多少倍的距离。缩放dw和dh可以理解为缩放了ln的dw和dh倍。</p>
 <p>那么，对应于Faster RCNN原文，positive anchor与ground truth之间的平移量(tx, ty)与尺度因子(tw, th)如下：<br><img src="/2020/11/19/fasterrcnn/formula2.png" alt></p>
 <p>训练bouding box regression网络回归分支时，标签是(tx,ty,tw,th)。 输入cnn feature，输出36（即4×9）层feature maps. 9表示九种anchor，4表示该anchor的平移量和缩放量。<br><strong>注意这里的平移缩放量是针对原M×N的尺寸的，而输入的feature是pooling后的尺寸。</strong></p>
-<h3 id="Proposal-Layer"><a href="#Proposal-Layer" class="headerlink" title="Proposal Layer"></a>Proposal Layer</h3><p>VGG输出 50<em>38</em>512 的特征，对应设置 50<em>38</em>k个anchors，而RPN输出：</p>
+<h4 id="3-1-4-Proposal-Layer"><a href="#3-1-4-Proposal-Layer" class="headerlink" title="3.1.4 Proposal Layer"></a>3.1.4 Proposal Layer</h4><p>VGG输出 50<em>38</em>512 的特征，对应设置 50<em>38</em>k个anchors，而RPN输出：</p>
 <ul>
 <li>大小为 50<em>38</em>2k 的positive/negative softmax分类特征矩阵</li>
 <li>大小为 50<em>38</em>4k 的regression坐标回归特征矩阵</li>
@@ -435,7 +435,7 @@
 <li>对剩余的positive anchors进行NMS（nonmaximum suppression），去掉大量重复框</li>
 </ol>
 <p>Proposal Layer有3个输入：anchors是否有目标的分类器结果rpn_cls_prob_reshape，对应的bbox坐标(e.g. 300)，包含了缩放信息的im_info=[M, N, scale_factor]。然后输出300个 proposal=[x1, y1, x2, y2]。</p>
-<h2 id="RoI-pooling"><a href="#RoI-pooling" class="headerlink" title="RoI pooling"></a>RoI pooling</h2><p>由于RPN层输出的proposal尺寸不一，故提出了RoI pooling变换到统一的尺寸。<br>Rol pooling层有2个输入：</p>
+<h3 id="3-2-RoI-pooling"><a href="#3-2-RoI-pooling" class="headerlink" title="3.2 RoI pooling"></a>3.2 RoI pooling</h3><p>由于RPN层输出的proposal尺寸不一，故提出了RoI pooling变换到统一的尺寸。<br>Rol pooling层有2个输入：</p>
 <ol>
 <li>原始的feature maps</li>
 <li>RPN输出的proposal boxes（大小各不相同）</li>
@@ -447,8 +447,8 @@
 <li>对网格的每一份都进行max pooling处理。</li>
 </ol>
 <p>这样处理后，即使大小不同的proposal输出结果都是 pooled_w × pooled_h 固定大小，实现了固定长度输出。</p>
-<h2 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h2><p>Classification环节，利用已经获得的proposal feature maps，通过full connect层与softmax计算每个proposal具体属于那个类别（如人，车，电视等），输出cls_prob概率向量；同时再次利用bounding box regression获得每个proposal的位置偏移量bbox_pred，用于回归更加精确的目标检测框。</p>
-<h2 id="Faster-RCNN的训练"><a href="#Faster-RCNN的训练" class="headerlink" title="Faster RCNN的训练"></a>Faster RCNN的训练</h2><p>Faster RCNN训练过程分为6个步骤：</p>
+<h3 id="3-3-Classification"><a href="#3-3-Classification" class="headerlink" title="3.3 Classification"></a>3.3 Classification</h3><p>Classification环节，利用已经获得的proposal feature maps，通过full connect层与softmax计算每个proposal具体属于那个类别（如人，车，电视等），输出cls_prob概率向量；同时再次利用bounding box regression获得每个proposal的位置偏移量bbox_pred，用于回归更加精确的目标检测框。</p>
+<h2 id="4-Faster-RCNN的训练"><a href="#4-Faster-RCNN的训练" class="headerlink" title="4. Faster RCNN的训练"></a>4. Faster RCNN的训练</h2><p>Faster RCNN训练过程分为6个步骤：</p>
 <ol>
 <li>在已经训练好的model上，训练RPN网络，对应stage1_rpn_train.pt</li>
 <li>利用步骤1中训练好的RPN网络，收集proposals，对应rpn_test.pt</li>
@@ -458,7 +458,7 @@
 <li>第二次训练Fast RCNN网络，对应stage2_fast_rcnn_train.pt</li>
 </ol>
 <p>可以看到训练过程类似于一种“迭代”的过程，不过只循环了2次。至于只循环了2次的原因是应为作者提到：”A similar alternating training can be run for more iterations, but we have observed negligible improvements”，即循环更多次没有提升了。注意，在第二次训练时，RPN和Fast RCNN共享的网络层是冻结的。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://zhuanlan.zhihu.com/p/31426458" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31426458</a></p>
+<h2 id="5-参考文献"><a href="#5-参考文献" class="headerlink" title="5. 参考文献"></a>5. 参考文献</h2><p><a href="https://zhuanlan.zhihu.com/p/31426458" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31426458</a></p>
 
       
     </div>
