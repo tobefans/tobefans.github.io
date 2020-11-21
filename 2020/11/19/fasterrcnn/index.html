@@ -18,22 +18,22 @@
   
   
   <title>了解一下Faster RCNN | Hexo</title>
-  <meta name="description" content="1. 前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。 2. 框架与流程Faster RCNN的模型框架如图。 可以分为4个主要内容：  Conv layers。作为一种CNN网络目标检测">
+  <meta name="description" content="1. 前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。R-CNN提出selective search(SS)来搜索region proposal(RP)；Fast RCNN指出不必对每个RP各自提CNN特征，可以对原图提好CNN特征，再将SS找到的RP映射到CNN特征层上；Faster RCNN则提出了RPN层，将特征提取，proposal提">
 <meta property="og:type" content="article">
 <meta property="og:title" content="了解一下Faster RCNN">
 <meta property="og:url" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
-<meta property="og:description" content="1. 前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。 2. 框架与流程Faster RCNN的模型框架如图。 可以分为4个主要内容：  Conv layers。作为一种CNN网络目标检测">
+<meta property="og:description" content="1. 前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。R-CNN提出selective search(SS)来搜索region proposal(RP)；Fast RCNN指出不必对每个RP各自提CNN特征，可以对原图提好CNN特征，再将SS找到的RP映射到CNN特征层上；Faster RCNN则提出了RPN层，将特征提取，proposal提">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/structure.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/model.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/anchor.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/formula.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/formula2.png">
-<meta property="og:updated_time" content="2020-11-19T17:27:13.510Z">
+<meta property="og:updated_time" content="2020-11-21T10:02:09.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解一下Faster RCNN">
-<meta name="twitter:description" content="1. 前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。 2. 框架与流程Faster RCNN的模型框架如图。 可以分为4个主要内容：  Conv layers。作为一种CNN网络目标检测">
+<meta name="twitter:description" content="1. 前言Faster RCNN 由 论文提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。R-CNN提出selective search(SS)来搜索region proposal(RP)；Fast RCNN指出不必对每个RP各自提CNN特征，可以对原图提好CNN特征，再将SS找到的RP映射到CNN特征层上；Faster RCNN则提出了RPN层，将特征提取，proposal提">
 <meta name="twitter:image" content="http://weiquanfan.xyz/2020/11/19/fasterrcnn/structure.png">
   <!-- Canonical links -->
   <link rel="canonical" href="http://weiquanfan.xyz/2020/11/19/fasterrcnn/index.html">
@@ -386,7 +386,7 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>Faster RCNN 由 <a href="https://arxiv.org/pdf/1506.01497.pdf" target="_blank" rel="noopener">论文</a>提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。它将特征提取，proposal提取，bounding box regression，classification都整合在了一个网络中，极大地提高了检测速度。</p>
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>Faster RCNN 由 <a href="https://arxiv.org/pdf/1506.01497.pdf" target="_blank" rel="noopener">论文</a>提出，是继R-CNN和Fast RCNN之后的目标检测上的又一力作。<br>R-CNN提出selective search(SS)来搜索region proposal(RP)；<br>Fast RCNN指出不必对每个RP各自提CNN特征，可以对原图提好CNN特征，再将SS找到的RP映射到CNN特征层上；<br>Faster RCNN则提出了RPN层，将特征提取，proposal提取，bounding box整合在了一个网络中，极大地提高了检测速度。</p>
 <h2 id="2-框架与流程"><a href="#2-框架与流程" class="headerlink" title="2. 框架与流程"></a>2. 框架与流程</h2><p>Faster RCNN的模型框架如图。<br><img src="/2020/11/19/fasterrcnn/structure.png" alt></p>
 <p>可以分为4个主要内容：</p>
 <ul>
@@ -458,7 +458,8 @@
 <li>第二次训练Fast RCNN网络，对应stage2_fast_rcnn_train.pt</li>
 </ol>
 <p>可以看到训练过程类似于一种“迭代”的过程，不过只循环了2次。至于只循环了2次的原因是应为作者提到：”A similar alternating training can be run for more iterations, but we have observed negligible improvements”，即循环更多次没有提升了。注意，在第二次训练时，RPN和Fast RCNN共享的网络层是冻结的。</p>
-<h2 id="5-参考文献"><a href="#5-参考文献" class="headerlink" title="5. 参考文献"></a>5. 参考文献</h2><p><a href="https://zhuanlan.zhihu.com/p/31426458" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31426458</a></p>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>Faster RCNN是目标检测里two-stage的代表性杰作，在这之后还有一款用于目标检测和实例分割的Mask RCNN也为人称道。Mask RCNN类似于Faster RCNN的两个输出（预测框的坐标和类别），但多一条基于特征金字塔FCN网络的实例分割的mask通路，另外还将RoI pooling换成RoI align解决量化带来的边缘像素损失问题。<br>后来，目标检测又有很多one-stage方法涌现，即一步直接生成预测框的坐标和类别，其中以YOLO和SSD为代表，它们最终输出k×(4+1+c)通道的特征图，其中4是坐标，1是前景、背景的置信度，c是类别数，c是anchor数。两者选择anchor框的策略不同，YOLO的anchor基于训练集所有框聚类得到宽和长，SSD由数学公式得到，且SSD在不同尺度的特征图上选取了不同的anchor数量(从而实现多尺度的检测)。两者的anchor框都只有宽度和高度，坐标x和y都默认在网格中心。</p>
+<h2 id="6-参考文献"><a href="#6-参考文献" class="headerlink" title="6. 参考文献"></a>6. 参考文献</h2><p><a href="https://zhuanlan.zhihu.com/p/31426458" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31426458</a></p>
 
       
     </div>
