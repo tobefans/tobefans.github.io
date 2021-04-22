@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2020-11-21T10:02:09.208Z</updated>
+  <updated>2021-04-22T15:53:33.865Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kaldi的安装和使用案例(librispeech)</title>
+    <link href="http://weiquanfan.xyz/2021/04/22/kaldi-librispeech/"/>
+    <id>http://weiquanfan.xyz/2021/04/22/kaldi-librispeech/</id>
+    <published>2021-04-22T14:21:43.000Z</published>
+    <updated>2021-04-22T15:53:33.865Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-kaldi的安装&quot;&gt;&lt;a href=&quot;#1-kaldi的安装&quot; class=&quot;headerlink&quot; title=&quot;1. kaldi的安装&quot;&gt;&lt;/a&gt;1. kaldi的安装&lt;/h2&gt;&lt;p&gt;按照&lt;a href=&quot;https://kaldi-asr.org/doc
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>了解一下Faster RCNN</title>

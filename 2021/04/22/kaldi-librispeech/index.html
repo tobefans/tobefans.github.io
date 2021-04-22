@@ -17,31 +17,29 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>使用QT designer、python搭建界面程序 | Hexo</title>
-  <meta name="description" content="前言PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyins">
-<meta name="keywords" content="界面">
+  <title>kaldi的安装和使用案例(librispeech) | Hexo</title>
+  <meta name="description" content="1. kaldi的安装按照官网教程，kaldi的安装首先通过git获取项目，再进行编译。 git clone https://github.com/kaldi-asr/kaldi.git cd kaldi/tools/; make; cd ../src; ./configure; make 如果报错，则可能是相关的依赖项没有安装，可按照提示一步步安装(需要root权限)。 sudo apt-get">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用QT designer、python搭建界面程序">
-<meta property="og:url" content="http://weiquanfan.xyz/2020/06/10/QT/index.html">
+<meta property="og:title" content="kaldi的安装和使用案例(librispeech)">
+<meta property="og:url" content="http://weiquanfan.xyz/2021/04/22/kaldi-librispeech/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
-<meta property="og:description" content="前言PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyins">
+<meta property="og:description" content="1. kaldi的安装按照官网教程，kaldi的安装首先通过git获取项目，再进行编译。 git clone https://github.com/kaldi-asr/kaldi.git cd kaldi/tools/; make; cd ../src; ./configure; make 如果报错，则可能是相关的依赖项没有安装，可按照提示一步步安装(需要root权限)。 sudo apt-get">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/06/10/QT/qtdesigner.png">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/06/10/QT/qt_designer.png">
-<meta property="og:updated_time" content="2020-06-20T07:08:22.853Z">
+<meta property="og:updated_time" content="2021-04-22T15:53:33.865Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用QT designer、python搭建界面程序">
-<meta name="twitter:description" content="前言PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyins">
-<meta name="twitter:image" content="http://weiquanfan.xyz/2020/06/10/QT/qtdesigner.png">
+<meta name="twitter:title" content="kaldi的安装和使用案例(librispeech)">
+<meta name="twitter:description" content="1. kaldi的安装按照官网教程，kaldi的安装首先通过git获取项目，再进行编译。 git clone https://github.com/kaldi-asr/kaldi.git cd kaldi/tools/; make; cd ../src; ./configure; make 如果报错，则可能是相关的依赖项没有安装，可按照提示一步步安装(需要root权限)。 sudo apt-get">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://weiquanfan.xyz/2020/06/10/QT/index.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2021/04/22/kaldi-librispeech/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
   
   
@@ -349,14 +347,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-QT" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-kaldi-librispeech" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      使用QT designer、python搭建界面程序
+      kaldi的安装和使用案例(librispeech)
     </h1>
   
 
@@ -364,416 +362,333 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/06/10/QT/" class="article-date">
-	  <time datetime="2020-06-10T06:49:28.000Z" itemprop="datePublished">2020-06-10</time>
+	<a href="/2021/04/22/kaldi-librispeech/" class="article-date">
+	  <time datetime="2021-04-22T14:21:43.000Z" itemprop="datePublished">2021-04-22</time>
 	</a>
 </span>
         
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/界面/">界面</a>
-  </span>
-
         
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/界面/">界面</a>
-  </span>
-
 
         
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/06/10/QT/" class="leancloud_visitors"  data-flag-title="使用QT designer、python搭建界面程序">0</span>
+    	<span id="/2021/04/22/kaldi-librispeech/" class="leancloud_visitors"  data-flag-title="kaldi的安装和使用案例(librispeech)">0</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/10/QT/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/04/22/kaldi-librispeech/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>PyQt 是Python语言的GUI编程解决方案之一，是类似于 Tkinter 的一个高级库。 为了更好的辅助PyQt界面的搭建，可以通过Qt Designer完成GUI界面设计。 使用Qt Designer可以通过拖拽、点击完成GUI界面设计，并且设计完成后生成的.ui程序可以通过 pyuic5 命令直接转换成.py文件以供python程序调用。 搭建完界面并写好逻辑后，还可通过 pyinstaller 将.py文件封装成.exe文件，以供没有python解释器的用户使用。 本文以搭建标注工具界面程序为例。</p>
-<h2 id="预安装的软件与库"><a href="#预安装的软件与库" class="headerlink" title="预安装的软件与库"></a>预安装的软件与库</h2><ul>
-<li>Qt Designer: pip install —pre pyqt5-tools~=5.11<br>（位于\Python36\Lib\site-packages\pyqt5_tools\designer.exe，也可通过<a href="https://build-system.fman.io/qt-designer-download" target="_blank" rel="noopener">这里</a>下载）</li>
-<li>PyQt5: pip install PyQt5</li>
-<li>pip install pyinstaller</li>
-</ul>
-<h2 id="Qt-Designer-的界面设计"><a href="#Qt-Designer-的界面设计" class="headerlink" title="Qt Designer 的界面设计"></a>Qt Designer 的界面设计</h2><p> Qt Designer 的界面主要分为四大区：项目区、控件区、编辑区、属性区。 具体而言，就是在【控件区】里点击添加需要的控件，这些控件的效果会在【编辑区】里实时显示，并在【属性区】这些控件的属性，【项目区】用于显示控件间的层级关系。</p>
-<p><img src="/2020/06/10/QT/qtdesigner.png" alt></p>
-<p>在新建一个窗口后，一般需要通过 Container 确定外部轮廓，可选用常见的 Frame 控件，再在 Frame 里边选用 Layouts 来规范后续控件的排列样式，常用水平或垂直排列，最后再选用具体部件往里边填充。 常用的控件有各种Button（按钮）、Label（静态显示文本框）、Text Edit（输入输出文本框）、listWidget（列表显示框）、Check Box（选中框）、各种Slider（滑动条）等。</p>
-<p>每一个组件都有可设置的属性，最重要的通用属性有 objectName （用于在后续逻辑编写时指明时哪个控件），text （用于在GUI里在控件上显示）， geometry （用于设置控件位置和尺寸，但控件位于Layer中时就不可设置了）。<br><img src="/2020/06/10/QT/qt_designer.png" alt></p>
-<p>设计好界面之后保存可以生成my_win.ui文件，它可以直接在python代码里被加载使用，但为了在代码里进一步调用修改等，更好的方法是将.ui文件转换成相应的.py文件。这需要借助 \Python36\Scripts\pyuic5.exe工具。</p>
-<pre><code>pyuic5 -o my_win.py my_win.ui
-</code></pre><h2 id="Qt-逻辑编写"><a href="#Qt-逻辑编写" class="headerlink" title="Qt 逻辑编写"></a>Qt 逻辑编写</h2><p>很多控件都可以通过点击（或其他操作）触发事件，事件响应可自由编写，通过 connect 函数绑定。</p>
-<pre><code>#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-&quot;&quot;&quot;
-Created on Sun June 12 12:06:21 2020
+        <h2 id="1-kaldi的安装"><a href="#1-kaldi的安装" class="headerlink" title="1. kaldi的安装"></a>1. kaldi的安装</h2><p>按照<a href="https://kaldi-asr.org/doc/tutorial_setup.html" target="_blank" rel="noopener">官网</a>教程，kaldi的安装首先通过git获取项目，再进行编译。</p>
+<pre><code>git clone https://github.com/kaldi-asr/kaldi.git
+cd kaldi/tools/; make; cd ../src; ./configure; make
+</code></pre><p>如果报错，则可能是相关的依赖项没有安装，可按照提示一步步安装(需要root权限)。</p>
+<pre><code>sudo apt-get install zlib1g-dev automake autoconf sox subversion
+sudo bash extras/install_mkl.sh
+</code></pre><h2 id="2-kaldi的使用"><a href="#2-kaldi的使用" class="headerlink" title="2. kaldi的使用"></a>2. kaldi的使用</h2><h3 id="2-1-librispeech的ASR模型训练"><a href="#2-1-librispeech的ASR模型训练" class="headerlink" title="2.1 librispeech的ASR模型训练"></a>2.1 librispeech的ASR模型训练</h3><p>egs目录下放着各个数据库的样例代码，一个文件夹就是一个数据库，非常全面。进入egs/librispeech/s5/.每个代码里边都会有一份cmd.sh(引入单机多卡run.pl或者多机多卡quene.pl模式), path.sh(引入各种kaldi的路径), run.sh(训练及测试的整个主流程)。以下主要细看run.sh，整体流程为 导入参数-&gt;下载部分数据并预处理-&gt;准备并创建语言模型-&gt;提取特征-&gt;训练部分数据集-&gt;训练单因素、三音素模型并变换训练-&gt;加入更多数据集-&gt;变换训练-&gt;加入全部数据集-&gt;变换训练-&gt;解码-&gt;训练tdnn模型。具体如下：</p>
+<pre><code>#!/usr/bin/env bash
 
-@author: weiquan fan
-&quot;&quot;&quot;
+## 导入参数
+data=/home/fwq/Project/kaldi/kaldi/data
 
-import sys, os
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QCompleter, QFileDialog
-from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
-from PyQt5.QtCore import pyqtSignal, QEvent
-from PyQt5.Qt import QUrl
-from my_win import Ui_MainWindow
-import csv
+data_url=www.openslr.org/resources/12
+lm_url=www.openslr.org/resources/11
+mfccdir=mfcc
+stage=1
 
-root_path_metadata = &quot;./data/&quot;
+. ./cmd.sh
+. ./path.sh
+. parse_options.sh
 
-if not os.path.exists(root_path_metadata):
-    os.makedirs(root_path_metadata)
+set -e
 
-class mainWin(QMainWindow, Ui_MainWindow):
-    doubleClicked_speaker = pyqtSignal()
-    doubleClicked_dialog = pyqtSignal()
-
-    def __init__(self, parent=None):
-        super(mainWin, self).__init__(parent)
-        self.setupUi(self)
-
-        ## emotion
-        self.refresh_1()
-        self.radioButton.clicked.connect(self.showPos)
-        self.radioButton_2.clicked.connect(self.showNeu)
-        self.radioButton_3.clicked.connect(self.showNeg)
-
-        ## DA
-        self.refresh_2()
-
-        ## dialog identity
-        self.refresh_3()
-        self.frame_9.setHidden(True)
-        self.checkBox_5.stateChanged.connect(self.use_subsysdem3)
-        self.radioButton_5.clicked.connect(self.personA)
-        self.radioButton_4.clicked.connect(self.personB)
-
-        ## save buttons
-        self.refresh_save()
-        self.btn_save.clicked.connect(self.save_data)
-        self.btn_save_2.clicked.connect(self.save_dialog_data)
-
-        ## history
-        self.list_speaker = []
-        self.list_dialog = []
-
-        self.lineEdit_speaker.installEventFilter(self)
-        self.lineEdit.installEventFilter(self)
-        self.doubleClicked_speaker.connect(self.completer_name_speaker)
-        self.doubleClicked_dialog.connect(self.completer_name_dialog)
-
-        ## video player
-        self.player = QMediaPlayer()
-        self.player.setVideoOutput(self.wgt_player)
-        self.btn_open.clicked.connect(self.openVideoFile)    
-        self.btn_play_pause.clicked.connect(self.playPause)    
-        self.player.durationChanged.connect(self.getDuration)
-        self.player.positionChanged.connect(self.getPosition)
-        self.sld_duration.sliderMoved.connect(self.updatePosition)
-
-    ## for opening video
-    def openVideoFile(self):
-        name = QFileDialog.getOpenFileName()[0]
-        self.lineEdit.setText(name.split(&#39;/&#39;)[-1])
-        self.player.setMedia(QMediaContent(QUrl.fromLocalFile(name)))
-        # self.player.setMedia(QMediaContent(QFileDialog.getOpenFileUrl()[0]))
-        self.player.play()
-    def playPause(self):
-        if self.player.state()==1:
-            self.player.pause()
-        else:
-            self.player.play()
-    def getDuration(self, d):
-        self.sld_duration.setRange(0, d)
-        self.sld_duration.setEnabled(True)
-        self.displayTime(d)
-    def getPosition(self, p):
-        self.sld_duration.setValue(p)
-        self.displayTime(p)
-    def displayTime(self, ms):
-        minutes = int(ms/60000)
-        seconds = int((ms-minutes*60000)/1000)
-        dur_ms = self.sld_duration.maximum()
-        dur_min = int(dur_ms/60000)
-        dur_sec = int((dur_ms-dur_min*60000)/1000)
-        self.lab_duration.setText(&#39;{:0&gt;2d}:{:0&gt;2d} / {:0&gt;2d}:{:0&gt;2d}&#39;.format(minutes, seconds, dur_min, dur_sec))
-    def updatePosition(self, v):
-        self.player.setPosition(v)
-        self.displayTime(self.sld_duration.maximum()-v)
-
-    ## for history
-    def eventFilter(self, widget, event):
-        if widget == self.lineEdit_speaker:
-            if event.type() == QEvent.MouseButtonDblClick:
-                self.doubleClicked_speaker.emit()
-        elif widget == self.lineEdit:
-            if event.type() == QEvent.MouseButtonDblClick:
-                self.doubleClicked_dialog.emit()
-        return super().eventFilter(widget, event)
-
-    def completer_name_dialog(self):
-        self.completer = QCompleter(self.list_dialog)
-        self.lineEdit.setCompleter(self.completer)
-        self.completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
-        self.completer.complete()
-        self.completer.popup()
-
-    def completer_name_speaker(self):
-        self.completer = QCompleter(self.list_speaker)
-        self.lineEdit_speaker.setCompleter(self.completer)
-        self.completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
-        self.completer.complete()
-        self.completer.popup()
-
-    ## for label 1
-    def showPos(self):
-        self.listWidget.clear()
-        self.listWidget.addItem(&quot;高兴&quot;)
-        self.listWidget.addItem(&quot;兴奋&quot;)
-        self.listWidget.addItem(&quot;自豪&quot;)
-        self.listWidget.addItem(&quot;满足&quot;)
-        self.listWidget.addItem(&quot;感激&quot;)
-        self.listWidget.addItem(&quot;自信&quot;)
-        self.listWidget.addItem(&quot;轻松&quot;)
-        self.listWidget.addItem(&quot;羡慕&quot;)
-    def showNeg(self):
-        self.listWidget.clear()
-        self.listWidget.addItem(&quot;生气&quot;)
-        self.listWidget.addItem(&quot;伤心&quot;)
-        self.listWidget.addItem(&quot;害怕&quot;)
-        self.listWidget.addItem(&quot;烦恼&quot;)
-        self.listWidget.addItem(&quot;孤独&quot;)
-        self.listWidget.addItem(&quot;羞愧&quot;)
-        self.listWidget.addItem(&quot;恶心&quot;)
-        self.listWidget.addItem(&quot;失望&quot;)
-        self.listWidget.addItem(&quot;郁闷&quot;)
-        self.listWidget.addItem(&quot;不安&quot;)
-        self.listWidget.addItem(&quot;紧张&quot;)
-        self.listWidget.addItem(&quot;无奈&quot;)
-        self.listWidget.addItem(&quot;纠结&quot;)
-    def showNeu(self):
-        self.listWidget.clear()
-        self.listWidget.addItem(&quot;共情&quot;)
-        self.listWidget.addItem(&quot;平静&quot;)
+## 下载数据
+if [ $stage -le 1 ]; then
+  for part in dev-clean test-clean dev-other test-other train-clean-100; do
+    local/download_and_untar.sh $data $data_url $part
+  done
 
 
-    ## for label 3
-    def use_subsysdem3(self):
-        if self.checkBox_5.isChecked():
-            self.frame_9.setHidden(False)
-        else:
-            self.refresh_3()
-            self.frame_9.setHidden(True)
+  local/download_lm.sh $lm_url data/local/lm
+fi
 
-    def personA(self):
-        self.frame_3.setHidden(False)
-        self.frame_8.setHidden(True)
+## 生成各种数据的各种文件，如wav.scp，text，utt2spk，spk2gender，utt2dur
+if [ $stage -le 2 ]; then
+  for part in dev-clean test-clean dev-other test-other train-clean-100; do
+    local/data_prep.sh $data/LibriSpeech/$part data/$(echo $part | sed s/-/_/g)
+  done
+fi
 
-    def personB(self):
-        self.frame_3.setHidden(True)        
-        self.frame_8.setHidden(False)
+## 准备语言模型，准备字典(local/prepare_dict_sh)，准备语言相关数据(utils/prepare_lang.sh)，格式化数据(local/format_lms.sh)
+if [ $stage -le 3 ]; then
+  local/prepare_dict.sh --stage 3 --nj 30 --cmd &quot;$train_cmd&quot; \
+   data/local/lm data/local/lm data/local/dict_nosp
 
+  utils/prepare_lang.sh data/local/dict_nosp \
+   &quot;&lt;UNK&gt;&quot; data/local/lang_tmp_nosp data/lang_nosp
 
-    def refresh_gui(self):
-        self.refresh_1()
-        self.refresh_2()
-        self.refresh_3()
-        self.refresh_save()
+  local/format_lms.sh --src-dir data/lang_nosp data/local/lm
+fi
 
+## 用3-gram和4-gram语言模型创建ConstArpaLm格式语言模型
+if [ $stage -le 4 ]; then
+  utils/build_const_arpa_lm.sh data/local/lm/lm_tglarge.arpa.gz \
+    data/lang_nosp data/lang_nosp_test_tglarge
+  utils/build_const_arpa_lm.sh data/local/lm/lm_fglarge.arpa.gz \
+    data/lang_nosp data/lang_nosp_test_fglarge
+fi
 
-    def refresh_1(self):
-        self.buttonGroup_2.setExclusive(False)
-        self.radioButton.setChecked(False)
-        self.radioButton_2.setChecked(False)
-        self.radioButton_3.setChecked(False)
-        self.buttonGroup_2.setExclusive(True)
-        self.listWidget.clear()
-        self.checkBox_3.setChecked(True)
-        self.checkBox_2.setChecked(True)
-        self.checkBox.setChecked(True)        
-        self.checkBox_4.setChecked(False)        
+## 数据特征提取，提取mfcc，计算每条wav文件的均值方差
+if [ $stage -le 5 ]; then
+  if [[  $(hostname -f) ==  *.clsp.jhu.edu ]]; then
+    utils/create_split_dir.pl /export/b{02,11,12,13}/$USER/kaldi-data/egs/librispeech/s5/$mfcc/storage \
+     $mfccdir/storage
+  fi
+fi
 
-    def refresh_2(self):
-        self.listWidget_2.clear()
-        self.listWidget_2.addItem(&quot;问候&quot;)
-        self.listWidget_2.addItem(&quot;提问&quot;)
-        self.listWidget_2.addItem(&quot;回答&quot;)
-        self.listWidget_2.addItem(&quot;陈述观点&quot;)
-        self.listWidget_2.addItem(&quot;陈述非观点&quot;)
-        self.listWidget_2.addItem(&quot;道歉&quot;)
-        self.listWidget_2.addItem(&quot;命令&quot;)
-        self.listWidget_2.addItem(&quot;赞同&quot;)
-        self.listWidget_2.addItem(&quot;反对&quot;)
-        self.listWidget_2.addItem(&quot;表达知会&quot;)
-        self.listWidget_2.addItem(&quot;欣赏&quot;)
-        self.listWidget_2.addItem(&quot;叹词&quot;)
-        self.listWidget_2.addItem(&quot;结束对话&quot;) 
-        self.listWidget_2.addItem(&quot;引用&quot;) 
-        self.listWidget_2.addItem(&quot;其他&quot;) 
+if [ $stage -le 6 ]; then
+  for part in dev_clean test_clean dev_other test_other train_clean_100; do
+    steps/make_mfcc.sh --cmd &quot;$train_cmd&quot; --nj 40 data/$part exp/make_mfcc/$part $mfccdir
+    steps/compute_cmvn_stats.sh data/$part exp/make_mfcc/$part $mfccdir
+  done
+fi
 
-    def refresh_3(self):
-        # self.checkBox_5.setChecked(False)
-        self.buttonGroup.setExclusive(False)
-        self.radioButton_4.setChecked(False)
-        self.radioButton_5.setChecked(False)
-        self.buttonGroup.setExclusive(True)
-        self.buttonGroup_3.setExclusive(False)
-        self.radioButton_6.setChecked(False)
-        self.radioButton_7.setChecked(False)
-        self.radioButton_8.setChecked(False)
-        self.radioButton_9.setChecked(False)        
-        self.radioButton_10.setChecked(False)        
-        self.buttonGroup_3.setExclusive(True)
-        # self.frame_9.setHidden(True)
-        self.frame_3.setHidden(True)
-        self.frame_8.setHidden(True)   
+## 训练100小时的小数据集
+if [ $stage -le 7 ]; then
 
-    def refresh_save(self):
-        self.lineEdit_2.setText(&#39;0&#39;)
-        self.lineEdit_3.setText(&#39;0&#39;)
-        self.lineEdit_4.setText(&#39;0&#39;)
-        self.lineEdit_5.setText(&#39;0&#39;)
-        self.lineEdit_6.setText(&#39;0&#39;)
-        self.lineEdit_7.setText(&#39;0&#39;)
-        self.lineEdit_speaker.setText(&#39;&#39;)
+  utils/subset_data_dir.sh --shortest data/train_clean_100 2000 data/train_2kshort
+  utils/subset_data_dir.sh data/train_clean_100 5000 data/train_5k
+  utils/subset_data_dir.sh data/train_clean_100 10000 data/train_10k
+fi
 
-    def save_data(self):
+## 训练单音素模型(mono)
+if [ $stage -le 8 ]; then
+  steps/train_mono.sh --boost-silence 1.25 --nj 20 --cmd &quot;$train_cmd&quot; \
+                      data/train_2kshort data/lang_nosp exp/mono
+fi
 
-        ## check many things
-        try:
-            self.label_val = self.buttonGroup_2.checkedButton().text()
-            self.label_emotion = self.listWidget.selectedItems()[0].text()
-        except:
-            QMessageBox.information(self,&#39;提示&#39;,&#39;请选择具体情感后再重新保存&#39;, QMessageBox.Yes)
-            return False
+## 对齐，训练三音素模型(tri1)
+if [ $stage -le 9 ]; then
+  steps/align_si.sh --boost-silence 1.25 --nj 10 --cmd &quot;$train_cmd&quot; \
+                    data/train_5k data/lang_nosp exp/mono exp/mono_ali_5k
 
-        try:
-            self.label_da = self.listWidget_2.selectedItems()[0].text()
-        except:
-            QMessageBox.information(self,&#39;提示&#39;,&#39;请选择对话状态后再重新保存&#39;, QMessageBox.Yes)
-            return False
+  steps/train_deltas.sh --boost-silence 1.25 --cmd &quot;$train_cmd&quot; \
+                        2000 10000 data/train_5k data/lang_nosp exp/mono_ali_5k exp/tri1
+fi
 
-        self.label_iden_isok = self.checkBox_5.isChecked()
-        if self.label_iden_isok:
-            if self.buttonGroup.checkedId() == -1:
-                QMessageBox.information(self,&#39;提示&#39;,&#39;您已勾选该对话身份可标，请选择说话人身份后再重新保存&#39;, QMessageBox.Yes)
-                return False
-            else:
-                self.label_iden = self.buttonGroup.checkedButton().text()
-                if self.label_iden == &quot;倾诉者&quot;:
-                    self.label_reason = self.lineEdit_reason.text()
-                    self.label_result = self.lineEdit_result.text()
-                    self.label_reaction = &quot;空&quot;
-                else:
-                    self.label_reason = &quot;空&quot;
-                    self.label_result = &quot;空&quot;
-                    try:
-                        self.label_reaction = self.buttonGroup_3.checkedButton().text()
-                    except:
-                        QMessageBox.information(self,&#39;提示&#39;,&#39;您已勾选该对话身份可标，请选择倾诉者反应后再重新保存&#39;, QMessageBox.Yes)
-                        return False
-        else:
-            self.label_iden = &quot;不可标&quot;
-            self.label_reason = &quot;不可标&quot;
-            self.label_result = &quot;不可标&quot;
-            self.label_reaction = &quot;不可标&quot;
+## 对齐，对三音素做LDA+MLLT变换(tri2b)
+if [ $stage -le 10 ]; then
+  steps/align_si.sh --nj 10 --cmd &quot;$train_cmd&quot; \
+                    data/train_10k data/lang_nosp exp/tri1 exp/tri1_ali_10k
 
 
-        if self.lineEdit_speaker.text() == &#39;&#39;:
-            QMessageBox.information(self,&#39;提示&#39;,&#39;请输入说话人姓名&#39;, QMessageBox.Yes)
-            return False
-        else:
-            self.name_speaker = self.lineEdit_speaker.text()
+  steps/train_lda_mllt.sh --cmd &quot;$train_cmd&quot; \
+                          --splice-opts &quot;--left-context=3 --right-context=3&quot; 2500 15000 \
+                          data/train_10k data/lang_nosp exp/tri1_ali_10k exp/tri2b
+fi
 
-        try:
-            self.start_time = &quot;{}:{}:{}&quot;.format(int(self.lineEdit_2.text()), int(self.lineEdit_3.text()), int(self.lineEdit_4.text()))
-            self.end_time = &quot;{}:{}:{}&quot;.format(int(self.lineEdit_5.text()), int(self.lineEdit_6.text()), int(self.lineEdit_7.text()))
-        except:
-            QMessageBox.information(self,&#39;提示&#39;,&#39;时间应输入整数&#39;, QMessageBox.Yes)
-            return False
+## 对齐，对三音素做LDA+MLLT+SAT变换(tri3b)
+if [ $stage -le 11 ]; then
+  steps/align_si.sh  --nj 10 --cmd &quot;$train_cmd&quot; --use-graphs true \
+                     data/train_10k data/lang_nosp exp/tri2b exp/tri2b_ali_10k
 
-        if self.lineEdit.text() == &#39;&#39;:
-            QMessageBox.information(self,&#39;提示&#39;,&#39;请输入视频名字&#39;, QMessageBox.Yes)
-            return False
-        else:
-            self.name_dialog = self.lineEdit.text()
+  steps/train_sat.sh --cmd &quot;$train_cmd&quot; 2500 15000 \
+                     data/train_10k data/lang_nosp exp/tri2b_ali_10k exp/tri3b
 
+fi
 
-        if not os.path.exists(root_path_metadata+self.name_dialog+&#39;.csv&#39;):
-            with open(root_path_metadata+self.name_dialog+&#39;.csv&#39;,&quot;a&quot;,newline=&#39;&#39;,encoding=&#39;utf_8_sig&#39;) as csvfile: 
-                writer = csv.writer(csvfile, delimiter=&#39;,&#39;)
-                writer.writerow([&#39;视频名字&#39;, &#39;说话者姓名&#39;, &#39;起始时间&#39;, &#39;结束时间&#39;, &#39;情绪（粗粒度）&#39;, &#39;情绪（细粒度）&#39;, &#39;是否基于音频&#39;, &#39;是否基于视频&#39;, &#39;是否基于文本&#39;, &#39;是否难以标注&#39;, &#39;对话状态&#39;, &#39;是否可标对话身份&#39;, &#39;说话人身份&#39;, &#39;起因&#39;, &#39;结果&#39;, &#39;倾诉者反应&#39;])
+## 对齐，对三音素做LDA+MLLT+SAT变换(tri4b)
+if [ $stage -le 12 ]; then
+  steps/align_fmllr.sh --nj 20 --cmd &quot;$train_cmd&quot; \
+    data/train_clean_100 data/lang_nosp \
+    exp/tri3b exp/tri3b_ali_clean_100
 
-        ## save
-        self.label_emotion_audio_based = self.checkBox_3.isChecked()
-        self.label_emotion_video_based = self.checkBox_2.isChecked()
-        self.label_emotion_text_based = self.checkBox.isChecked()
-        self.label_emotion_hard = self.checkBox_4.isChecked()
+  steps/train_sat.sh  --cmd &quot;$train_cmd&quot; 4200 40000 \
+                      data/train_clean_100 data/lang_nosp \
+                      exp/tri3b_ali_clean_100 exp/tri4b
+fi
 
+## 从训练数据中计算发音和静音概率，并重新创建lang目录
+if [ $stage -le 13 ]; then
+  steps/get_prons.sh --cmd &quot;$train_cmd&quot; \
+                     data/train_clean_100 data/lang_nosp exp/tri4b
+  utils/dict_dir_add_pronprobs.sh --max-normalize true \
+                                  data/local/dict_nosp \
+                                  exp/tri4b/pron_counts_nowb.txt exp/tri4b/sil_counts_nowb.txt \
+                                  exp/tri4b/pron_bigram_counts_nowb.txt data/local/dict
 
-        onelist = [self.name_dialog, self.name_speaker, self.start_time, self.end_time, self.label_val, self.label_emotion, self.label_emotion_audio_based, self.label_emotion_video_based, self.label_emotion_text_based, self.label_emotion_hard, self.label_da, self.label_iden_isok, self.label_iden, self.label_reason, self.label_result, self.label_reaction]
-        with open(root_path_metadata+self.name_dialog+&#39;.csv&#39;,&quot;a&quot;,newline=&#39;&#39;,encoding=&#39;utf_8_sig&#39;) as csvfile: 
-            writer = csv.writer(csvfile, delimiter=&#39;,&#39;)
-            writer.writerow(onelist)
+  utils/prepare_lang.sh data/local/dict \
+                        &quot;&lt;UNK&gt;&quot; data/local/lang_tmp data/lang
+  local/format_lms.sh --src-dir data/lang data/local/lm
 
-        self.refresh_gui()
-        self.list_dialog.append(self.name_dialog)
-        self.list_speaker.append(self.name_speaker)
-        self.list_dialog = list(set(self.list_dialog))
-        self.list_speaker = list(set(self.list_speaker))
-        # self.lineEdit.setCompleter(QCompleter(self.list_dialog))
-        # self.lineEdit_speaker.setCompleter(QCompleter(self.list_speaker))
+  utils/build_const_arpa_lm.sh \
+    data/local/lm/lm_tglarge.arpa.gz data/lang data/lang_test_tglarge
+  utils/build_const_arpa_lm.sh \
+    data/local/lm/lm_fglarge.arpa.gz data/lang data/lang_test_fglarge
+fi
 
-        return True
+## 对齐，训练nnet2模型，现在已经不这么用了，所以and了个false
+if [ $stage -le 14 ] &amp;&amp; false; then
+  steps/align_fmllr.sh --nj 30 --cmd &quot;$train_cmd&quot; \
+    data/train_clean_100 data/lang exp/tri4b exp/tri4b_ali_clean_100
 
-    def save_dialog_data(self):
-        flag_save_success = self.save_data()
-        if flag_save_success == False: return 0
-        QMessageBox.about(self,&#39;提示&#39;,&#39;对话保存成功&#39;)
-        self.refresh_gui()
-        self.lineEdit.setText(&#39;&#39;)
-        self.lineEdit_reason.setText(&#39;&#39;)
-        self.lineEdit_result.setText(&#39;&#39;)
-        self.checkBox_5.setChecked(False)
-        self.frame_9.setHidden(True)
+  local/nnet2/run_5a_clean_100.sh
+fi
 
+## 合并360小时的数据，变成460小时
+if [ $stage -le 15 ]; then
+  local/download_and_untar.sh $data $data_url train-clean-360
 
-    def del_last_data(self):
-        try:
-            with open(root_path_metadata+self.name_dialog+&#39;.csv&#39;,&quot;r&quot;,newline=&#39;&#39;,encoding=&#39;utf_8_sig&#39;) as csvfile: 
-                data = csvfile.readlines()
-                del data[-1]
-            with open(root_path_metadata+self.name_dialog+&#39;.csv&#39;,&quot;w&quot;,newline=&#39;&#39;,encoding=&#39;utf_8_sig&#39;) as csvfile: 
-                writer = csv.writer(csvfile, delimiter=&#39;,&#39;)
-                for row in data:
-                    writer.writerow(row.strip().split(&#39;,&#39;))
-                # writer.writerows(data)
-            QMessageBox.about(self,&#39;提示&#39;,&#39;上一句的标注已删除&#39;)
-        except:
-            QMessageBox.information(self,&#39;提示&#39;,&#39;该视频尚未保存任何数据&#39;, QMessageBox.Yes)
+  local/data_prep.sh \
+    $data/LibriSpeech/train-clean-360 data/train_clean_360
+  steps/make_mfcc.sh --cmd &quot;$train_cmd&quot; --nj 40 data/train_clean_360 \
+                     exp/make_mfcc/train_clean_360 $mfccdir
+  steps/compute_cmvn_stats.sh \
+    data/train_clean_360 exp/make_mfcc/train_clean_360 $mfccdir
 
+  utils/combine_data.sh \
+    data/train_clean_460 data/train_clean_100 data/train_clean_360
+fi
 
-if __name__ == &#39;__main__&#39;:
-    app = QApplication(sys.argv)
-    main_win = mainWin()
-    main_win.show()
-    # main_win.showFullScreen()
-    sys.exit(app.exec_())
-</code></pre><h2 id="封装成可执行文件"><a href="#封装成可执行文件" class="headerlink" title="封装成可执行文件"></a>封装成可执行文件</h2><p>对于编写好的.py文件，若是需要更好的给没有python编辑器的人使用，则需要封装成.exe文件，这可以通过 pyinstaller 命令来完成。</p>
-<pre><code>pyinstaller -F biaozhu.py
-</code></pre><p>pyinstaller 有两种常见的模式：<br>-F: 將程式打包成单一的执行文件(适合比较简单的代码)<br>-D: 打包多個文件，exe及依赖的东西会一起放置在dist資料夾里(适合框架形式的程式)</p>
-<p>在打包过程中，包含如下步骤</p>
-<ul>
-<li>在路径下生成了biaozhu.spec: 包含打包时相关的设定</li>
-<li>建立build 文件夹，放置了log记录和相关文件</li>
-<li>建立dist 文件夹，放置了可执行文件，若是 —F 模式，则里边仅有一个.exe文件</li>
-</ul>
-<p>另外，若是打包失败，可以通过改写.spec文件，再通过 pyinstaller -D XXX.spec 重新打包。 如果是库的 import 问题，可以通过 hiddenimport 里放置库名来hidden掉该错误。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以前只知道 Tkinter 可以来实现 python 的界面设计，但感觉并不那么友好。 而这次学习到的 PyQt 以及相应的 Qt designer则很好的解决了这一问题，可以通过拉拽进行布局，就像c++的SDL一样。完成界面设计后的逻辑编写才是更让人头疼的问题，容易产生各种bug，只能慢慢调。 最后完成程序之后还可以转成.exe文件，从而可以直接给别人使用，这个是意料之外的惊喜。</p>
+## 对齐，做LDA+MLLT+SAT变换(tri5b)
+if [ $stage -le 16 ]; then
+  steps/align_fmllr.sh --nj 40 --cmd &quot;$train_cmd&quot; \
+                       data/train_clean_460 data/lang exp/tri4b exp/tri4b_ali_clean_460
+
+  steps/train_sat.sh  --cmd &quot;$train_cmd&quot; 5000 100000 \
+                      data/train_clean_460 data/lang exp/tri4b_ali_clean_460 exp/tri5b
+fi
+#local/nnet2/run_6a_clean_460.sh
+
+## 合并500小时的数据，变成960小时
+if [ $stage -le 17 ]; then
+  local/download_and_untar.sh $data $data_url train-other-500
+
+  local/data_prep.sh \
+    $data/LibriSpeech/train-other-500 data/train_other_500
+  steps/make_mfcc.sh --cmd &quot;$train_cmd&quot; --nj 40 data/train_other_500 \
+                     exp/make_mfcc/train_other_500 $mfccdir
+  steps/compute_cmvn_stats.sh \
+    data/train_other_500 exp/make_mfcc/train_other_500 $mfccdir
+
+  utils/combine_data.sh \
+    data/train_960 data/train_clean_460 data/train_other_500
+fi
+
+## 对齐，做LDA+MLLT+SAT变换(tri6b)，解码
+if [ $stage -le 18 ]; then
+  steps/align_fmllr.sh --nj 40 --cmd &quot;$train_cmd&quot; \
+                       data/train_960 data/lang exp/tri5b exp/tri5b_ali_960
+
+  steps/train_quick.sh --cmd &quot;$train_cmd&quot; \
+                       7000 150000 data/train_960 data/lang exp/tri5b_ali_960 exp/tri6b
+
+  utils/mkgraph.sh data/lang_test_tgsmall \
+                   exp/tri6b exp/tri6b/graph_tgsmall
+  for test in test_clean test_other dev_clean dev_other; do
+      steps/decode_fmllr.sh --nj 20 --cmd &quot;$decode_cmd&quot; \
+                            exp/tri6b/graph_tgsmall data/$test exp/tri6b/decode_tgsmall_$test
+      steps/lmrescore.sh --cmd &quot;$decode_cmd&quot; data/lang_test_{tgsmall,tgmed} \
+                         data/$test exp/tri6b/decode_{tgsmall,tgmed}_$test
+      steps/lmrescore_const_arpa.sh \
+        --cmd &quot;$decode_cmd&quot; data/lang_test_{tgsmall,tglarge} \
+        data/$test exp/tri6b/decode_{tgsmall,tglarge}_$test
+      steps/lmrescore_const_arpa.sh \
+        --cmd &quot;$decode_cmd&quot; data/lang_test_{tgsmall,fglarge} \
+        data/$test exp/tri6b/decode_{tgsmall,fglarge}_$test
+  done
+fi
+
+## 划分“好”的数据来训练数据（tri6b_cleaned）
+if [ $stage -le 19 ]; then
+  local/run_cleanup_segmentation.sh
+fi
+
+## 训练和测试nnet3 tdnn模型
+if [ $stage -le 20 ]; then
+  local/chain/run_tdnn.sh
+fi
+</code></pre><h3 id="2-2-使用预训练模型测试自己的数据集"><a href="#2-2-使用预训练模型测试自己的数据集" class="headerlink" title="2.2 使用预训练模型测试自己的数据集"></a>2.2 使用预训练模型测试自己的数据集</h3><p>首先，新建自己数据库的文件夹，并设置steps、utils、rnnlm的软链接。</p>
+<pre><code>ln -s /home/fwq/Project/kaldi/kaldi/egs/wsj/s5/utils utils
+ln -s /home/fwq/Project/kaldi/kaldi/egs/wsj/s5/steps steps
+ln -s /home/fwq/Project/kaldi/kaldi/scripts/rnnlm rnnlm
+</code></pre><p>然后开始准备自己的数据库，kaldi需要的文件如下，这部分需要根据自己的数据库格式来编写生成，放置在data/corpus_name/里，以下corpus命名为test。</p>
+<ol>
+<li>wav.scp：此列表包含系统中的语音ID和相应的WAV位置</li>
+<li>utt2spk：话语ID和相应的说话者ID的列表。如果您没有发言人信息，则可以将utt-id复制为spk-id。</li>
+<li>text：话语的转录。这将需要对您的解码输出进行评分。</li>
+</ol>
+<p>再对数据进行排序、复制等处理。</p>
+<pre><code>utils/fix_data_dir.sh data/test
+utils/utt2spk_to_spk2utt.pl data/test/utt2spk &gt; data/test/spk2utt
+for datadir in test; do
+    utils/copy_data_dir.sh data/$datadir data/${datadir}_hires
+done
+</code></pre><p>有了数据，就要准备生成mfcc特征，需要新建一个conf文件夹，并新建conf/mfcc_hires.conf的配置文件，添加如下：</p>
+<pre><code>-use-energy=false   # use average of log energy, not energy.
+--num-mel-bins=40     # similar to Google&#39;s setup.
+--num-ceps=40     # there is no dimensionality reduction.
+--low-freq=20     # low cutoff frequency for mel bins... this is high-bandwidth data, so
+                  # there might be some information at the low end.
+--high-freq=-400 # high cutoff frequently, relative to Nyquist of 8000 (=7600)
+</code></pre><p>然后就可以为数据计算特征和CMVN统计信息。</p>
+<pre><code>for datadir in test; do
+    steps/make_mfcc.sh --nj 20 --mfcc-config conf/mfcc_hires.conf --cmd &quot;$train_cmd&quot; data/${datadir}_hires
+    steps/compute_cmvn_stats.sh data/${datadir}_hires
+    utils/fix_data_dir.sh data/${datadir}_hires
+done
+</code></pre><p>接下来是预训练模型的下载和导入。默认情况下，内容将提取到data和exp目录。这里提供了2种语言模型：（tgsmall小三元组模型）和rnnlm（基于LSTM），这两种语言模型都经过LibriSpeech训练转录本的训练。我们将使用tgsmall模型进行解码，并使用RNNLM进行记录。</p>
+<pre><code>wget http://kaldi-asr.org/models/13/0013_librispeech_v1_chain.tar.gz
+wget http://kaldi-asr.org/models/13/0013_librispeech_v1_extractor.tar.gz
+wget http://kaldi-asr.org/models/13/0013_librispeech_v1_lm.tar.gz
+tar -xvzf 0013_librispeech_v1_chain.tar.gz
+tar -xvzf 0013_librispeech_v1_extractor.tar.gz
+tar -xvzf 0013_librispeech_v1_lm.tar.gz
+</code></pre><p>使用i-vector提取器来获取测试数据的i-vector。 这会将100维i-向量提取到exp/nnet3_cleaned。</p>
+<pre><code>for data in test; do
+    nspk=$(wc -l &lt;data/${data}_hires/spk2utt)
+    steps/online/nnet2/extract_ivectors_online.sh --cmd &quot;$train_cmd&quot; --nj &quot;${nspk}&quot; \
+      data/${data}_hires exp/nnet3_cleaned/extractor \
+      exp/nnet3_cleaned/ivectors_${data}_hires
+done
+</code></pre><p>使用tgsmallLM创建解码图。</p>
+<pre><code>export dir=exp/chain_cleaned/tdnn_1d_sp
+export graph_dir=$dir/graph_tgsmall
+utils/mkgraph.sh --self-loop-scale 1.0 --remove-oov \
+  data/lang_test_tgsmall $dir $graph_dir
+</code></pre><p>使用创建的图形进行解码。</p>
+<pre><code>export decode_cmd=&quot;run.pl&quot;
+for decode_set in test; do
+  steps/nnet3/decode.sh --acwt 1.0 --post-decode-acwt 10.0 \
+    --nj 8 --cmd &quot;$decode_cmd&quot; \
+    --online-ivector-dir exp/nnet3_cleaned/ivectors_${decode_set}_hires \
+    $graph_dir data/${decode_set}_hires $dir/decode_${decode_set}_tgsmall
+done
+</code></pre><p>在核对之前检查WER。在这里，我们使用sclite评分，这在Kaldi中可用，并用于大多数egs。</p>
+<pre><code>for decode_set in test; do
+  steps/score_kaldi.sh --cmd &quot;run.pl&quot; data/${decode_set}_hires $graph_dir $dir/decode_${decode_set}_tgsmall
+done
+cat exp/chain_cleaned/tdnn_1d_sp/decode_test_tgsmall/scoring_kaldi/best_wer
+%WER 57.15 [ 14722 / 25761, 2501 ins, 2559 del, 9662 sub ] exp/chain_cleaned/tdnn_1d_sp/decode_test_tgsmall/wer_17_1.0
+</code></pre><p>使用RNNLM重新评分。</p>
+<pre><code>export decode_cmd=&quot;run.pl&quot;
+for decode_set in test; do
+    decode_dir=exp/chain_cleaned/tdnn_1d_sp/decode_${decode_set}_tgsmall;
+    rnnlm/lmrescore_pruned.sh \
+        --cmd &quot;$decode_cmd&quot; \
+        --weight 0.45 --max-ngram-order 4 \
+        data/lang_test_tgsmall exp/rnnlm_lstm_1a \
+        data/${decode_set}_hires ${decode_dir} \
+        exp/chain_cleaned/tdnn_1d_sp/decode_${decode_set}_rescore
+done
+</code></pre><p>计分包含在lmrescore_pruned.sh脚本中。</p>
+<pre><code>cat exp/chain_cleaned/tdnn_1d_sp/decode_test_rescore/wer_17_1.0
+# %WER 56.12 [ 14456 / 25761, 2607 ins, 2452 del, 9397 sub ]
+</code></pre><h2 id="3-kaldi使用感受"><a href="#3-kaldi使用感受" class="headerlink" title="3. kaldi使用感受"></a>3. kaldi使用感受</h2><p>不同于以往用的python，kaldi的初步使用通过shell脚本来实现，它基于c++的底层，通过社区不同发展，现在已经有了非常庞大的脚本库。很多函数都实现了高效的封装，但如果要自己提特征训模型的话，还需要细看shell代码进一步看c++代码。</p>
+<h2 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4. 参考文献"></a>4. 参考文献</h2><p><a href="https://www.jianshu.com/p/fc1cd9aa9cce" target="_blank" rel="noopener">参考1</a><br><a href="https://desh2608.github.io/2020-05-18-using-librispeech/" target="_blank" rel="noopener">参考2</a></p>
 
       
     </div>
@@ -783,7 +698,7 @@ if __name__ == &#39;__main__&#39;:
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz/2020/06/10/QT/" title="使用QT designer、python搭建界面程序" target="_blank" rel="external">http://weiquanfan.xyz/2020/06/10/QT/</a>
+      <a href="http://weiquanfan.xyz/2021/04/22/kaldi-librispeech/" title="kaldi的安装和使用案例(librispeech)" target="_blank" rel="external">http://weiquanfan.xyz/2021/04/22/kaldi-librispeech/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -829,13 +744,9 @@ if __name__ == &#39;__main__&#39;:
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/06/20/ASR-with-keras/" title="基于keras的简易语音识别"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/05/27/DL-Framework/" title="深度学习主流框架的代码实例"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/11/19/fasterrcnn/" title="了解一下Faster RCNN"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
