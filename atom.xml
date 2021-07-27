@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2021-04-22T15:53:33.865Z</updated>
+  <updated>2021-07-27T16:08:31.114Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>语音的预处理--去噪</title>
+    <link href="http://weiquanfan.xyz/2021/07/27/denose/"/>
+    <id>http://weiquanfan.xyz/2021/07/27/denose/</id>
+    <published>2021-07-27T15:50:34.000Z</published>
+    <updated>2021-07-27T16:08:31.114Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;在人工智能中，算法固然很重要，但语音的预处理却直接地决定了算法的性能上限，因此有必要对语音进行去噪处理。&lt;/p&gt;
+&lt;h2 id=&quot;方法1&quot;&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>kaldi的安装和使用案例(librispeech)</title>
