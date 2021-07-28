@@ -17,33 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Transfomer以及Self-Attention讲解 | Hexo</title>
-  <meta name="description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下边是一个很好的使用Transformer进行机器">
-<meta name="keywords" content="Transformer,attention">
+  <title>VSCode的服务器和github同步 | Hexo</title>
+  <meta name="description" content="引言近期发现VSCode是一个非常强大的IDE，可以替换掉诸如xshell、winscp等多款软件，实现很好的本地、服务器、甚至github的同步。 公钥私钥配对不管是本地到服务器，本地到github，还是服务器到github，都可以通过配置密钥的方式，实现免密登录，因此先讲述如何进行密钥配对。配对的时候，要把公钥分给远程端，把私钥分给本地端（服务器发给另一个服务器时也可以视为本地端），公钥私钥唯">
+<meta name="keywords" content="工具使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Transfomer以及Self-Attention讲解">
-<meta property="og:url" content="http://weiquanfan.xyz/2020/05/05/transfomer/index.html">
+<meta property="og:title" content="VSCode的服务器和github同步">
+<meta property="og:url" content="http://weiquanfan.xyz/2021/07/28/vscode/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
-<meta property="og:description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下边是一个很好的使用Transformer进行机器">
+<meta property="og:description" content="引言近期发现VSCode是一个非常强大的IDE，可以替换掉诸如xshell、winscp等多款软件，实现很好的本地、服务器、甚至github的同步。 公钥私钥配对不管是本地到服务器，本地到github，还是服务器到github，都可以通过配置密钥的方式，实现免密登录，因此先讲述如何进行密钥配对。配对的时候，要把公钥分给远程端，把私钥分给本地端（服务器发给另一个服务器时也可以视为本地端），公钥私钥唯">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/transfomer_framework.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/transfomer_framework2.png">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/position_embedding.png">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/self_attention_example.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/self_attention_example2.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/self_attention_example3.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/self_attention_fomula.png">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/Multi-Head.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/Multi-Head2.jpg">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-01188c490446b01b55fe316723576070_1440w.jpg?30">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-7fb3ac456169471c26ac795b6d208b7c_1440w.png?50">
-<meta property="og:updated_time" content="2020-06-20T07:02:34.144Z">
+<meta property="og:updated_time" content="2021-07-28T15:29:41.939Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Transfomer以及Self-Attention讲解">
-<meta name="twitter:description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下边是一个很好的使用Transformer进行机器">
-<meta name="twitter:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/transfomer_framework.jpg">
+<meta name="twitter:title" content="VSCode的服务器和github同步">
+<meta name="twitter:description" content="引言近期发现VSCode是一个非常强大的IDE，可以替换掉诸如xshell、winscp等多款软件，实现很好的本地、服务器、甚至github的同步。 公钥私钥配对不管是本地到服务器，本地到github，还是服务器到github，都可以通过配置密钥的方式，实现免密登录，因此先讲述如何进行密钥配对。配对的时候，要把公钥分给远程端，把私钥分给本地端（服务器发给另一个服务器时也可以视为本地端），公钥私钥唯">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://weiquanfan.xyz/2020/05/05/transfomer/index.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2021/07/28/vscode/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
@@ -360,14 +348,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-transfomer" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-vscode" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Transfomer以及Self-Attention讲解
+      VSCode的服务器和github同步
     </h1>
   
 
@@ -375,20 +363,20 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/05/05/transfomer/" class="article-date">
-	  <time datetime="2020-05-05T12:23:39.000Z" itemprop="datePublished">2020-05-05</time>
+	<a href="/2021/07/28/vscode/" class="article-date">
+	  <time datetime="2021-07-28T15:27:44.000Z" itemprop="datePublished">2021-07-28</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/深度学习模型/">深度学习模型</a>
+    <a class="article-category-link" href="/categories/工具使用/">工具使用</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Transformer/">Transformer</a>, <a class="article-tag-link" href="/tags/attention/">attention</a>
+	<a class="article-tag-link" href="/tags/工具使用/">工具使用</a>
   </span>
 
 
@@ -396,79 +384,64 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/05/05/transfomer/" class="leancloud_visitors"  data-flag-title="Transfomer以及Self-Attention讲解">0</span>
+    	<span id="/2021/07/28/vscode/" class="leancloud_visitors"  data-flag-title="VSCode的服务器和github同步">0</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/05/transfomer/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/07/28/vscode/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这一篇主要讲解谷歌发表的<a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a>。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。</p>
-<p>下边是一个很好的使用Transformer进行机器翻译任务的例子。在预测过程中，编码阶段，输入的“I arrived at the”中的每个单词都会计算与所有单词的注意力权重，并加权求和得出新的自己的表示，逐层编码。解码阶段，输入由encoder出来的所有单词的表示和上一个位置输出的embedding，经过类似的注意力操作得到这一个位置的输出，是一种随着预测位置移动的迭代过程。<br><a href="https://pic4.zhimg.com/v2-b1b7cd5637f7c844510fd460e0e2c807_b.webp?80" target="_blank" rel="noopener">戳我看例子</a></p>
-<h2 id="总体框架与流程"><a href="#总体框架与流程" class="headerlink" title="总体框架与流程"></a>总体框架与流程</h2><h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>对照着以上例子，看下边的Transfomer总体框架图。左边为编码器，右边为解码器。编码器和解码器中都包含了Positional Encoding模块，Multi-Head Attention模块，Feed-Forward模块。下一章节会对此着重讲解。<br><img src="/2020/05/05/transfomer/transfomer_framework.jpg" alt></p>
-<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>定义一下符号。</p>
-<ul>
-<li>emb_dim：嵌入的尺寸</li>
-<li>input_length：输入序列的长度</li>
-<li>target_length：目标序列的长度+1。+1是因为要移位。</li>
-<li>vocab_size：目标词汇表中的单词数量。</li>
-</ul>
-<p>则Transformer的流程可表示为：</p>
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>近期发现VSCode是一个非常强大的IDE，可以替换掉诸如xshell、winscp等多款软件，实现很好的本地、服务器、甚至github的同步。</p>
+<h2 id="公钥私钥配对"><a href="#公钥私钥配对" class="headerlink" title="公钥私钥配对"></a>公钥私钥配对</h2><p>不管是本地到服务器，本地到github，还是服务器到github，都可以通过配置密钥的方式，实现免密登录，因此先讲述如何进行密钥配对。<br>配对的时候，要把公钥分给远程端，把私钥分给本地端（服务器发给另一个服务器时也可以视为本地端），公钥私钥唯一匹配，则可以成功登录。</p>
 <ol>
-<li>该模型将每个token表示为维度emb_dim的向量。然后，对于特定的输入序列，我们有了尺寸为（input_length）x（emb_dimb）的矩阵。</li>
-<li>然后添加位置信息（位置编码）。与上一步一样，此步骤将返回尺寸为（input_length）x（emb_dim）的矩阵。</li>
-<li>数据通过N=6个编码器块。之后，我们获得尺寸为（input_length）x（emb_dim）的矩阵。</li>
-<li>目标序列经过等同于1和2的操作，并进行mask屏蔽。输出的尺寸为（target_length）x（emb_dim）。</li>
-<li>4的结果经过N=6个解码器块。在每个迭代中，解码器都使用编码器的输出3）。这在总框图中由从编码器到解码器的箭头表示。输出的尺寸为（target_length）x（emb_dim）。</li>
-<li>最后，逐行使用全连接层和softmax。输出的尺寸为（target_length）x（vocab_size）。</li>
+<li>生成新的密钥，在windows的cmd，或linux和mac的终端中，输入如下命令，确认后会生成两个文件，id_rsa和id_rsa.pub。前者是私钥，后者是公钥。<br><code>ssh-keygen -t rsa -C &quot;email@email.com&quot;</code></li>
+<li>找到生成的密钥，默认放置在 <strong>C:/Users/lenovo/.ssh/</strong> ，用记事本之类的编辑器打开<strong>id_rsa.pub</strong>，复制内容。</li>
+<li>把公钥复制到远程端。对于服务器，将复制的内容追加到 <strong>~/.ssh/authorized_keys</strong> 。对于github，打开github -&gt; 点击头像 -&gt; Settings -&gt; SSH and GPG keys -&gt; New SSH key -&gt;黏贴key，随便写个title -&gt; 配置成功。</li>
+<li>对于github，需要额外运行<code>ssh-keyscan -t rsa github.com &gt;&gt; ~/.ssh/known_hosts</code></li>
 </ol>
-<p><img src="/2020/05/05/transfomer/transfomer_framework2.png" alt></p>
-<p>编码器对于训练阶段和测试阶段是一样的编码过程，而解码器的流程则有所不同，因此先讲解一下解码器的训练和测试。<br>在<strong>测试阶段</strong>，由于没有groundtruth，所以我们需要从零开始不断迭代一个词一个词地生成。具体操作如下：</p>
+<h2 id="本地和服务器的同步"><a href="#本地和服务器的同步" class="headerlink" title="本地和服务器的同步"></a>本地和服务器的同步</h2><ol>
+<li>在插件扩展里安装微软官方发布的 Remote-SSH ，安装完后左侧会多一个远程资源管理器的图标，呈电脑状。</li>
+<li>点击远程图标，点击SSH TARGETS旁边的齿轮图标进行配置，弹出的多行配置文件里选择第一个，确认进行配置。</li>
+<li>进行如下配置，保存，会在SSH TARGETS下面出现名字为Name的远程机，会一直存在于远程资源管理器里，以后只需右键连接即可。<pre><code>Host Name
+ HostName 1.1.1.1 # 填写远程服务器的IP或者Host
+ User username # 填写登陆远程服务器的用户的名字
+ Port 22    # 填写端口，默认为22
+ IdentityFile C:\\Users\\lenovo\\.ssh\\id_rsa #填写私钥路径
+</code></pre></li>
+<li>右键连接到服务器后，点击菜单栏的文件，点击新建文件夹，就可直接选择服务器端的文件夹，而后文件夹就挂载到了左侧上边的第一个图标资源管理器，在这里的更改都会实时同步回服务器。</li>
+<li>另外，在连接到服务器后，可以点击菜单栏的终端呼出新终端，就可以相当于xshell、putty直接在vscode上执行服务器上的终端命令了。</li>
+</ol>
+<h2 id="服务器和github的同步"><a href="#服务器和github的同步" class="headerlink" title="服务器和github的同步"></a>服务器和github的同步</h2><p>VSCode默认支持了很多git操作，就在左侧的源代码管理图标中，呈分支图状。<br>在首次安装git的时候，需要先设置自己的用户名和邮箱（注册github时的用户名和邮箱）。</p>
+<pre><code>git config --global user.name &quot;name&quot;
+git config --global user.email &quot;email@email.com&quot;
+</code></pre><p>一般而言，本地和github的同步操作如下：</p>
+<pre><code>git init # 把这个文件夹变成Git可以管理的仓库
+git add .       # 把当前文件夹下的所有文件添加到暂存区
+git add **.py   # 把当前文件夹下的**.py添加到暂存区
+git status      # 可选操作，查看当前状态
+git commit -m &quot;注释&quot;  # 把暂存区的文件提交到本地仓库
+git checkout master     # 切换到master分支
+
+git remote add origin https://github.com/name/Project.git   # 关联github仓库，一个项目只需关联一次
+git push origin main    # 把本地仓库推向远程GitHub仓库的main分支
+git pull origin main    # 把远程GitHub仓库的main分支拉回本地仓库
+</code></pre><p>而在VSCode中，这些命令大多数可以通过更方便的方式来替代。我们一方面可以通过调出终端，使用如上命令来进行同步，也可以通过点击源代码管理图标，直观地对文件夹中地文件进行同步操作。具体来说：</p>
+<pre><code>git init 可以通过点击源代码管理图标里地初始化按钮替代。
+git add 可以通过在文件旁边点击+号替代。
+git commit 可以通过文件上面地消息来替代。
+git remote add 通过按Ctrl+Shift+P调出命令行，输入git remote add，再进一步输入https://github.com/name/Project.git，再输入origin，完成绑定
+git push    通过按Ctrl+Shift+P调出命令行，输入git push
+git pull    通过按Ctrl+Shift+P调出命令行，输入git pull
+git checkout    通过点击左下角地分支名字来更换
+</code></pre><p>另外要注意：</p>
 <ol>
-<li>计算输入序列的嵌入表示。</li>
-<li>使用起始token例如’<ss>‘，作为第一个目标序列。该模型将预测输出一个token。</ss></li>
-<li>将最后一个预测token添加到目标序列，并使用它生成新的预测。</li>
-<li>重复执行步骤3，每次的输入token和输出token都增加，直到预测的token是表示序列结束的token，例如<eos>。</eos></li>
+<li>一般上传流程是 add、commit、push，在这之前需要先上去github新建项目。</li>
+<li>在同步过程中如果遇到了和github端冲突的问题，则需要先解决冲突，再继续上传。</li>
+<li>对于本地和github的同步则基本一样，服务器可以作为另一种形式的本地。</li>
 </ol>
-<p>在<strong>训练阶段</strong>中，由于我们事先有roundtruth，因此我们将直接为模型提供整个已移位目标序列，并要求其预测未移位目标。<br>举个例子，目标是将句子从英语翻译成西班牙语：<br>X = [‘Hello’，’，’，’how’，’are’，’you’，’？’]（输入序列）<br>Y = [‘Hola’，’，’，’como’，’estas’， ‘？’]（目标序列）<br>在前面的示例之后，我们将给解码器输入：<br>[‘<ss>‘，’Hola’，’，’，’como’，’estas’，’？’]<br>预期的预测将是：<br>[‘Hola’，’，’，’como’，’estas’，’？’，’<eos>‘]</eos></ss></p>
-<p>因此可以看到，解码器在训练时直接从target_length-&gt;target_length，而测试时则是从1-&gt;1 2-&gt;2 3-&gt;3 … target_length-&gt;target_length的过程，最后预测的是每次迭代中最后一个预测的token串联起来。</p>
-<h2 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h2><p>Transformer抛弃了RNN，而RNN最大的优点就是在时间序列上对数据的抽象，所以文章中作者提出两种Positional Encoding的方法，将encoding后的数据与embedding数据求和，加入了相对位置信息。</p>
-<ul>
-<li>用不同频率的sine和cosine函数直接计算</li>
-<li>学习出一份positional embedding<br>实验后发现两者结果一样，所以用了第一种方法，优点是不需要训练参数，而且即使在训练集中没有出现过的句子长度上也能用</li>
-</ul>
-<p><img src="/2020/05/05/transfomer/position_embedding.png" alt></p>
-<p>对于输入序列，经过word embedding后，加上positional embedding后即可得到该序列的 representation，序列中的每个token都转换成包含 word 的特征和 word 在句子中的位置信息的向量。</p>
-<h2 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h2><p>Multi-Head Attention其实就是多个Self-Attention结构的结合。因此，首先我们需要着重学习论文的重点Self-Attention。</p>
-<h3 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h3><p>从一个比较知名的<a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">例子</a>讲起。<br>假如我们要翻译一个词组Thinking Machines，其中Thinking的输入的embedding vector用x1表示，Machines的embedding vector用x2表示。当我们处理Thinking这个词时，我们需要计算句子中所有词与它的Attention Score，这就像将当前词作为搜索的query，去和句子中所有词（包含该词本身）的key去匹配（点乘），看看相关度有多高。相关度进行尺度缩放与softmax归一化可以得到注意力权重，注意力与相应的value加权求和就得到新的表达。</p>
-<p><img src="/2020/05/05/transfomer/self_attention_example.jpg" alt></p>
-<p>如果将输入的所有向量合并为矩阵形式，则所有query, key, value向量也可以合并为矩阵形式表示</p>
-<p><img src="/2020/05/05/transfomer/self_attention_example2.jpg" alt></p>
-<p>则上述操作可简化为矩阵形式</p>
-<p><img src="/2020/05/05/transfomer/self_attention_example3.jpg" alt></p>
-<p>这就是著名的注意力公式：</p>
-<p><img src="/2020/05/05/transfomer/self_attention_fomula.png" alt></p>
-<h3 id="Multi-Head-Attention-1"><a href="#Multi-Head-Attention-1" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h3><p>基于上边的Self-Attention， 我们进一步拓展，对输入序列使用不同的Q，K，V进行多次以上操作，而后拼接起来，再转换成最终的表示。这样每个head可以学习到在不同表示空间中的特征。</p>
-<p><img src="/2020/05/05/transfomer/Multi-Head.jpg" alt></p>
-<p>可视化如下：</p>
-<p><img src="/2020/05/05/transfomer/Multi-Head2.jpg" alt></p>
-<h3 id="Masked-Multi-Head-Attention"><a href="#Masked-Multi-Head-Attention" class="headerlink" title="Masked Multi-Head Attention"></a>Masked Multi-Head Attention</h3><p>在训练过程的解码器中，需要对输入的注意力矩阵（即上边QK经过softmax的矩阵）进行masked操作，从而不给模型看见未来信息，解决了信息泄露问题。举例来说，对于目标序列（I have a dream），I作为第一个单词，只能有和自身的attention。have作为第二个单词，有和I, have 两个attention。 a 作为第三个单词，有和I,have,a 前面三个单词的attention。到了最后一个单词dream的时候，才有对整个句子4个单词的attention。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-01188c490446b01b55fe316723576070_1440w.jpg?30" alt></p>
-<p>其它操作和上述的Multi-Head Attention一致。</p>
-<h3 id="Encoder-Decoder-Multi-Head-Attention"><a href="#Encoder-Decoder-Multi-Head-Attention" class="headerlink" title="Encoder-Decoder Multi-Head Attention"></a>Encoder-Decoder Multi-Head Attention</h3><p>在解码器的第二层attention里，需要整合encoder的输入序列和decoder的目标序列的信息，算出相互之间的注意力。与Multi-Head Attention的不同点在于，Encoder-Decoder Multi-Head Attention的Q矩阵来自decoder，而K和V来自encoder。其实也很好理解，就是注意力矩阵是由来自解码器的Query和来自编码器的Key之间计算得来，其它操作都相同。</p>
-<h2 id="Feed-Forward"><a href="#Feed-Forward" class="headerlink" title="Feed-Forward"></a>Feed-Forward</h2><p>这个就很简单了，就是简单的映射层。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-7fb3ac456169471c26ac795b6d208b7c_1440w.png?50" alt></p>
-<h2 id="Produce-Output-Probabilities"><a href="#Produce-Output-Probabilities" class="headerlink" title="Produce Output Probabilities"></a>Produce Output Probabilities</h2><p>这个其实也是普通的映射层，它将每一个目标序列的token由emb_dim映射到vocab_size，因此就可得到各个token，串成目标序列了。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不得不说，这确实是一篇很经典的论文，将seq2seq模型推到了一个新高度，避免了RNN的大量计算代价，从此用CNN操作序列信号就有很好的效果了。另外，Self-Attention还跨界在cv行业也有了非常多的研究。可以说cv和nlp是同源的，只需要将图像的长宽拉成一列（空间信息）类比成序列信号的序列，图像的通道类比成序列信号的embedding即可。因此，Self-Attention模块的输入在nlp上是time × embedding，在cv上是spatial × channel。此外，当下横扫nlp的BERT模型也是基于Transfomer的encoder，这也表明这个模型的重要性了。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://medium.com/dissecting-bert/dissecting-bert-appendix-the-decoder-3b86f66b0e5f" target="_blank" rel="noopener">https://medium.com/dissecting-bert/dissecting-bert-appendix-the-decoder-3b86f66b0e5f</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/80986272" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/80986272</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/44121378" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/44121378</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/39034683" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/39034683</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/47282410" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/47282410</a></li>
-</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>目前VSCode的使用感受还不错，基本可以替代掉xshell和winscp，并可以实现多平台较好的同步。在与github的同步中，需要小心谨慎的做好版本管理，不要误删文件。一般需要每有一次较大改动就要push一次，并且要充分利用好branch分支功能。</p>
 
       
     </div>
@@ -478,7 +451,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz/2020/05/05/transfomer/" title="Transfomer以及Self-Attention讲解" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/05/transfomer/</a>
+      <a href="http://weiquanfan.xyz/2021/07/28/vscode/" title="VSCode的服务器和github同步" target="_blank" rel="external">http://weiquanfan.xyz/2021/07/28/vscode/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -524,13 +497,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/05/07/BERT/" title="讲讲横扫nlp任务的BERT模型"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/05/04/gradient-descent/" title="常见的梯度下降算法原理"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2021/07/28/vad/" title="语音的预处理--端点检测"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     

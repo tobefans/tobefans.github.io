@@ -17,33 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Transfomer以及Self-Attention讲解 | Hexo</title>
-  <meta name="description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下边是一个很好的使用Transformer进行机器">
-<meta name="keywords" content="Transformer,attention">
+  <title>语音的预处理--端点检测 | Hexo</title>
+  <meta name="description" content="引言语音的实际应用场景中，经常是给定一段包含多句句子的长语音，这就产生了语音端点检测的需求，从而实现对句子的分割。端点检测可以是只检测长语音的开始和结束，也可以细化到每一句句子的开始和结束，以下示例为句子级的端点检测。 方法1使用短时能量和谱质心特征进行端点检测，在matlab上有封装好的函数，以下为python版本。 #!/usr/bin/python3 # -*- coding: utf-8">
+<meta name="keywords" content="语音预处理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Transfomer以及Self-Attention讲解">
-<meta property="og:url" content="http://weiquanfan.xyz/2020/05/05/transfomer/index.html">
+<meta property="og:title" content="语音的预处理--端点检测">
+<meta property="og:url" content="http://weiquanfan.xyz/2021/07/28/vad/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
-<meta property="og:description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下边是一个很好的使用Transformer进行机器">
+<meta property="og:description" content="引言语音的实际应用场景中，经常是给定一段包含多句句子的长语音，这就产生了语音端点检测的需求，从而实现对句子的分割。端点检测可以是只检测长语音的开始和结束，也可以细化到每一句句子的开始和结束，以下示例为句子级的端点检测。 方法1使用短时能量和谱质心特征进行端点检测，在matlab上有封装好的函数，以下为python版本。 #!/usr/bin/python3 # -*- coding: utf-8">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/transfomer_framework.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/transfomer_framework2.png">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/position_embedding.png">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/self_attention_example.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/self_attention_example2.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/self_attention_example3.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/self_attention_fomula.png">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/Multi-Head.jpg">
-<meta property="og:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/Multi-Head2.jpg">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-01188c490446b01b55fe316723576070_1440w.jpg?30">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-7fb3ac456169471c26ac795b6d208b7c_1440w.png?50">
-<meta property="og:updated_time" content="2020-06-20T07:02:34.144Z">
+<meta property="og:updated_time" content="2021-07-28T15:28:48.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Transfomer以及Self-Attention讲解">
-<meta name="twitter:description" content="前言这一篇主要讲解谷歌发表的Attention Is All You Need。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。 下边是一个很好的使用Transformer进行机器">
-<meta name="twitter:image" content="http://weiquanfan.xyz/2020/05/05/transfomer/transfomer_framework.jpg">
+<meta name="twitter:title" content="语音的预处理--端点检测">
+<meta name="twitter:description" content="引言语音的实际应用场景中，经常是给定一段包含多句句子的长语音，这就产生了语音端点检测的需求，从而实现对句子的分割。端点检测可以是只检测长语音的开始和结束，也可以细化到每一句句子的开始和结束，以下示例为句子级的端点检测。 方法1使用短时能量和谱质心特征进行端点检测，在matlab上有封装好的函数，以下为python版本。 #!/usr/bin/python3 # -*- coding: utf-8">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://weiquanfan.xyz/2020/05/05/transfomer/index.html">
+  <link rel="canonical" href="http://weiquanfan.xyz/2021/07/28/vad/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
   
@@ -360,14 +348,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-transfomer" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-vad" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Transfomer以及Self-Attention讲解
+      语音的预处理--端点检测
     </h1>
   
 
@@ -375,20 +363,20 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/05/05/transfomer/" class="article-date">
-	  <time datetime="2020-05-05T12:23:39.000Z" itemprop="datePublished">2020-05-05</time>
+	<a href="/2021/07/28/vad/" class="article-date">
+	  <time datetime="2021-07-28T15:27:39.000Z" itemprop="datePublished">2021-07-28</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/深度学习模型/">深度学习模型</a>
+    <a class="article-category-link" href="/categories/语音预处理/">语音预处理</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Transformer/">Transformer</a>, <a class="article-tag-link" href="/tags/attention/">attention</a>
+	<a class="article-tag-link" href="/tags/语音预处理/">语音预处理</a>
   </span>
 
 
@@ -396,79 +384,332 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2020/05/05/transfomer/" class="leancloud_visitors"  data-flag-title="Transfomer以及Self-Attention讲解">0</span>
+    	<span id="/2021/07/28/vad/" class="leancloud_visitors"  data-flag-title="语音的预处理--端点检测">0</span>
     </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/05/05/transfomer/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/07/28/vad/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这一篇主要讲解谷歌发表的<a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a>。这篇论文提出了驰名的一种注意力机制 —— self-attention 模块，并进一步提出了 Transformer 架构，从而将以往用的计算代价较大的RNN替换掉了。目前，nlp任务中效果非常好的BERT模型就是大量应用了Transformer架构的Encoder。</p>
-<p>下边是一个很好的使用Transformer进行机器翻译任务的例子。在预测过程中，编码阶段，输入的“I arrived at the”中的每个单词都会计算与所有单词的注意力权重，并加权求和得出新的自己的表示，逐层编码。解码阶段，输入由encoder出来的所有单词的表示和上一个位置输出的embedding，经过类似的注意力操作得到这一个位置的输出，是一种随着预测位置移动的迭代过程。<br><a href="https://pic4.zhimg.com/v2-b1b7cd5637f7c844510fd460e0e2c807_b.webp?80" target="_blank" rel="noopener">戳我看例子</a></p>
-<h2 id="总体框架与流程"><a href="#总体框架与流程" class="headerlink" title="总体框架与流程"></a>总体框架与流程</h2><h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>对照着以上例子，看下边的Transfomer总体框架图。左边为编码器，右边为解码器。编码器和解码器中都包含了Positional Encoding模块，Multi-Head Attention模块，Feed-Forward模块。下一章节会对此着重讲解。<br><img src="/2020/05/05/transfomer/transfomer_framework.jpg" alt></p>
-<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>定义一下符号。</p>
-<ul>
-<li>emb_dim：嵌入的尺寸</li>
-<li>input_length：输入序列的长度</li>
-<li>target_length：目标序列的长度+1。+1是因为要移位。</li>
-<li>vocab_size：目标词汇表中的单词数量。</li>
-</ul>
-<p>则Transformer的流程可表示为：</p>
-<ol>
-<li>该模型将每个token表示为维度emb_dim的向量。然后，对于特定的输入序列，我们有了尺寸为（input_length）x（emb_dimb）的矩阵。</li>
-<li>然后添加位置信息（位置编码）。与上一步一样，此步骤将返回尺寸为（input_length）x（emb_dim）的矩阵。</li>
-<li>数据通过N=6个编码器块。之后，我们获得尺寸为（input_length）x（emb_dim）的矩阵。</li>
-<li>目标序列经过等同于1和2的操作，并进行mask屏蔽。输出的尺寸为（target_length）x（emb_dim）。</li>
-<li>4的结果经过N=6个解码器块。在每个迭代中，解码器都使用编码器的输出3）。这在总框图中由从编码器到解码器的箭头表示。输出的尺寸为（target_length）x（emb_dim）。</li>
-<li>最后，逐行使用全连接层和softmax。输出的尺寸为（target_length）x（vocab_size）。</li>
-</ol>
-<p><img src="/2020/05/05/transfomer/transfomer_framework2.png" alt></p>
-<p>编码器对于训练阶段和测试阶段是一样的编码过程，而解码器的流程则有所不同，因此先讲解一下解码器的训练和测试。<br>在<strong>测试阶段</strong>，由于没有groundtruth，所以我们需要从零开始不断迭代一个词一个词地生成。具体操作如下：</p>
-<ol>
-<li>计算输入序列的嵌入表示。</li>
-<li>使用起始token例如’<ss>‘，作为第一个目标序列。该模型将预测输出一个token。</ss></li>
-<li>将最后一个预测token添加到目标序列，并使用它生成新的预测。</li>
-<li>重复执行步骤3，每次的输入token和输出token都增加，直到预测的token是表示序列结束的token，例如<eos>。</eos></li>
-</ol>
-<p>在<strong>训练阶段</strong>中，由于我们事先有roundtruth，因此我们将直接为模型提供整个已移位目标序列，并要求其预测未移位目标。<br>举个例子，目标是将句子从英语翻译成西班牙语：<br>X = [‘Hello’，’，’，’how’，’are’，’you’，’？’]（输入序列）<br>Y = [‘Hola’，’，’，’como’，’estas’， ‘？’]（目标序列）<br>在前面的示例之后，我们将给解码器输入：<br>[‘<ss>‘，’Hola’，’，’，’como’，’estas’，’？’]<br>预期的预测将是：<br>[‘Hola’，’，’，’como’，’estas’，’？’，’<eos>‘]</eos></ss></p>
-<p>因此可以看到，解码器在训练时直接从target_length-&gt;target_length，而测试时则是从1-&gt;1 2-&gt;2 3-&gt;3 … target_length-&gt;target_length的过程，最后预测的是每次迭代中最后一个预测的token串联起来。</p>
-<h2 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h2><p>Transformer抛弃了RNN，而RNN最大的优点就是在时间序列上对数据的抽象，所以文章中作者提出两种Positional Encoding的方法，将encoding后的数据与embedding数据求和，加入了相对位置信息。</p>
-<ul>
-<li>用不同频率的sine和cosine函数直接计算</li>
-<li>学习出一份positional embedding<br>实验后发现两者结果一样，所以用了第一种方法，优点是不需要训练参数，而且即使在训练集中没有出现过的句子长度上也能用</li>
-</ul>
-<p><img src="/2020/05/05/transfomer/position_embedding.png" alt></p>
-<p>对于输入序列，经过word embedding后，加上positional embedding后即可得到该序列的 representation，序列中的每个token都转换成包含 word 的特征和 word 在句子中的位置信息的向量。</p>
-<h2 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h2><p>Multi-Head Attention其实就是多个Self-Attention结构的结合。因此，首先我们需要着重学习论文的重点Self-Attention。</p>
-<h3 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h3><p>从一个比较知名的<a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">例子</a>讲起。<br>假如我们要翻译一个词组Thinking Machines，其中Thinking的输入的embedding vector用x1表示，Machines的embedding vector用x2表示。当我们处理Thinking这个词时，我们需要计算句子中所有词与它的Attention Score，这就像将当前词作为搜索的query，去和句子中所有词（包含该词本身）的key去匹配（点乘），看看相关度有多高。相关度进行尺度缩放与softmax归一化可以得到注意力权重，注意力与相应的value加权求和就得到新的表达。</p>
-<p><img src="/2020/05/05/transfomer/self_attention_example.jpg" alt></p>
-<p>如果将输入的所有向量合并为矩阵形式，则所有query, key, value向量也可以合并为矩阵形式表示</p>
-<p><img src="/2020/05/05/transfomer/self_attention_example2.jpg" alt></p>
-<p>则上述操作可简化为矩阵形式</p>
-<p><img src="/2020/05/05/transfomer/self_attention_example3.jpg" alt></p>
-<p>这就是著名的注意力公式：</p>
-<p><img src="/2020/05/05/transfomer/self_attention_fomula.png" alt></p>
-<h3 id="Multi-Head-Attention-1"><a href="#Multi-Head-Attention-1" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h3><p>基于上边的Self-Attention， 我们进一步拓展，对输入序列使用不同的Q，K，V进行多次以上操作，而后拼接起来，再转换成最终的表示。这样每个head可以学习到在不同表示空间中的特征。</p>
-<p><img src="/2020/05/05/transfomer/Multi-Head.jpg" alt></p>
-<p>可视化如下：</p>
-<p><img src="/2020/05/05/transfomer/Multi-Head2.jpg" alt></p>
-<h3 id="Masked-Multi-Head-Attention"><a href="#Masked-Multi-Head-Attention" class="headerlink" title="Masked Multi-Head Attention"></a>Masked Multi-Head Attention</h3><p>在训练过程的解码器中，需要对输入的注意力矩阵（即上边QK经过softmax的矩阵）进行masked操作，从而不给模型看见未来信息，解决了信息泄露问题。举例来说，对于目标序列（I have a dream），I作为第一个单词，只能有和自身的attention。have作为第二个单词，有和I, have 两个attention。 a 作为第三个单词，有和I,have,a 前面三个单词的attention。到了最后一个单词dream的时候，才有对整个句子4个单词的attention。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-01188c490446b01b55fe316723576070_1440w.jpg?30" alt></p>
-<p>其它操作和上述的Multi-Head Attention一致。</p>
-<h3 id="Encoder-Decoder-Multi-Head-Attention"><a href="#Encoder-Decoder-Multi-Head-Attention" class="headerlink" title="Encoder-Decoder Multi-Head Attention"></a>Encoder-Decoder Multi-Head Attention</h3><p>在解码器的第二层attention里，需要整合encoder的输入序列和decoder的目标序列的信息，算出相互之间的注意力。与Multi-Head Attention的不同点在于，Encoder-Decoder Multi-Head Attention的Q矩阵来自decoder，而K和V来自encoder。其实也很好理解，就是注意力矩阵是由来自解码器的Query和来自编码器的Key之间计算得来，其它操作都相同。</p>
-<h2 id="Feed-Forward"><a href="#Feed-Forward" class="headerlink" title="Feed-Forward"></a>Feed-Forward</h2><p>这个就很简单了，就是简单的映射层。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-7fb3ac456169471c26ac795b6d208b7c_1440w.png?50" alt></p>
-<h2 id="Produce-Output-Probabilities"><a href="#Produce-Output-Probabilities" class="headerlink" title="Produce Output Probabilities"></a>Produce Output Probabilities</h2><p>这个其实也是普通的映射层，它将每一个目标序列的token由emb_dim映射到vocab_size，因此就可得到各个token，串成目标序列了。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不得不说，这确实是一篇很经典的论文，将seq2seq模型推到了一个新高度，避免了RNN的大量计算代价，从此用CNN操作序列信号就有很好的效果了。另外，Self-Attention还跨界在cv行业也有了非常多的研究。可以说cv和nlp是同源的，只需要将图像的长宽拉成一列（空间信息）类比成序列信号的序列，图像的通道类比成序列信号的embedding即可。因此，Self-Attention模块的输入在nlp上是time × embedding，在cv上是spatial × channel。此外，当下横扫nlp的BERT模型也是基于Transfomer的encoder，这也表明这个模型的重要性了。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a href="https://medium.com/dissecting-bert/dissecting-bert-appendix-the-decoder-3b86f66b0e5f" target="_blank" rel="noopener">https://medium.com/dissecting-bert/dissecting-bert-appendix-the-decoder-3b86f66b0e5f</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/80986272" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/80986272</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/44121378" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/44121378</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/39034683" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/39034683</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/47282410" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/47282410</a></li>
-</ul>
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>语音的实际应用场景中，经常是给定一段包含多句句子的长语音，这就产生了语音端点检测的需求，从而实现对句子的分割。端点检测可以是只检测长语音的开始和结束，也可以细化到每一句句子的开始和结束，以下示例为句子级的端点检测。</p>
+<h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>使用短时能量和谱质心特征进行端点检测，在matlab上有封装好的函数，以下为python版本。</p>
+<pre><code>#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+# @author: fan weiquan
+
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.io import wavfile
+import librosa
+import scipy.signal
+
+
+def ShortTimeEnergy(signal, windowLength, step):
+    &quot;&quot;&quot;
+    计算短时能量
+    Parameters
+    ----------
+    signal : 原始信号.
+    windowLength : 帧长.
+    step : 帧移.
+
+    Returns
+    -------
+    E : 每一帧的能量.
+    &quot;&quot;&quot;
+    signal = signal / np.max(signal) # 归一化
+    curPos = 0
+    L = len(signal)
+    numOfFrames  = np.asarray(np.floor((L-windowLength)/step) + 1, dtype=int)
+    E = np.zeros((numOfFrames, 1))
+    for i in range(numOfFrames):
+        window = signal[int(curPos):int(curPos+windowLength-1)];
+        E[i] = (1/(windowLength)) * np.sum(np.abs(window**2));
+        curPos = curPos + step;
+    return E
+
+def SpectralCentroid(signal,windowLength, step, fs):
+    &quot;&quot;&quot;
+    计算谱质心
+    Parameters
+    ----------
+    signal : 原始信号.
+    windowLength : 帧长.
+    step : 帧移.
+    fs : 采样率.
+
+    Returns
+    -------
+    C : 每一帧的谱质心.
+    &quot;&quot;&quot;
+    signal = signal / np.max(signal) # 归一化
+    curPos = 0
+    L = len(signal)
+    numOfFrames  = np.asarray(np.floor((L - windowLength) / step) + 1, dtype=int)
+    H = np.hamming(windowLength)
+    m = ((fs / (2 * windowLength)) * np.arange(1, windowLength, 1)).T
+    C = np.zeros((numOfFrames, 1))
+    for i in range(numOfFrames):
+        window = H * (signal[int(curPos) : int(curPos + windowLength)])
+        FFT = np.abs(np.fft.fft(window, 2 * int(windowLength)))
+        FFT = FFT[1 : windowLength]
+        FFT = FFT / np.max(FFT)
+        C[i] = np.sum(m * FFT) / np.sum(FFT)
+        if np.sum(window**2) &lt; 0.010:
+            C[i] = 0.0
+        curPos = curPos + step;
+    C = C / (fs/2)
+    return C
+
+def findMaxima(f, step):
+    &quot;&quot;&quot;
+    寻找局部最大值
+    Parameters
+    ----------
+    f : 输入序列.
+    step : 搜寻窗长.
+
+    Returns
+    -------
+    Maxima : 最大值索引 最大值
+    countMaxima : 最大值的数量
+    &quot;&quot;&quot;
+    ## STEP 1: 寻找最大值
+    countMaxima = 0
+    Maxima = []
+    for i in range(len(f) - step - 1): # 对于序列中的每一个元素:
+        if i &gt;= step:
+            if (np.mean(f[i - step : i]) &lt; f[i]) and (np.mean(f[i + 1 : i + step + 1]) &lt; f[i]): 
+                # IF the current element is larger than its neighbors (2*step window)
+                # --&gt; keep maximum:
+                countMaxima = countMaxima + 1
+                Maxima.append([i, f[i]])
+        else:
+            if (np.mean(f[0 : i + 1]) &lt;= f[i]) and (np.mean(f[i + 1 : i + step + 1]) &lt; f[i]):
+                # IF the current element is larger than its neighbors (2*step window)
+                # --&gt; keep maximum:
+                countMaxima = countMaxima + 1
+                Maxima.append([i, f[i]])
+
+    ## STEP 2: 对最大值进行进一步处理
+    MaximaNew = []
+    countNewMaxima = 0
+    i = 0
+    while i &lt; countMaxima:
+        # get current maximum:
+
+        curMaxima = Maxima[i][0]
+        curMavVal = Maxima[i][1]
+
+        tempMax = [Maxima[i][0]]
+        tempVals = [Maxima[i][1]]
+        i = i + 1
+
+        # search for &quot;neighbourh maxima&quot;:
+        while (i &lt; countMaxima) and (Maxima[i][0] - tempMax[len(tempMax) - 1] &lt; step / 2):
+
+            tempMax.append(Maxima[i][0])
+            tempVals.append(Maxima[i][1])
+            i = i + 1
+
+        MM = np.max(tempVals)
+        MI = np.argmax(tempVals) 
+        if MM &gt; 0.02 * np.mean(f): # if the current maximum is &quot;large&quot; enough:
+            # keep the maximum of all maxima in the region:
+            MaximaNew.append([tempMax[MI], f[tempMax[MI]]])
+            countNewMaxima = countNewMaxima + 1   # add maxima
+    Maxima = MaximaNew
+    countMaxima = countNewMaxima
+
+    return Maxima, countMaxima
+
+def VAD(signal, fs):
+
+    win = 0.05
+    step = 0.05
+    Eor = ShortTimeEnergy(signal, int(win * fs), int(step * fs));
+    Cor = SpectralCentroid(signal, int(win * fs), int(step * fs), fs);
+    E = scipy.signal.medfilt(Eor[:, 0], 5)
+    E = scipy.signal.medfilt(E, 5)
+    C = scipy.signal.medfilt(Cor[:, 0], 5)
+    C = scipy.signal.medfilt(C, 5)
+
+    E_mean = np.mean(E);
+    Z_mean = np.mean(C);
+    Weight = 100 # 阈值估计的参数
+    # 寻找短时能量的阈值
+    Hist = np.histogram(E, bins=10) # 计算直方图
+    HistE = Hist[0]
+    X_E = Hist[1]
+    MaximaE, countMaximaE = findMaxima(HistE, 3) # 寻找直方图的局部最大值
+    if len(MaximaE) &gt;= 2: # 如果找到了两个以上局部最大值
+        T_E = (Weight*X_E[MaximaE[0][0]] + X_E[MaximaE[1][0]]) / (Weight + 1)
+    else:
+        T_E = E_mean / 2
+
+    # 寻找谱质心的阈值
+    Hist = np.histogram(C, bins=10)
+    HistC = Hist[0]
+    X_C = Hist[1]
+    MaximaC, countMaximaC = findMaxima(HistC, 3)
+    if len(MaximaC)&gt;=2:
+        T_C = (Weight*X_C[MaximaC[0][0]]+X_C[MaximaC[1][0]]) / (Weight+1)
+    else:
+        T_C = Z_mean / 2
+
+    # 阈值判断
+    Flags1 = (E&gt;=T_E)
+    Flags2 = (C&gt;=T_C)
+    flags = np.array(Flags1 &amp; Flags2, dtype=int)
+
+    ## 提取语音片段
+    count = 1
+    segments = []
+    while count &lt; len(flags): # 当还有未处理的帧时
+        # 初始化
+        curX = []
+        countTemp = 1
+        while ((flags[count - 1] == 1) and (count &lt; len(flags))):
+            if countTemp == 1: # 如果是该语音段的第一帧
+                Limit1 = np.round((count-1)*step*fs)+1 # 设置该语音段的开始边界
+                if Limit1 &lt; 1:
+                    Limit1 = 1
+            count = count + 1       # 计数器加一
+            countTemp = countTemp + 1   # 当前语音段的计数器加一
+
+        if countTemp &gt; 1: # 如果当前循环中有语音段
+            Limit2 = np.round((count - 1) * step * fs) # 设置该语音段的结束边界
+            if Limit2 &gt; len(signal):
+                Limit2 = len(signal)
+            # 将该语音段的首尾位置加入到segments的最后一行
+            segments.append([int(Limit1), int(Limit2)])
+        count = count + 1
+
+    # 合并语音段
+    i = 0
+    while i &lt; len(segments)-1:
+    # for i in range(len(segments) - 1): # 对每一个语音段进行处理
+        if segments[i][1] &gt;= segments[i + 1][0] - fs//2:
+            segments[i][1] = segments[i + 1][1]
+            # segments[i + 1, :] = []
+            del segments[i+1]
+            i -= 1
+        i += 1
+
+    # 删除语音段
+    i = 0
+    while i &lt; len(segments): 
+        if segments[i][1] - segments[i][0] &lt; fs//2:
+            del segments[i]
+        i += 1
+
+    # seg_tuple = ()
+    # for i in range(len(segments)): seg_tuple+=tuple(segments[i][:])
+
+    return segments
+
+
+if __name__ == &quot;__main__&quot;:
+    path_audio = &#39;test.wav&#39;
+
+    signal, fs = librosa.load(path_audio, mono=True)
+
+    segments = VAD(signal, fs) # 端点检测
+    print(segments)
+    # for i, seg in enumerate(segments):
+    #     wavfile.write(str(i)+&#39;.wav&#39;, fs, signal[seg[0]:seg[1]])
+</code></pre><h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>基于webrtcvad的端点检测，逐帧判断是否是否静音，并通过平滑扩张等操作进一步调整端点。</p>
+<pre><code>from scipy.ndimage.morphology import binary_dilation
+import librosa
+import numpy as np
+import struct
+import webrtcvad
+import soundfile as sf
+
+# ** a的b次方  32767
+int16_max = (2 ** 15) - 1
+#输入
+wav, sr = librosa.load(&quot;test.wav&quot;, sr=None)
+
+# 计算语音检测窗口大小  #为整除 30秒X16000=总帧长
+samples_per_window = (30 * 16000) // 1000
+
+# 修剪音频的结尾，使其具有窗口大小的倍数。使wav的长度能被 samples_per_window整除
+wav = wav[:len(wav) - (len(wav) % samples_per_window)]
+
+# 浮点数波形转换为16位单声道PCM  *：接收到的参数会形成一个元组，**：接收到的参数会形成一个字典。如下代码。
+# webrtcvad 的 is_speech 接收的是buf 所以这里需要转换
+pcm_wave = struct.pack(&quot;%dh&quot; % len(wav), *(np.round(wav * int16_max)).astype(np.int16))
+
+# 执行语音激活检测
+# timestamps = []
+# flag = False
+voice_flags = []
+# 　这里共有三种帧长可以用到，分别是80/10ms，160/20ms，240/30ms。其它采样率
+# 的48k，32k，24k，16k会重采样到8k来计算VAD。之所以选择上述三种帧长度，是因为语
+# 音信号是短时平稳信号，其在10ms~30ms之间可看成平稳信号，高斯马尔科夫等比较
+# 的信号处理方法基于的前提是信号是平稳的，在10ms~30ms，平稳信号处理方法是可
+# 以使用的。
+# 　　从vad的代码中可以看出，实际上，系统只处理默认10ms,20ms,30ms长度的数据，
+# 其它长度的数据没有支持，笔者修改过可以支持其它在10ms-30ms之间长度的帧长度
+# 发现也是可以的。
+# 　　vad检测共四种模式，用数字0~3来区分，激进程度与数值大小正相关。
+# 0: Normal，1：low Bitrate， 2：Aggressive；3：Very Aggressive 可以根据实际的使用
+vad = webrtcvad.Vad(mode=0)
+for window_start in range(0, len(wav), samples_per_window):
+    window_end = window_start + samples_per_window
+    # append 进来的都是Boolean  这里以samples_per_windowx2 的长度去检测是否为人声
+    isspeech_bool = vad.is_speech(pcm_wave[window_start * 2:window_end * 2], sample_rate=16000)
+    voice_flags.append(isspeech_bool)
+    # if flag ^ isspeech_bool:
+        # timestamps.append(window_start)
+        # flag = isspeech_bool
+
+# for i in range(0, len(timestamps), 2):
+    # tmp = wav[timestamps[i]:timestamps[i+1]]
+    # sf.write(str(i)+&quot;.wav&quot;, tmp.astype(np.float32), sr, subtype=&#39;PCM_24&#39;)
+
+voice_flags = np.array(voice_flags)
+# 𝑣_𝑏𝑖𝑎𝑠𝑒𝑑𝑡=𝑣𝑡/(1−𝛽𝑡)
+# 滑动平均计算
+def moving_average(array, width):
+    # 拼接 bool 二值化
+    # width 执行滑动平均平滑时，帧的平均数。
+    # 该值越大，VAD变化必须越大才能平滑。
+    array_padded = np.concatenate((np.zeros((width - 1) // 2), array, np.zeros(width // 2)))
+    # 一维数组累加
+    ret = np.cumsum(array_padded, dtype=float)
+    ret[width:] = ret[width:] - ret[:-width]
+    return ret[width - 1:] / width
+
+#滑动平均计算
+audio_mask = moving_average(voice_flags, 8)
+#将平均数四舍五入 转bool
+audio_mask = np.round(audio_mask).astype(np.bool)
+# 扩张浊音区 使用多维二元膨胀 是数学形态学的方法 类似opencv 也有开闭运算 腐蚀膨胀
+audio_mask = binary_dilation(audio_mask, np.ones(6 + 1))
+#使其与wav一样大小
+audio_mask = np.repeat(audio_mask, samples_per_window)
+
+timestamps = []
+flag = False
+for i, t in enumerate(audio_mask):
+    if flag ^ t:
+        timestamps.append(i)
+        flag = t
+
+for i in range(0, len(timestamps)-1, 2):
+    res = wav[timestamps[i]:timestamps[i+1]]
+    sf.write(str(i)+&quot;.wav&quot;, res.astype(np.float32), sr, subtype=&#39;PCM_24&#39;)
+
+# #通过这个遮罩扣掉没有声音那部分
+# res=wav[audio_mask == True]
+# sf.write(&quot;out.wav&quot;, res.astype(np.float32), sr, subtype=&#39;PCM_24&#39;)
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>端点检测方法非常多，除这之外还有比较经典的双门限法。实际测试中，这些方法在干净的语音中效果非常好，在现实带噪场景中，可能容易出现误分成很多子段的现象，为此，可以通过增加时间规则，对分割后的时间段和上下段的连接段判断是否合理，来精简检测结果。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/qq_42688495/article/details/109333598" target="_blank" rel="noopener">https://blog.csdn.net/qq_42688495/article/details/109333598</a><br><a href="https://blog.csdn.net/weixin_43928944/article/details/108378413" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43928944/article/details/108378413</a></p>
 
       
     </div>
@@ -478,7 +719,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz/2020/05/05/transfomer/" title="Transfomer以及Self-Attention讲解" target="_blank" rel="external">http://weiquanfan.xyz/2020/05/05/transfomer/</a>
+      <a href="http://weiquanfan.xyz/2021/07/28/vad/" title="语音的预处理--端点检测" target="_blank" rel="external">http://weiquanfan.xyz/2021/07/28/vad/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -525,12 +766,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2020/05/07/BERT/" title="讲讲横扫nlp任务的BERT模型"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+      <a href="/2021/07/28/vscode/" title="VSCode的服务器和github同步"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2020/05/04/gradient-descent/" title="常见的梯度下降算法原理"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2021/07/27/denose/" title="语音的预处理--去噪"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
