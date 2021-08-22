@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2021-07-28T15:29:41.939Z</updated>
+  <updated>2021-08-22T13:49:41.162Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>语音特征小结</title>
+    <link href="http://weiquanfan.xyz/2021/08/22/audio-features/"/>
+    <id>http://weiquanfan.xyz/2021/08/22/audio-features/</id>
+    <published>2021-08-22T12:36:20.000Z</published>
+    <updated>2021-08-22T13:49:41.162Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;本文汇总了一些常见或不常见的语音特征，持续更新中。&lt;/p&gt;
+&lt;h2 id=&quot;特征汇总&quot;&gt;&lt;a href=&quot;#特征汇总&quot; class=&quot;hea
+      
+    
+    </summary>
+    
+      <category term="语音特征" scheme="http://weiquanfan.xyz/categories/%E8%AF%AD%E9%9F%B3%E7%89%B9%E5%BE%81/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>VSCode的服务器和github同步</title>
