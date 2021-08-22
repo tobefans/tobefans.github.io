@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2021-08-22T14:03:23.565Z</updated>
+  <updated>2021-08-22T14:10:31.947Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nvidia-driver</title>
+    <link href="http://weiquanfan.xyz/2021/08/22/nvidia-driver/"/>
+    <id>http://weiquanfan.xyz/2021/08/22/nvidia-driver/</id>
+    <published>2021-08-22T14:10:15.000Z</published>
+    <updated>2021-08-22T14:10:31.947Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在重启服务器的时候，发现nvidia驱动自动升级，使用 nvidia-smi 命令会报错如下，故重装nvidia驱动，参考&lt;br&gt;&lt;a href=&quot;https://blog.csdn.net/m0_37201243/article/details/112974957?ops
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>语音特征小结</title>
@@ -439,27 +458,6 @@
     
       <category term="语音特征" scheme="http://weiquanfan.xyz/categories/%E8%AF%AD%E9%9F%B3%E7%89%B9%E5%BE%81/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>卷积当中的补零操作</title>
-    <link href="http://weiquanfan.xyz/2020/05/02/padding/"/>
-    <id>http://weiquanfan.xyz/2020/05/02/padding/</id>
-    <published>2020-05-02T08:43:28.000Z</published>
-    <updated>2020-06-26T02:45:42.701Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;卷积输入输出尺寸公式&quot;&gt;&lt;a href=&quot;#卷积输入输出尺寸公式&quot; class=&quot;headerlink&quot; title=&quot;卷积输入输出尺寸公式&quot;&gt;&lt;/a&gt;卷积输入输出尺寸公式&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/2020/05/02/padding/padding_
-      
-    
-    </summary>
-    
-    
-      <category term="卷积" scheme="http://weiquanfan.xyz/tags/%E5%8D%B7%E7%A7%AF/"/>
     
   </entry>
   
