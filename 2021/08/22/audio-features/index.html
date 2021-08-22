@@ -26,7 +26,9 @@
 <meta property="og:description" content="前言本文汇总了一些常见或不常见的语音特征，持续更新中。 特征汇总韵律特征（prosodic feature）包含语音中音高、语调、能量、节奏变化等重要信息，表现为人昕觉系统感知到的“抑扬顿挫”，在语音信号处理的许多领域都有应用。基音频率、语速、能量等都是常用的韵律学特征。 基音频率（fundamental frequency, F0）是指发浊音时声带振动的频率，简称基频。人发声过程中来自肺部的气流">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://weiquanfan.xyz/2021/08/22/audio-features/formants.jpeg">
-<meta property="og:updated_time" content="2021-08-22T13:49:41.162Z">
+<meta property="og:image" content="https://www.zhihu.com/question/24190826">
+<meta property="og:image" content="https://blog.csdn.net/weixin_42300798/article/details/113627332">
+<meta property="og:updated_time" content="2021-08-22T13:52:18.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="语音特征小结">
 <meta name="twitter:description" content="前言本文汇总了一些常见或不常见的语音特征，持续更新中。 特征汇总韵律特征（prosodic feature）包含语音中音高、语调、能量、节奏变化等重要信息，表现为人昕觉系统感知到的“抑扬顿挫”，在语音信号处理的许多领域都有应用。基音频率、语速、能量等都是常用的韵律学特征。 基音频率（fundamental frequency, F0）是指发浊音时声带振动的频率，简称基频。人发声过程中来自肺部的气流">
@@ -427,6 +429,7 @@
 <h3 id="ComParE特征集"><a href="#ComParE特征集" class="headerlink" title="ComParE特征集"></a>ComParE特征集</h3><p>（1）ComParE，Computational Paralinguistics ChallengE，是InterSpeech上的一个挑战赛，从13年至今（2018年），每年都举办，每年有不一样的挑战任务。<br>（2）从13年开始至今（2018年），ComParE的挑战都会要求使用一个设计好的特征集，这个特征集包含了6373个静态特征，是在LLD上计算各种函数得到的，称为ComParE特征集。<br>（3）可以通过openSmile开源包来获得，另外前面提到的eGeMAPS也可以用openSmile获得。<br>五：2009 InterSpeech挑战赛特征<br>（1）前面说的6373维特征集ComparE是13年至今InterSpeech挑战赛中用的。（2）有论文还用了09年InterSpeech上Emotion Challenge提到的特征，总共有384个特征，计算方法如下。<br>（3）首先计算16个LLD，过零率，能量平方根，F0，HNR（信噪比，有些论文也叫vp，voice probability 人声概率），MFCC1-12，然后计算这16个LLD的一阶差分，可以得到32个LLD。<br>（4）对这32个LLD应用12个统计函数，最后得到32x12 = 384个特征。<br>（5）同样可以通过openSmile来获得。</p>
 <h3 id="BoAW"><a href="#BoAW" class="headerlink" title="BoAW"></a>BoAW</h3><p>（BoAW，bag-of-audio-words，是特征的进一步组织表示，是根据一个codebook对LLDs做计算得到的。这个codebook可以是k-means的结果，也可以是对LLDs的随机采样。在论文会看到BoAW特征集的说法，指的是某个特征集的BoAW形式。比如根据上下文“使用特征集有ComparE和BoAW”，可以知道，这样的说法其实是指原来的特征集ComparE，和ComparE经过计算后得到的BoAW表示。可通过openXBOW开源包来获得BoAW表示。</p>
 <h3 id="YAAFE："><a href="#YAAFE：" class="headerlink" title="YAAFE："></a>YAAFE：</h3><p>使用YAAFE库提取到的特征，具体特征见YAAFE主页。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><img src="https://www.zhihu.com/question/24190826" alt="https://www.zhihu.com/question/24190826"><br><img src="https://blog.csdn.net/weixin_42300798/article/details/113627332" alt="https://blog.csdn.net/weixin_42300798/article/details/113627332"></p>
 
       
     </div>
