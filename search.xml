@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[nvidia-driver]]></title>
+    <title><![CDATA[nvidia驱动重装]]></title>
     <url>%2F2021%2F08%2F22%2Fnvidia-driver%2F</url>
     <content type="text"><![CDATA[在重启服务器的时候，发现nvidia驱动自动升级，使用 nvidia-smi 命令会报错如下，故重装nvidia驱动，参考Ubuntu18.04的驱动nvidia驱动升级为450版本后，ssh速度很慢的解决方案 NVIDIA-SMI has failed because it couldn&#39;t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running. 卸载旧驱动sudo apt-get --purge remove nvidia* sudo apt autoremove 重启，使得所有nvidia残余进程被杀掉，否则无法安装 sudo shutdown -r now 下载安装驱动实验证明440.100版本驱动对18.04十分适合，要版本请自行查询。 wget https://cn.download.nvidia.com/XFree86/Linux-x86_64/440.100/NVIDIA-Linux-x86_64-440.100.run sudo chmod a+x NVIDIA-Linux-x86_64-440.100.run sudo ./NVIDIA-Linux-x86_64-440.100.run -no-x-check -no-nouveau-check -no-opengl-files 安装过程The distribution-provided pre-install script failed! Are you sure you want to continue? 选择 yes 继续。Would you like to register the kernel module souces with DKMS? This will allow DKMS to automatically build a new module, if you install a different kernel later? 选择 No 继续。Would you like to run the nvidia-xconfigutility to automatically update your x configuration so that the NVIDIA x driver will be used when you restart x? Any pre-existing x confile will be backed up. 选择No 重启sudo shutdown -r now 提升nvidia-smi运行速度方法1： sudo /usr/bin/nvidia-persistenced --verbose 也可直接把该命令放到开机自动运行 echo &quot;/usr/bin/nvidia-persistenced --verbose&quot; | sudo tee -a /etc/init.d/rc.local 方法2：设置持久模式：0/DISABLED,1/ENABLED sudo nvidia-smi -pm 1 完成]]></content>
   </entry>
