@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="引言—语音识别ASR参考博客.  在基于GMM-HMM的传统语音识别里，比音素（phone）更小的单位是状态（state）。一般每个音素由三个状态组成，特殊的是静音（SIL）由五个状态组成。这里所说的状态就是指HMM里的隐藏的状态，而每帧数据就是指HMM里的观测值。每个状态可以用一个GMM模型表示（这个GMM模型的参数是通过训练得到的）。在识别时把每帧数据对应的特征值放进每个状态的GMM里算概率，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-10-25T16:34:37.395Z">
+<meta property="og:updated_time" content="2021-10-26T10:44:07.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详解kaldi的数据和语言模型文件——librispeech">
 <meta name="twitter:description" content="引言—语音识别ASR参考博客.  在基于GMM-HMM的传统语音识别里，比音素（phone）更小的单位是状态（state）。一般每个音素由三个状态组成，特殊的是静音（SIL）由五个状态组成。这里所说的状态就是指HMM里的隐藏的状态，而每帧数据就是指HMM里的观测值。每个状态可以用一个GMM模型表示（这个GMM模型的参数是通过训练得到的）。在识别时把每帧数据对应的特征值放进每个状态的GMM里算概率，">
@@ -551,7 +551,67 @@ fi
 G.carpa  L.fst  L_disambig.fst  oov.int  oov.txt  phones  phones.txt  topo  words.txt
 $ls lang_nosp_test_fglarge/
 G.carpa  L.fst  L_disambig.fst  oov.int  oov.txt  phones  phones.txt  topo  words.txt
-</code></pre><p>再往后即是提特征、训练、评分的流程，可参照<a href="https://tobefans.github.io/2021/04/22/kaldi-librispeech/" target="_blank" rel="noopener">这里</a>。</p>
+</code></pre><p>然后看模型文件。<br>步骤8，训单因素模型并解码。</p>
+<pre><code>if [ $stage -le 8 ]; then
+  # 训单音素HMM模型，保存于exp/mono
+  steps/train_mono.sh --boost-silence 1.25 --nj 20 --cmd &quot;$train_cmd&quot; \
+                      data/train_2kshort data/lang_nosp exp/mono
+
+  # decode using the monophone model
+  (
+    # 构建HCLG解码图
+    # data/lang_nosp_test_tgsmall/L_disambig.fst + data/lang_nosp_test_tgsmall/G.fst -&gt; data/lang_nosp_test_tgsmall/tmp/LG.fst
+    # data/lang_nosp_test_tgsmall/tmp/LG.fst + data/lang_nosp_test_tgsmall/tmp/ilabels_3_1(消歧符) -&gt; data/lang_nosp_test_tgsmall/tmp/CLG_3_1.fst
+    # data/lang_nosp_test_tgsmall/tmp/CLG_3_1.fst + exp/mono/graph_nosp_tgsmall/Ha.fst(由make-h-transducer形成) -&gt; exp/mono/graph_nosp_tgsmall/HCLGa.fst
+    # exp/mono/graph_nosp_tgsmall/HCLGa.fst + 自循环add_self_loops -&gt; exp/mono/graph_nosp_tgsmall/HCLG.fst
+    utils/mkgraph.sh data/lang_nosp_test_tgsmall \
+                     exp/mono exp/mono/graph_nosp_tgsmall
+
+    for test in test_clean test_other dev_clean dev_other; do
+      steps/decode.sh --nj 20 --cmd &quot;$decode_cmd&quot; exp/mono/graph_nosp_tgsmall \
+                      data/$test exp/mono/decode_nosp_tgsmall_$test
+    done
+  )&amp;
+fi
+</code></pre><p>步骤9，用单音素模型对齐后，再训三音素模型。</p>
+<pre><code>if [ $stage -le 9 ]; then
+  # 将每一个特征向量都对应到了具体的 phone 的状态上，每一段utt对应一串表示状态变化的 transition_id 
+  # exp/mono -&gt; exp/mono_ali_5k
+  steps/align_si.sh --boost-silence 1.25 --nj 10 --cmd &quot;$train_cmd&quot; \
+                    data/train_5k data/lang_nosp exp/mono exp/mono_ali_5k
+
+  # 训三音素模型，保存于exp/tri1
+  # 一个音素在不同上下文会有不同的发音，三音素模型对l_a_i和l_a_n用不同的GMM建模，并同样映射到a。
+  # 2000为决策树的叶子数，10000为总高斯数。
+  steps/train_deltas.sh --boost-silence 1.25 --cmd &quot;$train_cmd&quot; \
+                        2000 10000 data/train_5k data/lang_nosp exp/mono_ali_5k exp/tri1
+fi
+</code></pre><p>步骤10，用三音素模型对齐后，再训LDA+MLLT模型。</p>
+<pre><code>if [ $stage -le 10 ]; then
+  # 继续对齐
+  steps/align_si.sh --nj 10 --cmd &quot;$train_cmd&quot; \
+                    data/train_10k data/lang_nosp exp/tri1 exp/tri1_ali_10k
+
+
+  # 训LDA+MLLT模型，在mfcc特征提取出来后，将相邻几个帧拼接起来，降到40维，用LDA 去评估，经过多次迭代，最后使用对角变换，用转换后的特征去训练。
+  steps/train_lda_mllt.sh --cmd &quot;$train_cmd&quot; \
+                          --splice-opts &quot;--left-context=3 --right-context=3&quot; 2500 15000 \
+                          data/train_10k data/lang_nosp exp/tri1_ali_10k exp/tri2b
+fi
+</code></pre><p>步骤11，用LDA+MLLT模型对齐后，再训LDA+MLLT+SAT模型。</p>
+<pre><code>if [ $stage -le 11 ]; then
+  # 继续对齐
+  steps/align_si.sh  --nj 10 --cmd &quot;$train_cmd&quot; --use-graphs true \
+                     data/train_10k data/lang_nosp exp/tri2b exp/tri2b_ali_10k
+
+  # 训LDA+MLLT+SAT模型，是训说话人自适应(Speaker Adaptive Training)的，同样是特征转换后再训。
+  steps/train_sat.sh --cmd &quot;$train_cmd&quot; 2500 15000 \
+                     data/train_10k data/lang_nosp exp/tri2b_ali_10k exp/tri3b
+fi
+</code></pre><p>步骤12，在100h干净数据上，用LDA+MLLT+SAT模型对齐后，再训LDA+MLLT+SAT模型。<br>```<br>if [ $stage -le 12 ]; then</p>
+<h1 id="先预对齐一次，计算-fmllr-transforms-再用预对齐和-fmllr-一起计算最终对齐。"><a href="#先预对齐一次，计算-fmllr-transforms-再用预对齐和-fmllr-一起计算最终对齐。" class="headerlink" title="先预对齐一次，计算 fmllr transforms, 再用预对齐和 fmllr 一起计算最终对齐。"></a>先预对齐一次，计算 fmllr transforms, 再用预对齐和 fmllr 一起计算最终对齐。</h1><p>  steps/align_fmllr.sh —nj 20 —cmd “$train_cmd” \<br>    data/train_clean_100 data/lang_nosp \<br>    exp/tri3b exp/tri3b_ali_clean_100</p>
+<h1 id="训LDA-MLLT-SAT模型。"><a href="#训LDA-MLLT-SAT模型。" class="headerlink" title="训LDA+MLLT+SAT模型。"></a>训LDA+MLLT+SAT模型。</h1><p>  steps/train_sat.sh  —cmd “$train_cmd” 4200 40000 \<br>                      data/train_clean_100 data/lang_nosp \<br>                      exp/tri3b_ali_clean_100 exp/tri4b<br>fi</p>
+<p>完整流程可参照<a href="https://tobefans.github.io/2021/04/22/kaldi-librispeech/" target="_blank" rel="noopener">这里</a>。</p>
 
       
     </div>
