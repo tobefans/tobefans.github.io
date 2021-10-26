@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://weiquanfan.xyz/"/>
-  <updated>2021-10-26T10:44:07.072Z</updated>
+  <updated>2021-10-26T15:27:33.332Z</updated>
   <id>http://weiquanfan.xyz/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>详解kaldi的数据和语言模型文件——librispeech</title>
+    <title>详解kaldi的数据和模型文件——librispeech</title>
     <link href="http://weiquanfan.xyz/2021/10/25/librispeech/"/>
     <id>http://weiquanfan.xyz/2021/10/25/librispeech/</id>
     <published>2021-10-25T12:09:30.000Z</published>
-    <updated>2021-10-26T10:44:07.072Z</updated>
+    <updated>2021-10-26T15:27:33.332Z</updated>
     
     <summary type="html">
     

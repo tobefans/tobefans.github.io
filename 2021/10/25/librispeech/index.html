@@ -17,18 +17,18 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>详解kaldi的数据和语言模型文件——librispeech | Hexo</title>
+  <title>详解kaldi的数据和模型文件——librispeech | Hexo</title>
   <meta name="description" content="引言—语音识别ASR参考博客.  在基于GMM-HMM的传统语音识别里，比音素（phone）更小的单位是状态（state）。一般每个音素由三个状态组成，特殊的是静音（SIL）由五个状态组成。这里所说的状态就是指HMM里的隐藏的状态，而每帧数据就是指HMM里的观测值。每个状态可以用一个GMM模型表示（这个GMM模型的参数是通过训练得到的）。在识别时把每帧数据对应的特征值放进每个状态的GMM里算概率，">
 <meta name="keywords" content="kaldi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="详解kaldi的数据和语言模型文件——librispeech">
+<meta property="og:title" content="详解kaldi的数据和模型文件——librispeech">
 <meta property="og:url" content="http://weiquanfan.xyz/2021/10/25/librispeech/index.html">
 <meta property="og:site_name" content="vetch的小小世界">
 <meta property="og:description" content="引言—语音识别ASR参考博客.  在基于GMM-HMM的传统语音识别里，比音素（phone）更小的单位是状态（state）。一般每个音素由三个状态组成，特殊的是静音（SIL）由五个状态组成。这里所说的状态就是指HMM里的隐藏的状态，而每帧数据就是指HMM里的观测值。每个状态可以用一个GMM模型表示（这个GMM模型的参数是通过训练得到的）。在识别时把每帧数据对应的特征值放进每个状态的GMM里算概率，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-10-26T10:44:07.072Z">
+<meta property="og:updated_time" content="2021-10-26T15:27:33.332Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="详解kaldi的数据和语言模型文件——librispeech">
+<meta name="twitter:title" content="详解kaldi的数据和模型文件——librispeech">
 <meta name="twitter:description" content="引言—语音识别ASR参考博客.  在基于GMM-HMM的传统语音识别里，比音素（phone）更小的单位是状态（state）。一般每个音素由三个状态组成，特殊的是静音（SIL）由五个状态组成。这里所说的状态就是指HMM里的隐藏的状态，而每帧数据就是指HMM里的观测值。每个状态可以用一个GMM模型表示（这个GMM模型的参数是通过训练得到的）。在识别时把每帧数据对应的特征值放进每个状态的GMM里算概率，">
   <!-- Canonical links -->
   <link rel="canonical" href="http://weiquanfan.xyz/2021/10/25/librispeech/index.html">
@@ -267,7 +267,7 @@
                 <a class="category-link" href="/categories/kaldi/">kaldi</a>
               </p>
               <p class="item-title">
-                <a href="/2021/10/25/librispeech/" class="title">详解kaldi的数据和语言模型文件——librispeech</a>
+                <a href="/2021/10/25/librispeech/" class="title">详解kaldi的数据和模型文件——librispeech</a>
               </p>
               <p class="item-date">
                 <time datetime="2021-10-25T12:09:30.000Z" itemprop="datePublished">2021-10-25</time>
@@ -355,7 +355,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      详解kaldi的数据和语言模型文件——librispeech
+      详解kaldi的数据和模型文件——librispeech
     </h1>
   
 
@@ -384,7 +384,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2021/10/25/librispeech/" class="leancloud_visitors"  data-flag-title="详解kaldi的数据和语言模型文件——librispeech">0</span>
+    	<span id="/2021/10/25/librispeech/" class="leancloud_visitors"  data-flag-title="详解kaldi的数据和模型文件——librispeech">0</span>
     </span>
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/10/25/librispeech/#comments" class="article-comment-link">Comments</a></span>
@@ -600,11 +600,11 @@ fi
 fi
 </code></pre><p>步骤11，用LDA+MLLT模型对齐后，再训LDA+MLLT+SAT模型。</p>
 <pre><code>if [ $stage -le 11 ]; then
-  # 继续对齐
+  ### 继续对齐
   steps/align_si.sh  --nj 10 --cmd &quot;$train_cmd&quot; --use-graphs true \
                      data/train_10k data/lang_nosp exp/tri2b exp/tri2b_ali_10k
 
-  # 训LDA+MLLT+SAT模型，是训说话人自适应(Speaker Adaptive Training)的，同样是特征转换后再训。
+  ### 训LDA+MLLT+SAT模型，是训说话人自适应(Speaker Adaptive Training)的，同样是特征转换后再训。
   steps/train_sat.sh --cmd &quot;$train_cmd&quot; 2500 15000 \
                      data/train_10k data/lang_nosp exp/tri2b_ali_10k exp/tri3b
 fi
@@ -621,7 +621,7 @@ fi
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://weiquanfan.xyz/2021/10/25/librispeech/" title="详解kaldi的数据和语言模型文件——librispeech" target="_blank" rel="external">http://weiquanfan.xyz/2021/10/25/librispeech/</a>
+      <a href="http://weiquanfan.xyz/2021/10/25/librispeech/" title="详解kaldi的数据和模型文件——librispeech" target="_blank" rel="external">http://weiquanfan.xyz/2021/10/25/librispeech/</a>
     </li>
     
     <li class="post-copyright-license">
