@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://weiquanfan.xyz/2020/05/02/specgram/spec_plt.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/05/02/specgram/spec_librosa.png">
 <meta property="og:image" content="http://weiquanfan.xyz/2020/05/02/specgram/spec_librosa_power.png">
-<meta property="og:updated_time" content="2020-06-20T06:01:56.655Z">
+<meta property="og:updated_time" content="2021-11-14T16:19:46.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="语谱图的matlab提取和python提取">
 <meta name="twitter:description" content="前言语谱图（spectrogram或specgram），也叫声谱图，可以简单看做一个二维矩阵，其纵轴表示频率，横轴表示时间，矩阵的值表示能量强弱。由于它拥有着频率和时间两个维度的信息，所以是比较综合地表示原语音信息的一种特征。另外，我将其看做语音和图像的一种连接，因为图像领域的模型发展得较快，所以通过这种方式把语音转换成一种特殊的图像再进一步处理。 语谱图流程简介1. 将语音可交叉地分成多帧（由于">
@@ -480,7 +480,8 @@ io.savemat(&#39;specgram.mat&#39;, {&#39;specg&#39;:specg[0]})    # 保存语谱
 # pad_to为上边的nfft
 # NFFT为上边的windows_length（为什么nfft不设置为上边的nfft呢，迷惑）
 # noverlap为上边的overlap_length
-</code></pre><h3 id="补充一个librosa版本"><a href="#补充一个librosa版本" class="headerlink" title="补充一个librosa版本"></a>补充一个librosa版本</h3><p>librosa提取的是梅尔频谱图，即在频谱图基础上再进一步将各帧通过梅尔滤波器(还可加对数操作)。另外若是在此基础上再进行倒谱即获得MFCC。<br>还要注意到，梅尔频谱图的输出尺寸，频率等于梅尔滤波器的个数n_mels, 时间则只取决于窗移(非重叠数)hop_length(还没想明白，推测可能是进行了填充，所以尺寸上忽视了窗长的影响)。<br>此外，还可通过设置power参数来确定要计算梅尔频谱图(设置为1)还是梅尔功率图(设置为2)。</p>
+</code></pre><p>这里补充一点，语谱图根据带通滤波器的宽窄，可分为宽带语谱图和窄带语谱图。上图为窄带语谱图。<br>窄带语谱图，频率轴的分辨率较细，反映频谱的精细结构，可以看到很多“横杠”，“横杠”之间的距离就是基音频率；<br>宽带语谱图，频率轴的分辨率较粗，反映频谱的快速时变过程，可以看到很多细竖条，这些细条之间的距离就是基音周期。</p>
+<h3 id="补充一个librosa版本"><a href="#补充一个librosa版本" class="headerlink" title="补充一个librosa版本"></a>补充一个librosa版本</h3><p>librosa提取的是梅尔频谱图，即在频谱图基础上再进一步将各帧通过梅尔滤波器(还可加对数操作)。另外若是在此基础上再进行倒谱即获得MFCC。<br>还要注意到，梅尔频谱图的输出尺寸，频率等于梅尔滤波器的个数n_mels, 时间则只取决于窗移(非重叠数)hop_length(还没想明白，推测可能是进行了填充，所以尺寸上忽视了窗长的影响)。<br>此外，还可通过设置power参数来确定要计算梅尔频谱图(设置为1)还是梅尔功率图(设置为2)。</p>
 <pre><code>from matplotlib import pyplot as plt
 import librosa
 import librosa.display
