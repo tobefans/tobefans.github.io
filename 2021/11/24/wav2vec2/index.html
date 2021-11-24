@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>wav2vec系列原理和使用 | Hexo</title>
+  <meta name="description" content="前言wav2vec系列工作由facebook AI Research团队提出，包括wav2vec、vq-wav2vec、wav2vec2.0，效仿nlp上的word2vec，是语音的一种通用特征提取器。本文重点讲解wav2vec2.0模型及其使用方法。 wav2vec论文：wav2vec: Unsupervised Pre-training for Speech Recognition 本文提出一">
+<meta name="keywords" content="Transformer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wav2vec系列原理和使用">
+<meta property="og:url" content="http://weiquanfan.xyz/2021/11/24/wav2vec2/index.html">
+<meta property="og:site_name" content="vetch的小小世界">
+<meta property="og:description" content="前言wav2vec系列工作由facebook AI Research团队提出，包括wav2vec、vq-wav2vec、wav2vec2.0，效仿nlp上的word2vec，是语音的一种通用特征提取器。本文重点讲解wav2vec2.0模型及其使用方法。 wav2vec论文：wav2vec: Unsupervised Pre-training for Speech Recognition 本文提出一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://weiquanfan.xyz/2021/11/24/wav2vec2/wav2vec.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2021/11/24/wav2vec2/vq-wav2vec.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2021/11/24/wav2vec2/wav2vec2.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2021/11/24/wav2vec2/wav2vec2_model.png">
+<meta property="og:image" content="http://weiquanfan.xyz/2021/11/24/wav2vec2/quantizer.png">
+<meta property="og:updated_time" content="2021-11-24T15:01:30.684Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="wav2vec系列原理和使用">
+<meta name="twitter:description" content="前言wav2vec系列工作由facebook AI Research团队提出，包括wav2vec、vq-wav2vec、wav2vec2.0，效仿nlp上的word2vec，是语音的一种通用特征提取器。本文重点讲解wav2vec2.0模型及其使用方法。 wav2vec论文：wav2vec: Unsupervised Pre-training for Speech Recognition 本文提出一">
+<meta name="twitter:image" content="http://weiquanfan.xyz/2021/11/24/wav2vec2/wav2vec.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://weiquanfan.xyz/2021/11/24/wav2vec2/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="vetch的小小世界" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link href="//cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/tobefans" target="_blank">
+          <img class="img-circle img-rotate" src="/images/photo.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Weiquan Fan</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">AI练习生</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tobefans" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://github.com/tobefans" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://github.com/tobefans" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://github.com/tobefans" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/kaldi/">kaldi</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具使用/">工具使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/强化学习/">强化学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习模型/">深度学习模型</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/端点预处理/">端点预处理</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/端点预处理/语音识别/">语音识别</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/语音特征/">语音特征</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/语音特征/深度学习模型/">深度学习模型</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/语音识别/">语音识别</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/语音预处理/">语音预处理</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BERT/">BERT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GLUE/">GLUE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QT/">QT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Transformer/">Transformer</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/asr/">asr</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attention/">attention</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/denose/">denose</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaldi/">kaldi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opensmile/">opensmile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/padding/">padding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vad/">vad</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/BERT/" style="font-size: 13px;">BERT</a> <a href="/tags/GLUE/" style="font-size: 13px;">GLUE</a> <a href="/tags/QT/" style="font-size: 13px;">QT</a> <a href="/tags/Transformer/" style="font-size: 14px;">Transformer</a> <a href="/tags/asr/" style="font-size: 13.5px;">asr</a> <a href="/tags/attention/" style="font-size: 13.5px;">attention</a> <a href="/tags/denose/" style="font-size: 13px;">denose</a> <a href="/tags/kaldi/" style="font-size: 13.5px;">kaldi</a> <a href="/tags/opensmile/" style="font-size: 13px;">opensmile</a> <a href="/tags/padding/" style="font-size: 13px;">padding</a> <a href="/tags/vad/" style="font-size: 13.5px;">vad</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">11</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/语音特征/">语音特征</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/语音特征/深度学习模型/">深度学习模型</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/11/24/wav2vec2/" class="title">wav2vec系列原理和使用</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-11-24T14:54:50.000Z" itemprop="datePublished">2021-11-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/kaldi/">kaldi</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/10/25/librispeech/" class="title">详解kaldi的数据和模型文件——librispeech</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-10-25T12:09:30.000Z" itemprop="datePublished">2021-10-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/22/nvidia-driver/" class="title">nvidia驱动重装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-22T14:10:15.000Z" itemprop="datePublished">2021-08-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/语音特征/">语音特征</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/08/22/audio-features/" class="title">语音特征小结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-08-22T12:36:20.000Z" itemprop="datePublished">2021-08-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/工具使用/">工具使用</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/07/28/vscode/" class="title">VSCode的服务器和github同步</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-07-28T15:27:44.000Z" itemprop="datePublished">2021-07-28</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-wav2vec2" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      wav2vec系列原理和使用
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/11/24/wav2vec2/" class="article-date">
+	  <time datetime="2021-11-24T14:54:50.000Z" itemprop="datePublished">2021-11-24</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/语音特征/">语音特征</a>►<a class="article-category-link" href="/categories/语音特征/深度学习模型/">深度学习模型</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Transformer/">Transformer</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2021/11/24/wav2vec2/" class="leancloud_visitors"  data-flag-title="wav2vec系列原理和使用">0</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/11/24/wav2vec2/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>wav2vec系列工作由facebook AI Research团队提出，包括wav2vec、vq-wav2vec、wav2vec2.0，效仿nlp上的word2vec，是语音的一种通用特征提取器。本文重点讲解wav2vec2.0模型及其使用方法。</p>
+<h2 id="wav2vec"><a href="#wav2vec" class="headerlink" title="wav2vec"></a>wav2vec</h2><p>论文：<a href="https://arxiv.org/pdf/1904.05862.pdf" target="_blank" rel="noopener">wav2vec: Unsupervised Pre-training for Speech Recognition</a></p>
+<p>本文提出一种无监督的语音预训练模型 wav2vec，可迁移到语音下游任务。模型结构如下图，分为将原始音频x编码为潜在空间z的 encoder network（5层卷积），和将z转换为contextualized representation的 context network（9层卷积），最终特征维度为512x帧数。目标是在特征层面使用当前帧预测未来帧。<br><img src="/2021/11/24/wav2vec2/wav2vec.png" alt></p>
+<h2 id="vq-wav2vec"><a href="#vq-wav2vec" class="headerlink" title="vq-wav2vec"></a>vq-wav2vec</h2><p>论文：<a href="https://arxiv.org/pdf/1910.05453v1.pdf" target="_blank" rel="noopener">vq-wav2vec: Self-Supervised Learning of Discrete Speech Representations</a></p>
+<p>本文基于wav2vec，将连续特征z通过提出的量化模块，变成离散特征z‘，实现特征空间从无限的连续到有限的离散的转换过程。文中提出了两种量化方法，Gumbel softmax和K-Means，如下图。 其中，左右两个部分中的 e1 … ev，就是码本（记录特征集，可以理解为 BERT 中的词表），Gumbel通过逻辑值最大化（回传时使用Gumbel softmax来保证可导）找对应码本条，K-Means通过计算与码本距离来找最小距离的码本条。<br><img src="/2021/11/24/wav2vec2/vq-wav2vec.png" alt></p>
+<h2 id="wav2vec2-0"><a href="#wav2vec2-0" class="headerlink" title="wav2vec2.0"></a>wav2vec2.0</h2><p>论文：<a href="https://arxiv.org/pdf/2006.11477v1.pdf" target="_blank" rel="noopener">wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations</a></p>
+<p>本文基于wav2vec，结合了vq-wav2vec的量化模块和Transformer，提出了wav2vec2.0，如下图。其中，encoder network基于CNN，而context network基于Transformer，任务是在特征层面恢复被mask的量化的帧。<br><img src="/2021/11/24/wav2vec2/wav2vec2.png" alt></p>
+<p>模型的整体结构如下图，以下具体讲解结构。<br><img src="/2021/11/24/wav2vec2/wav2vec2_model.png" alt></p>
+<h3 id="encoder"><a href="#encoder" class="headerlink" title="encoder"></a>encoder</h3><p>feature extractor 使用了7层的一维CNN，步长为(5,2,2,2,2,2,2)，卷积核宽度为(10,3,3,3,3,2,2)。<br>对于(1,x)的输入语音，各卷积层输出维度为：<br>cnn0 (x-10)/5+1=x/5-1<br>cnn1 ((x/5-1)-3)/2+1=x/10-1<br>cnn2 x/20-1<br>cnn3 x/40-1<br>cnn4 x/80-1<br>cnn5 x/160<br>cnn6 x/320<br>对于16k采样率的1s的语音对应矩阵(1,16000)，论文中的channels大小设置的为512，对应的输出为 (512,16000/320)=(512,50)，相当于每20ms产生一个512维的特征向量。<br>另外，在cnn0使用了GroupNorm，在cnn6的输出使用torch.nn.LayerNorm。</p>
+<pre><code>  (feature_extractor): ConvFeatureExtractionModel(
+    (conv_layers): ModuleList(
+      (0): Sequential(
+        (0): Conv1d(1, 512, kernel_size=(10,), stride=(5,), bias=False)
+        (1): Dropout(p=0.0, inplace=False)
+        (2): Fp32GroupNorm(512, 512, eps=1e-05, affine=True)
+        (3): GELU()
+      )
+      (1): Sequential(
+        (0): Conv1d(512, 512, kernel_size=(3,), stride=(2,), bias=False)
+        (1): Dropout(p=0.0, inplace=False)
+        (2): GELU()
+      )
+      (2): Sequential(
+        (0): Conv1d(512, 512, kernel_size=(3,), stride=(2,), bias=False)
+        (1): Dropout(p=0.0, inplace=False)
+        (2): GELU()
+      )
+      (3): Sequential(
+        (0): Conv1d(512, 512, kernel_size=(3,), stride=(2,), bias=False)
+        (1): Dropout(p=0.0, inplace=False)
+        (2): GELU()
+      )
+      (4): Sequential(
+        (0): Conv1d(512, 512, kernel_size=(3,), stride=(2,), bias=False)
+        (1): Dropout(p=0.0, inplace=False)
+        (2): GELU()
+      )
+      (5): Sequential(
+        (0): Conv1d(512, 512, kernel_size=(2,), stride=(2,), bias=False)
+        (1): Dropout(p=0.0, inplace=False)
+        (2): GELU()
+      )
+      (6): Sequential(
+        (0): Conv1d(512, 512, kernel_size=(2,), stride=(2,), bias=False)
+        (1): Dropout(p=0.0, inplace=False)
+        (2): GELU()
+      )
+    )
+  )
+</code></pre><h3 id="context"><a href="#context" class="headerlink" title="context"></a>context</h3><p>整体结构图中的context包括左右两部分，左边负责将z转换成c（对应wav2vec2特征），右边负责将z离散化以计算损失。</p>
+<p>左边部分中，对于输入512x50的z，有：<br>post_extract_proj: 768x50<br>apply_mask-&gt;pos_conv-&gt;LN: 768x50<br>Transformer*12: 768x50<br>choose_masking: 768xM，M为mask的帧数<br>final_proj: 256xM</p>
+<p>右边部分中，对于输入512x50的z，有：<br>choose_masking: 512xM<br>quantizer: 256xM<br>project_q: 256xM</p>
+<p>其中，量化的参数有：码本个数G=2，每个码本的条目个数V=320，条目的维度d/G=256/2=128。参数含义：G=latent_groups，V=latent_vars，d=vq_dim。<br>具体的quantizer流程如下图所示，前向的时候直接找出来最大值对应的码本中的条目，相当于是一个离散的操作，但是这个步骤不可导，无法进行反向传播，为了解决这个问题，采用了gumbel softmax操作。<br><img src="/2021/11/24/wav2vec2/quantizer.png" alt></p>
+<h2 id="wav2vec2-0的使用（transformers库）"><a href="#wav2vec2-0的使用（transformers库）" class="headerlink" title="wav2vec2.0的使用（transformers库）"></a>wav2vec2.0的使用（transformers库）</h2><pre><code>import soundfile as sf
+import torch
+from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
+
+processor = Wav2Vec2Processor.from_pretrained(&quot;facebook/wav2vec2-base-960h&quot;)
+model = Wav2Vec2ForCTC.from_pretrained(&quot;facebook/wav2vec2-base-960h&quot;)   # 用于ASR等，32维
+
+audio_input, sample_rate = sf.read(path_audio)  # (31129,)
+input_values = processor(audio_input, sampling_rate=sample_rate, return_tensors=&quot;pt&quot;).input_values  # torch.Size([1, 31129])
+
+logits = model(input_values).logits     # torch.Size([1, 97, 32])
+predicted_ids = torch.argmax(logits, dim=-1)    # torch.Size([1, 97])
+
+transcription = processor.decode(predicted_ids[0])  # ASR的解码结果
+
+from transformers import Wav2Vec2Model
+model = Wav2Vec2Model.from_pretrained(&quot;facebook/wav2vec2-base-960h&quot;)    # 用于提取通用特征，768维
+wav2vec2 = model(input_values)[&#39;last_hidden_state&#39;]     # torch.Size([1, 97, 768])，模型出来是一个BaseModelOutput的结构体。
+</code></pre><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/xmdxcsj/article/details/115787729" target="_blank" rel="noopener">https://blog.csdn.net/xmdxcsj/article/details/115787729</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://weiquanfan.xyz/2021/11/24/wav2vec2/" title="wav2vec系列原理和使用" target="_blank" rel="external">http://weiquanfan.xyz/2021/11/24/wav2vec2/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/tobefans" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/photo.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/tobefans" target="_blank"><span class="text-dark">Weiquan Fan</span><small class="ml-1x">AI练习生</small></a></h3>
+        <div>陌上花开，可缓缓归矣</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2021/10/25/librispeech/" title="详解kaldi的数据和模型文件——librispeech"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wachat.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/tobefans" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://github.com/tobefans" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://github.com/tobefans" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://github.com/tobefans" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+<!-- custom analytics part create by xiamo -->
+<script defer src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+<script defer>
+AV.init({
+  appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+  appKey: 'F0aXAudrJr6wsdAvrVvSp1T2'
+});
+
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+		var visitors= $('.leancloud_visitors');
+		query.greaterThanOrEqualTo("time", 0);		
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {				
+					return;
+				}
+				var data = results;
+				visitors.each(function(){
+					var url = $(this).attr('id').trim();					
+					for (var i = 0; i < data.length; i++) {
+						var object = data[i];
+						var content = object.get('time');
+						var _url = object.get('url')
+						if(url == _url){
+							$(this).text(content);
+						}
+					}
+				})
+				
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else {
+		showTime(Counter);
+	}
+}); 
+</script>
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'G55DkRGHWai3lkkyvBotwMTl-gzGzoHsz',
+    appKey: 'F0aXAudrJr6wsdAvrVvSp1T2',
+    placeholder: '此时一位路人路过...',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script src="/js/hexo_resize_image.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
